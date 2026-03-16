@@ -6,7 +6,6 @@ frontend:
         - npm ci
     build:
       commands:
-        - env | grep -e AWS_REGION -e DYNAMODB_TABLE_NAME -e NEXTAUTH_URL -e NEXTAUTH_SECRET >> .env.production
         - npm run build
   artifacts:
     baseDirectory: .next

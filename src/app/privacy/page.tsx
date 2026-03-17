@@ -6,6 +6,19 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "TechSynergy Corp privacy policy — how we collect, use, and protect your personal information under PIPEDA.",
+  alternates: {
+    canonical: "/privacy",
+  },
+  openGraph: {
+    title: "Privacy Policy | TechSynergy",
+    description: "How TechSynergy collects, uses, and protects your data under PIPEDA.",
+    url: "https://techsynergy.ca/privacy",
+  },
+  twitter: {
+    card: "summary",
+    title: "Privacy Policy | TechSynergy",
+    description: "How TechSynergy collects, uses, and protects your data under PIPEDA.",
+  },
 };
 
 const sections = [

@@ -9,10 +9,28 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Insights and thought leadership from TechSynergy on digital transformation, business strategy, and growth for Canadian businesses.",
+  alternates: {
+    canonical: "/blog",
+  },
   openGraph: {
     title: "Blog | TechSynergy",
     description:
       "Business insights from TechSynergy — strategy, growth, and digital transformation.",
+    url: "https://techsynergy.ca/blog",
+    images: [
+      {
+        url: "/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "TechSynergy Blog",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | TechSynergy",
+    description: "Business insights from TechSynergy.",
+    images: ["/og-default.png"],
   },
 };
 

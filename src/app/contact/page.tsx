@@ -5,10 +5,28 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Get in touch with TechSynergy Corp. Based in Markham, Ontario — we'd love to hear about your project.",
+  alternates: {
+    canonical: "/contact",
+  },
   openGraph: {
     title: "Contact | TechSynergy",
     description:
       "Get in touch with TechSynergy Corp. Based in Markham, Ontario.",
+    url: "https://techsynergy.ca/contact",
+    images: [
+      {
+        url: "/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "Contact TechSynergy",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "Contact | TechSynergy",
+    description: "Get in touch with TechSynergy Corp.",
+    images: ["/og-default.png"],
   },
 };
 

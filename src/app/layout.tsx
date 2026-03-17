@@ -34,13 +34,19 @@ const ibmPlexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
   title: {
-    default: "TechSynergy | Software Development & Web Solutions",
+    default: "TechSynergy | Canadian Software Development",
     template: "%s | TechSynergy",
   },
   description:
-    "TechSynergy delivers cutting-edge software development, web development, cloud solutions, and digital transformation services for businesses worldwide.",
+    "TechSynergy delivers cutting-edge software development, cloud solutions, and digital transformation services for Canadian businesses.",
   keywords: [
     "software development",
     "web development",
@@ -56,12 +62,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "TechSynergy",
+    url: "https://techsynergy.ca",
+    images: [
+      {
+        url: "/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "TechSynergy - Canadian Software Development Company",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "TechSynergy | Software Development & Web Solutions",
     description:
       "End-to-end software development services that empower businesses to scale, innovate, and lead in the digital age.",
+    images: ["/og-default.png"],
   },
   icons: {
     icon: "/icon.svg",
@@ -69,11 +85,6 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXTAUTH_URL || "https://techsynergy.ca"),
   verification: {
     google: "G-EYSYQF5TMF",
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
   },
 };
 

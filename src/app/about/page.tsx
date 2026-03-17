@@ -4,11 +4,29 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "TechSynergy Corp — founded in 2023 in Markham, Ontario by Raj, a self-taught software developer with 25+ years of experience, building privacy-first SaaS products for Canadian businesses.",
+    "TechSynergy Corp — founded in 2023 in Markham, Ontario by Raj. 25+ years of experience building privacy-first SaaS products for Canadian businesses.",
+  alternates: {
+    canonical: "/about",
+  },
   openGraph: {
     title: "About Us | TechSynergy Corp",
     description:
       "A Canadian software company building privacy-first SaaS products from Markham, Ontario.",
+    url: "https://techsynergy.ca/about",
+    images: [
+      {
+        url: "/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "About TechSynergy Corp",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us | TechSynergy Corp",
+    description: "Canadian software company building privacy-first SaaS products.",
+    images: ["/og-default.png"],
   },
 };
 

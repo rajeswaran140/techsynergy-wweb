@@ -5,9 +5,27 @@ export const metadata: Metadata = {
   title: "Portfolio",
   description:
     "See the products and projects TechSynergy has built — from SaaS platforms to cloud infrastructure.",
+  alternates: {
+    canonical: "/portfolio",
+  },
   openGraph: {
     title: "Portfolio | TechSynergy",
     description: "Products and projects built by TechSynergy Corp.",
+    url: "https://techsynergy.ca/portfolio",
+    images: [
+      {
+        url: "/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "TechSynergy Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Portfolio | TechSynergy",
+    description: "Products and projects built by TechSynergy Corp.",
+    images: ["/og-default.png"],
   },
 };
 

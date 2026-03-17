@@ -5,10 +5,28 @@ export const metadata: Metadata = {
   title: "Products",
   description:
     "Privacy-first SaaS products built by TechSynergy — Mobily.ca for Canadian link shortening and analytics, and SeoSync.ca for AI-powered SEO audits.",
+  alternates: {
+    canonical: "/products",
+  },
   openGraph: {
     title: "Products | TechSynergy",
     description:
       "Privacy-first SaaS products built and hosted in Canada — Mobily.ca and SeoSync.ca.",
+    url: "https://techsynergy.ca/products",
+    images: [
+      {
+        url: "/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "TechSynergy Products",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Products | TechSynergy",
+    description: "Privacy-first SaaS products built and hosted in Canada.",
+    images: ["/og-default.png"],
   },
 };
 

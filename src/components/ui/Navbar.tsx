@@ -98,7 +98,7 @@ export default function Navbar() {
           <Link href="/" aria-label="TechSynergy Home" className="relative z-50">
             <Image
               src="/logo-light.svg"
-              alt="TechSynergy"
+              alt="TechSynergy - Canadian Software Development Company Logo"
               width={180}
               height={32}
               priority

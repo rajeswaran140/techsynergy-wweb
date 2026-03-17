@@ -106,8 +106,44 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const service = services.find((s) => s.slug === slug);
-  if (!service) return { title: "Service Not Found" };
-  return { title: service.title };
+  if (!service)
+    return {
+      title: "Service Not Found",
+      description: "The requested service page could not be found.",
+    };
+
+  const description =
+    service.description.length > 160
+      ? service.description.slice(0, 157) + "..."
+      : service.description;
+
+  return {
+    title: service.title,
+    description,
+    alternates: {
+      canonical: `/services/${slug}`,
+    },
+    openGraph: {
+      title: `${service.title} | TechSynergy`,
+      description,
+      type: "website",
+      url: `https://techsynergy.ca/services/${slug}`,
+      images: [
+        {
+          url: "/og-default.png",
+          width: 1200,
+          height: 630,
+          alt: `${service.title} Services`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${service.title} | TechSynergy`,
+      description,
+      images: ["/og-default.png"],
+    },
+  };
 }
 
 export default async function ServiceDetailPage({ params }: Props) {

@@ -9,11 +9,29 @@ import {
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "TechSynergy services — SaaS product development, cloud infrastructure, and API integrations for Canadian businesses.",
+    "TechSynergy offers full-stack SaaS development, Canadian-hosted cloud infrastructure, and API integrations. 25+ years experience, PIPEDA-compliant.",
+  alternates: {
+    canonical: "/services",
+  },
   openGraph: {
     title: "Services | TechSynergy",
     description:
       "End-to-end software services from a Canadian company with 25+ years of experience.",
+    url: "https://techsynergy.ca/services",
+    images: [
+      {
+        url: "/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "TechSynergy Services",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services | TechSynergy",
+    description: "Full-stack SaaS development and cloud infrastructure services.",
+    images: ["/og-default.png"],
   },
 };
 

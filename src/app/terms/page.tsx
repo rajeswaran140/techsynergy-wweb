@@ -6,6 +6,19 @@ export const metadata: Metadata = {
   title: "Terms of Service",
   description:
     "TechSynergy Corp terms of service — the terms and conditions governing your use of our website and services.",
+  alternates: {
+    canonical: "/terms",
+  },
+  openGraph: {
+    title: "Terms of Service | TechSynergy",
+    description: "Terms and conditions governing your use of TechSynergy services.",
+    url: "https://techsynergy.ca/terms",
+  },
+  twitter: {
+    card: "summary",
+    title: "Terms of Service | TechSynergy",
+    description: "Terms and conditions governing your use of TechSynergy services.",
+  },
 };
 
 const sections = [

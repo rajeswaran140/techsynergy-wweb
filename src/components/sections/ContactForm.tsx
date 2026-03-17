@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, FormEvent } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const CONTACT_API =
@@ -52,7 +52,7 @@ export default function ContactForm() {
     return errs;
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (form._honey) return;
 
@@ -96,7 +96,7 @@ export default function ContactForm() {
     }`;
 
   return (
-    <section className="py-24 bg-[#0f172a]">
+    <section id="contact" className="py-24 bg-[#0f172a] scroll-mt-16">
       <div className="max-w-3xl mx-auto px-6 sm:px-8">
         <div className="text-center mb-10">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -119,7 +119,7 @@ export default function ContactForm() {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-6 rounded-xl border border-green-500/30 bg-green-500/10 p-4 text-sm text-green-400 text-center flex items-center justify-center gap-2"
+                  className="mb-6 rounded-xl border border-green-600/30 bg-green-50 p-4 text-sm text-green-700 text-center flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -131,7 +131,7 @@ export default function ContactForm() {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-6 rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-400 text-center flex items-center justify-center gap-2"
+                  className="mb-6 rounded-xl border border-red-600/30 bg-red-50 p-4 text-sm text-red-700 text-center flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

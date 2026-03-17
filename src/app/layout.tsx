@@ -7,7 +7,8 @@ import Footer from "@/components/ui/Footer";
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -25,6 +26,21 @@ export const metadata: Metadata = {
     "UI/UX design",
     "mobile app development",
   ],
+  openGraph: {
+    title: "TechSynergy | Software Development & Web Solutions",
+    description:
+      "End-to-end software development services that empower businesses to scale, innovate, and lead in the digital age.",
+    type: "website",
+    locale: "en_US",
+    siteName: "TechSynergy",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TechSynergy | Software Development & Web Solutions",
+    description:
+      "End-to-end software development services that empower businesses to scale, innovate, and lead in the digital age.",
+  },
+  metadataBase: new URL(process.env.NEXTAUTH_URL || "https://techsynergy.com"),
 };
 
 export default function RootLayout({
@@ -35,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} antialiased font-[family-name:var(--font-poppins)]`}
+        className={`${poppins.variable} antialiased font-(family-name:--font-poppins)`}
       >
         <Navbar />
         <main className="min-h-screen pt-16">{children}</main>

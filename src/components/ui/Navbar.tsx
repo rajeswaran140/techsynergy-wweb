@@ -117,7 +117,7 @@ export default function Navbar() {
                     <Link
                       href={link.href}
                       aria-current={isActive ? "page" : undefined}
-                      className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      className={`relative px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                         isActive
                           ? "text-white bg-white/10"
                           : "text-slate-300 hover:text-white hover:bg-white/5"
@@ -136,7 +136,7 @@ export default function Navbar() {
             {/* CTA button */}
             <Link
               href="/contact"
-              className="ml-4 px-5 py-2 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-blue-700 transition-colors shadow-md shadow-primary/20"
+              className="ml-4 px-5 py-2 rounded-md bg-primary text-white text-sm font-semibold hover:bg-blue-700 transition-colors shadow-md shadow-primary/20"
             >
               Get a Quote
             </Link>
@@ -146,7 +146,7 @@ export default function Navbar() {
           <button
             ref={hamburgerRef}
             type="button"
-            className="relative z-50 md:hidden text-slate-300 hover:text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
+            className="relative z-50 md:hidden text-slate-300 hover:text-white p-2 rounded-md hover:bg-white/10 transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
@@ -205,7 +205,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     aria-current={isActive ? "page" : undefined}
-                    className={`block py-3.5 px-4 rounded-xl text-base font-medium transition-colors ${
+                    className={`block py-3.5 px-4 rounded-lg text-base font-medium transition-colors ${
                       isActive
                         ? "text-white bg-white/10"
                         : "text-slate-300 hover:text-white hover:bg-white/5"
@@ -221,7 +221,7 @@ export default function Navbar() {
           <div className="pt-4 mt-4 border-t border-slate-800">
             <Link
               href="/contact"
-              className="block w-full text-center py-3.5 rounded-xl bg-primary text-white font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-primary/25"
+              className="block w-full text-center py-3.5 rounded-lg bg-primary text-white font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-primary/25"
             >
               Get a Quote
             </Link>

@@ -68,7 +68,7 @@ function renderContent(raw: string) {
           <h2
             key={i}
             id={id}
-            className="mb-4 mt-14 text-2xl sm:text-3xl font-bold font-(family-name:--font-display) text-white scroll-mt-24"
+            className="mb-4 mt-14 text-2xl sm:text-3xl font-bold font-(family-name:--font-display) text-slate-900 scroll-mt-24"
           >
             {text}
           </h2>
@@ -93,7 +93,7 @@ function renderContent(raw: string) {
                 >
                   {parts.map((part, k) =>
                     k % 2 === 1 ? (
-                      <strong key={k} className="text-white font-semibold">
+                      <strong key={k} className="text-slate-900 font-semibold">
                         {part}
                       </strong>
                     ) : (
@@ -147,7 +147,7 @@ export default async function BlogPostPage({
   };
 
   return (
-    <div className="bg-blog-base min-h-screen font-(family-name:--font-blog-body) text-white">
+    <div className="bg-blog-base min-h-screen font-(family-name:--font-blog-body) text-slate-900">
       <ReadingProgress />
       <script
         type="application/ld+json"
@@ -160,8 +160,8 @@ export default async function BlogPostPage({
           <Link href="/blog" className="hover:text-blog-accent transition-colors">
             Blog
           </Link>
-          <span className="text-white/20">/</span>
-          <span className="text-white/50 truncate max-w-xs">
+          <span className="text-slate-900/20">/</span>
+          <span className="text-slate-900/50 truncate max-w-xs">
             {post.title}
           </span>
         </nav>
@@ -170,7 +170,7 @@ export default async function BlogPostPage({
       {/* Hero */}
       <header className="pb-12 sm:pb-16 border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <PostIllustration slug={post.slug} className="w-full h-auto rounded-2xl mb-8 sm:mb-10" />
+          <PostIllustration slug={post.slug} className="w-full h-auto rounded-lg mb-8 sm:mb-10" priority={true} />
 
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-5">
@@ -199,13 +199,13 @@ export default async function BlogPostPage({
                   </span>
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white">
+                  <p className="text-sm font-semibold text-slate-900">
                     {post.author}
                   </p>
                   <p className="text-xs text-blog-muted">TechSynergy</p>
                 </div>
               </div>
-              <span className="text-white/10">|</span>
+              <span className="text-slate-900/10">|</span>
               <time
                 dateTime={post.dateISO}
                 className="text-sm text-blog-muted font-(family-name:--font-blog-mono)"
@@ -254,14 +254,14 @@ export default async function BlogPostPage({
       {/* Author card */}
       <section className="border-t border-white/5">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
-          <div className="flex items-center gap-5 rounded-2xl bg-blog-surface border border-white/5 p-6 sm:p-8">
+          <div className="flex items-center gap-5 rounded-lg bg-blog-surface border border-white/5 p-6 sm:p-8">
             <div className="w-16 h-16 rounded-full bg-blog-accent/15 flex items-center justify-center shrink-0">
               <span className="text-2xl font-bold text-blog-accent">
                 {post.author.charAt(0)}
               </span>
             </div>
             <div>
-              <p className="text-lg font-bold font-(family-name:--font-display) text-white">
+              <p className="text-lg font-bold font-(family-name:--font-display) text-slate-900">
                 {post.author}
               </p>
               <p className="text-sm text-blog-muted leading-relaxed mt-1">
@@ -285,7 +285,7 @@ export default async function BlogPostPage({
                 <article key={rel.slug}>
                   <Link
                     href={`/blog/${rel.slug}`}
-                    className="group flex flex-col h-full rounded-2xl bg-blog-surface border border-white/5 overflow-hidden transition-all duration-300 hover:border-blog-accent/20"
+                    className="group flex flex-col h-full rounded-lg bg-blog-surface border border-white/5 overflow-hidden transition-all duration-300 hover:border-blog-accent/20"
                   >
                     <PostIllustration slug={rel.slug} className="w-full h-auto" />
                     <div className="flex flex-col flex-1 p-5 sm:p-6">
@@ -299,10 +299,10 @@ export default async function BlogPostPage({
                         {rel.excerpt}
                       </p>
                       <div className="flex items-center gap-2 text-xs text-blog-muted pt-3 border-t border-white/5">
-                        <span className="text-white/70 font-medium">
+                        <span className="text-slate-900/70 font-medium">
                           {rel.author}
                         </span>
-                        <span className="text-white/20">&middot;</span>
+                        <span className="text-slate-900/20">&middot;</span>
                         <time dateTime={rel.dateISO}>{rel.date}</time>
                       </div>
                     </div>

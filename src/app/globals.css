@@ -23,12 +23,12 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
-  --color-blog-base: #0a1628;
-  --color-blog-surface: #0f1f3a;
-  --color-blog-surface-hover: #152a4a;
+  --color-blog-base: #ffffff;
+  --color-blog-surface: #f8fafc;
+  --color-blog-surface-hover: #f1f5f9;
   --color-blog-accent: #1160f7;
-  --color-blog-accent-dim: #1160f7/15;
-  --color-blog-muted: #94a3b8;
+  --color-blog-accent-dim: #1160f7/10;
+  --color-blog-muted: #64748b;
   --font-sans: var(--font-poppins);
   --font-mono: var(--font-poppins);
   --font-display: var(--font-fraunces);

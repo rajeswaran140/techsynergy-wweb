@@ -32,7 +32,7 @@ export default async function BlogPage({
   const [featured, ...rest] = filtered;
 
   return (
-    <div className="bg-blog-base min-h-screen font-(family-name:--font-blog-body) text-white">
+    <div className="bg-blog-base min-h-screen font-(family-name:--font-blog-body) text-slate-900">
       {/* Hero — featured post */}
       {featured && (
         <section className="pt-12 pb-16 sm:pt-16 sm:pb-20 border-b border-white/5">
@@ -49,9 +49,9 @@ export default async function BlogPage({
 
             <Link
               href={`/blog/${featured.slug}`}
-              className="group block rounded-2xl bg-blog-surface overflow-hidden transition-all duration-300 hover:ring-1 hover:ring-blog-accent/30"
+              className="group block rounded-lg bg-blog-surface overflow-hidden transition-all duration-300 hover:ring-1 hover:ring-blog-accent/30"
             >
-              <PostIllustration slug={featured.slug} className="w-full h-auto" />
+              <PostIllustration slug={featured.slug} className="w-full h-auto" priority={true} />
 
               <div className="p-6 sm:p-8 lg:p-10">
                 <div className="flex items-center gap-3 mb-4">
@@ -111,7 +111,7 @@ export default async function BlogPage({
                     <article key={post.slug}>
                       <Link
                         href={`/blog/${post.slug}`}
-                        className="group flex flex-col h-full rounded-2xl bg-blog-surface border border-white/5 overflow-hidden transition-all duration-300 hover:border-blog-accent/20 hover:shadow-lg hover:shadow-blog-accent/5"
+                        className="group flex flex-col h-full rounded-lg bg-blog-surface border border-white/5 overflow-hidden transition-all duration-300 hover:border-blog-accent/20 hover:shadow-lg hover:shadow-blog-accent/5"
                       >
                         <PostIllustration slug={post.slug} className="w-full h-auto" />
 
@@ -168,7 +168,7 @@ export default async function BlogPage({
               </div>
 
               {/* Newsletter CTA */}
-              <div className="rounded-2xl bg-blog-surface border border-white/5 p-6">
+              <div className="rounded-lg bg-blog-surface border border-white/5 p-6">
                 <h3 className="text-lg font-bold font-(family-name:--font-display) mb-2">
                   Stay in the loop
                 </h3>

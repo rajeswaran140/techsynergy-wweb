@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import BackToTop from "@/components/ui/BackToTop";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -94,6 +95,7 @@ gtag('config', 'G-EYSYQF5TMF', {
         <Navbar />
         <main className="min-h-screen pt-16">{children}</main>
         <Footer />
+        <BackToTop />
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 // TechSynergy Contact Form Lambda Handler
-const aws = require('aws-sdk');
-const ses = new aws.SES({ region: process.env.AWS_REGION || 'us-east-1' });
+const { SESClient, SendEmailCommand } = require('@aws-sdk/client-ses');
+const ses = new SESClient({ region: process.env.AWS_REGION || 'us-east-1' });
 
 const CORS_HEADERS = {
   'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ Sent from TechSynergy Contact Form
       },
     };
 
-    await ses.sendEmail(params).promise();
+    await ses.send(new SendEmailCommand(params));
 
     return {
       statusCode: 200,

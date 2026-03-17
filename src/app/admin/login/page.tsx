@@ -35,8 +35,12 @@ export default function AdminLoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl mx-auto mb-4" />
-          <h1 className="text-2xl font-bold text-gray-900">Admin Login</h1>
+          <img
+            src="/logo.svg"
+            alt="TechSynergy"
+            className="h-9 w-auto mx-auto"
+          />
+          <p className="text-lg font-semibold text-gray-700 mt-2">Admin Login</p>
           <p className="text-gray-500 mt-1">Sign in to TechSynergy CMS</p>
         </div>
 

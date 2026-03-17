@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
+import Image from "next/image";
+import { FaLinkedin } from "react-icons/fa";
 
 const footerLinks = {
   Services: [
@@ -22,24 +23,24 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { href: "#", icon: FaTwitter, label: "Twitter" },
   { href: "#", icon: FaLinkedin, label: "LinkedIn" },
-  { href: "#", icon: FaGithub, label: "GitHub" },
-  { href: "mailto:info@techsynergy.com", icon: FaEnvelope, label: "Email" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0f172a] text-gray-300">
+    <footer className="bg-[#030712] text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg" />
-              <span className="text-xl font-bold text-white">
-                Tech<span className="text-blue-400">Synergy</span>
-              </span>
+            <Link href="/" className="inline-block mb-4" aria-label="TechSynergy Home">
+              <Image
+                src="/logo-light.svg"
+                alt="TechSynergy"
+                width={180}
+                height={32}
+                className="h-8 w-auto"
+              />
             </Link>
             <p className="text-gray-400 mb-6 max-w-sm">
               Empowering businesses with cutting-edge software solutions and

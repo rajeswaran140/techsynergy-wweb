@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function CTA() {
   return (
-    <section className="py-24 bg-gradient-to-r from-primary to-blue-700">
-      <div className="max-w-4xl mx-auto px-6 text-center">
+    <section className="py-24 bg-linear-to-r from-primary to-blue-700">
+      <div className="px-8 sm:px-12 lg:px-16 xl:px-20 text-center lg:text-left">
         <motion.h2
           className="text-4xl md:text-5xl font-bold text-white mb-6"
           initial={{ opacity: 0, y: 30 }}
@@ -18,7 +18,7 @@ export default function CTA() {
         </motion.h2>
 
         <motion.p
-          className="text-blue-100 text-lg md:text-xl mb-10 max-w-2xl mx-auto"
+          className="text-blue-100 text-lg md:text-xl mb-10 max-w-2xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

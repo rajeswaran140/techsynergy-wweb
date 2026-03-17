@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useSession, SessionProvider } from "next-auth/react";
 import {
@@ -49,11 +50,14 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
       {/* Sidebar */}
       <aside className="w-64 bg-[#0f172a] text-white flex flex-col fixed h-full">
         <div className="p-6 border-b border-gray-700">
-          <Link href="/admin" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg" />
-            <span className="text-lg font-bold">
-              Tech<span className="text-blue-400">Synergy</span>
-            </span>
+          <Link href="/admin" aria-label="TechSynergy Admin">
+            <Image
+              src="/logo-light.svg"
+              alt="TechSynergy"
+              width={150}
+              height={28}
+              className="h-7 w-auto"
+            />
           </Link>
           <p className="text-xs text-gray-400 mt-1">Admin Panel</p>
         </div>

@@ -27,33 +27,6 @@ const values = [
   },
 ];
 
-const team = [
-  {
-    name: "Sarah Mitchell",
-    role: "CEO",
-    description:
-      "With over 15 years of experience in the tech industry, Sarah leads TechSynergy with a vision for innovation and client success.",
-  },
-  {
-    name: "David Chen",
-    role: "CTO",
-    description:
-      "David architects our technical strategy and ensures we stay ahead of the curve with modern, scalable solutions.",
-  },
-  {
-    name: "Emily Rodriguez",
-    role: "Lead Developer",
-    description:
-      "Emily drives engineering excellence across our projects, mentoring the team and delivering robust applications.",
-  },
-  {
-    name: "James Park",
-    role: "Design Lead",
-    description:
-      "James crafts intuitive, beautiful user experiences that delight users and elevate brands.",
-  },
-];
-
 export default function AboutPage() {
   return (
     <div className="min-h-screen">
@@ -75,25 +48,17 @@ export default function AboutPage() {
           <h2 className="text-3xl font-bold text-primary">Our Story</h2>
           <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
             <p>
-              Founded in 2020, TechSynergy was born from a simple yet powerful
-              mission: to empower businesses through technology. What started as
-              a small team of passionate developers has grown into a
-              full-service digital agency delivering world-class solutions to
-              clients across the globe.
+              TechSynergy was founded with a simple yet powerful mission: to
+              empower businesses through technology. Our team combines deep
+              technical expertise with a genuine understanding of business needs
+              to create solutions that drive real results.
             </p>
             <p>
-              We believe that technology should be an enabler, not a barrier.
-              Our team combines deep technical expertise with a genuine
-              understanding of business needs to create solutions that drive
-              real results. From startups to enterprises, we partner with
-              organizations at every stage of their digital journey.
-            </p>
-            <p>
-              Today, TechSynergy continues to push boundaries, staying at the
-              forefront of web development, cloud computing, and design
-              innovation. Our commitment to excellence and our client-first
-              approach have made us a trusted partner for businesses looking to
-              thrive in the digital age.
+              We partner with organizations at every stage of their digital
+              journey, staying at the forefront of web development, cloud
+              computing, and design innovation. Our commitment to excellence and
+              our client-first approach have made us a trusted partner for
+              businesses looking to thrive in the digital age.
             </p>
           </div>
         </div>
@@ -135,29 +100,8 @@ export default function AboutPage() {
           <p className="mt-3 text-center text-muted-foreground">
             The talented people behind TechSynergy.
           </p>
-          <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {team.map((member) => (
-              <div
-                key={member.name}
-                className="rounded-2xl bg-muted p-6 text-center"
-              >
-                <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-primary/10 text-3xl font-bold text-primary">
-                  {member.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                </div>
-                <h3 className="mt-4 text-lg font-semibold text-primary">
-                  {member.name}
-                </h3>
-                <p className="text-sm font-medium text-primary/70">
-                  {member.role}
-                </p>
-                <p className="mt-3 text-sm text-muted-foreground">
-                  {member.description}
-                </p>
-              </div>
-            ))}
+          <div className="mt-12 text-center text-muted-foreground">
+            <p>Team details coming soon.</p>
           </div>
         </div>
       </section>

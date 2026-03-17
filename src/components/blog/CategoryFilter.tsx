@@ -33,6 +33,8 @@ export default function CategoryFilter({ categories }: CategoryFilterProps) {
           <button
             key={cat}
             onClick={() => handleClick(cat)}
+            aria-label={`Filter posts by ${cat === "All" ? "all categories" : cat}`}
+            aria-pressed={isActive}
             className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200 ${
               isActive
                 ? "bg-blog-accent text-blog-base"

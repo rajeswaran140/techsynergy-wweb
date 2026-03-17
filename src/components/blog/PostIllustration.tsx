@@ -8,7 +8,8 @@ export default function PostIllustration({
 }) {
   const illustrations: Record<string, React.ReactNode> = {
     "digital-transformation-canadian-businesses-2026": (
-      <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} role="img" aria-label="Digital transformation visualization showing circuit grid, rising growth bars, and connected network nodes">
+        <title>Digital transformation visualization</title>
         <rect width="800" height="400" fill="#0a1628" />
         {/* Circuit-like grid */}
         <line x1="100" y1="0" x2="100" y2="400" stroke="#1160f7" strokeOpacity="0.06" strokeWidth="1" />
@@ -39,7 +40,8 @@ export default function PostIllustration({
     ),
 
     "how-to-measure-roi-of-custom-software": (
-      <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} role="img" aria-label="ROI growth chart showing upward curve with data points and financial metrics">
+        <title>ROI growth visualization</title>
         <rect width="800" height="400" fill="#0a1628" />
         {/* Chart axes */}
         <line x1="150" y1="50" x2="150" y2="330" stroke="#1160f7" strokeOpacity="0.2" strokeWidth="1.5" />
@@ -67,7 +69,8 @@ export default function PostIllustration({
     ),
 
     "choosing-the-right-technology-partner": (
-      <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} role="img" aria-label="Partnership network diagram with connected nodes representing collaboration and alignment">
+        <title>Technology partnership visualization</title>
         <rect width="800" height="400" fill="#0a1628" />
         {/* Handshake / partnership network */}
         <circle cx="280" cy="200" r="60" stroke="#1160f7" strokeOpacity="0.15" strokeWidth="1.5" fill="#1160f7" fillOpacity="0.03" />
@@ -101,7 +104,8 @@ export default function PostIllustration({
     ),
 
     "data-privacy-competitive-advantage-canada": (
-      <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} role="img" aria-label="Security shield with lock icon and data streams representing Canadian data privacy protection">
+        <title>Data privacy and security visualization</title>
         <rect width="800" height="400" fill="#0a1628" />
         {/* Shield outline */}
         <path d="M400 80 L500 120 L500 240 Q500 320 400 350 Q300 320 300 240 L300 120 Z" stroke="#1160f7" strokeOpacity="0.25" strokeWidth="2" fill="#1160f7" fillOpacity="0.04" />
@@ -124,7 +128,8 @@ export default function PostIllustration({
     ),
 
     "building-a-product-roadmap-that-drives-growth": (
-      <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} role="img" aria-label="Product roadmap timeline with milestones showing Now, Next, and Later phases with growth trajectory">
+        <title>Product roadmap visualization</title>
         <rect width="800" height="400" fill="#0a1628" />
         {/* Roadmap timeline */}
         <line x1="100" y1="200" x2="700" y2="200" stroke="#1160f7" strokeOpacity="0.15" strokeWidth="1.5" />
@@ -157,7 +162,8 @@ export default function PostIllustration({
     ),
 
     "why-startups-fail-and-how-to-avoid-it": (
-      <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} role="img" aria-label="Rocket launch illustration with stars representing startup growth and trajectory">
+        <title>Startup success visualization</title>
         <rect width="800" height="400" fill="#0a1628" />
         {/* Rocket outline */}
         <path d="M400 80 Q420 80 430 120 L435 200 L455 250 L440 245 L440 290 L420 270 L400 290 L380 270 L360 290 L360 245 L345 250 L365 200 L370 120 Q380 80 400 80 Z" stroke="#1160f7" strokeOpacity="0.3" strokeWidth="1.5" fill="#1160f7" fillOpacity="0.04" />
@@ -189,7 +195,8 @@ export default function PostIllustration({
   };
 
   return illustrations[slug] || (
-    <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} role="img" aria-label="Abstract geometric pattern">
+      <title>Blog post illustration</title>
       <rect width="800" height="400" fill="#0a1628" />
       <circle cx="400" cy="200" r="80" stroke="#1160f7" strokeOpacity="0.15" strokeWidth="1.5" fill="#1160f7" fillOpacity="0.03" />
       <circle cx="400" cy="200" r="40" stroke="#1160f7" strokeOpacity="0.1" strokeWidth="1" fill="#1160f7" fillOpacity="0.02" />

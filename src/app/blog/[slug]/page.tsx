@@ -26,6 +26,9 @@ export function generateMetadata({
     return {
       title: post.title,
       description: post.excerpt,
+      alternates: {
+        canonical: `/blog/${slug}`,
+      },
     };
   });
 }
@@ -218,7 +221,7 @@ export default async function BlogPostPage({
                 return (
                   <span
                     key={tag}
-                    className={`rounded-full px-3 py-1 text-xs font-medium ${tc.bg} ${tc.text}`}
+                    className={`rounded-full px-3 py-1 text-xs font-medium cursor-default ${tc.bg} ${tc.text}`}
                   >
                     #{tag}
                   </span>

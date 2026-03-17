@@ -1,15 +1,7 @@
 import type { MetadataRoute } from "next";
+import { blogPosts } from "@/lib/blog-data";
 
 const BASE_URL = "https://techsynergy.ca";
-
-const blogSlugs = [
-  "digital-transformation-canadian-businesses-2026",
-  "how-to-measure-roi-of-custom-software",
-  "choosing-the-right-technology-partner",
-  "data-privacy-competitive-advantage-canada",
-  "building-a-product-roadmap-that-drives-growth",
-  "why-startups-fail-and-how-to-avoid-it",
-];
 
 const serviceSlugs = [
   "web-development",
@@ -33,9 +25,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/terms`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
   ];
 
-  const blogPages: MetadataRoute.Sitemap = blogSlugs.map((slug) => ({
-    url: `${BASE_URL}/blog/${slug}`,
-    lastModified: new Date(),
+  const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
+    lastModified: new Date(post.dateISO),
     changeFrequency: "monthly",
     priority: 0.6,
   }));

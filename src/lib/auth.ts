@@ -18,8 +18,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         // For simplicity, using env-based admin credentials
         // In production, query DynamoDB for admin users
-        const adminEmail = process.env.ADMIN_EMAIL || "admin@techsynergy.com";
-        const adminPassword = process.env.ADMIN_PASSWORD || "changeme123";
+        const adminEmail = process.env.ADMIN_EMAIL;
+        const adminPassword = process.env.ADMIN_PASSWORD;
+
+        if (!adminEmail || !adminPassword) return null;
 
         if (email === adminEmail && password === adminPassword) {
           return {

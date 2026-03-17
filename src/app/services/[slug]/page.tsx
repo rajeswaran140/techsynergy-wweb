@@ -16,7 +16,7 @@ const services = [
       "Performance optimization",
       "SEO-friendly architecture",
     ],
-    technologies: ["Next.js", "React", "TypeScript", "Node.js", "Tailwind CSS", "PostgreSQL"],
+    technologies: ["Modern Frameworks", "Server-Side Rendering", "Responsive UI", "REST APIs", "Performance Optimization", "SEO"],
   },
   {
     slug: "mobile-app-development",
@@ -25,13 +25,13 @@ const services = [
       "Native and cross-platform mobile applications that deliver seamless experiences on every device. We guide you from concept to launch, ensuring your app stands out in the marketplace.",
     features: [
       "iOS and Android native apps",
-      "Cross-platform with React Native",
+      "Cross-platform development",
       "App Store optimization",
       "Push notifications and analytics",
       "Offline-first capabilities",
       "In-app purchase integration",
     ],
-    technologies: ["React Native", "Swift", "Kotlin", "Expo", "Firebase", "Redux"],
+    technologies: ["iOS", "Android", "Cross-Platform", "Push Notifications", "Offline-First", "App Store"],
   },
   {
     slug: "cloud-solutions",
@@ -46,7 +46,7 @@ const services = [
       "Infrastructure as Code",
       "Cost optimization and monitoring",
     ],
-    technologies: ["Cloud Platforms", "Terraform", "Docker", "Kubernetes", "Serverless", "CDN"],
+    technologies: ["Cloud Migration", "Infrastructure as Code", "Containers", "Orchestration", "Serverless", "CDN"],
   },
   {
     slug: "ui-ux-design",
@@ -61,7 +61,7 @@ const services = [
       "Responsive design",
       "Accessibility compliance (WCAG)",
     ],
-    technologies: ["Figma", "Adobe XD", "Framer", "Storybook", "Tailwind CSS", "CSS Animations"],
+    technologies: ["Wireframing", "Prototyping", "Design Systems", "Component Libraries", "Responsive Design", "Motion Design"],
   },
   {
     slug: "database-architecture",
@@ -76,7 +76,7 @@ const services = [
       "Backup and disaster recovery",
       "Real-time data streaming",
     ],
-    technologies: ["PostgreSQL", "MongoDB", "NoSQL", "Redis", "Elasticsearch", "Apache Kafka"],
+    technologies: ["Relational DB", "Document DB", "Key-Value Store", "Caching", "Search Engine", "Event Streaming"],
   },
   {
     slug: "cybersecurity",
@@ -91,7 +91,7 @@ const services = [
       "Identity and access management",
       "Security awareness training",
     ],
-    technologies: ["OWASP", "OAuth 2.0", "JWT", "IAM", "Cloudflare", "Vault"],
+    technologies: ["Security Audits", "Authentication", "Authorization", "Access Management", "DDoS Protection", "Secrets Management"],
   },
 ];
 
@@ -155,7 +155,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           {/* Technologies */}
           <div className="mt-12">
             <h2 className="text-2xl font-bold text-primary">
-              Related Technologies
+              Key Capabilities
             </h2>
             <div className="mt-6 flex flex-wrap gap-3">
               {service.technologies.map((tech) => (

@@ -39,7 +39,7 @@ const services = [
     title: "DevOps & CI/CD",
     description:
       "Automated build, test, and deploy pipelines so you ship faster with fewer surprises and zero downtime.",
-    highlights: ["CI/CD pipelines", "Docker containers", "Monitoring & alerts"],
+    highlights: ["CI/CD pipelines", "Containerization", "Monitoring & alerts"],
     color: "from-amber-500 to-orange-500",
   },
 ];

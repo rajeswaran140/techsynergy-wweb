@@ -17,7 +17,7 @@ const projects = [
     category: "SaaS Product",
     description:
       "A Canadian URL shortener with custom branded links, real-time analytics, QR code generation, and password-protected links. PIPEDA compliant, Canadian-hosted.",
-    tech: ["Next.js", "Serverless", "NoSQL", "CDN"],
+    tech: ["Web App", "Analytics", "QR Generation", "CDN"],
     href: "https://mobily.ca",
     color: "from-blue-600 to-cyan-500",
   },
@@ -26,7 +26,7 @@ const projects = [
     category: "SaaS Product",
     description:
       "An AI-powered SEO audit platform running 34 automated checks per audit, with daily SERP tracking, competitor analysis, and AI-generated fix suggestions. Canadian-hosted.",
-    tech: ["React", "Node.js", "Cloud Infrastructure", "OpenAI API"],
+    tech: ["Web App", "AI-Powered", "Cloud Infrastructure", "SEO Analytics"],
     href: "https://seosync.ca",
     color: "from-violet-600 to-purple-500",
   },
@@ -34,8 +34,8 @@ const projects = [
     name: "TechSynergy.ca",
     category: "Company Website",
     description:
-      "This website — a modern Next.js 16 application with server-side rendering, lazy-loaded animations, and responsive design. Canadian-hosted.",
-    tech: ["Next.js 16", "React 19", "Tailwind CSS 4", "Cloud Hosting"],
+      "This website — a modern web application with server-side rendering, lazy-loaded animations, and responsive design. Canadian-hosted.",
+    tech: ["Modern Web Stack", "SSR", "Responsive Design", "Cloud Hosting"],
     href: "https://techsynergy.ca",
     color: "from-primary to-blue-400",
   },

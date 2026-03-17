@@ -41,7 +41,7 @@ const services = [
     features: [
       "Canadian-hosted infrastructure",
       "Serverless architecture",
-      "Infrastructure as Code (Terraform, CDK)",
+      "Infrastructure as Code",
       "Auto-scaling and load balancing",
       "Cost optimization and monitoring",
       "Disaster recovery planning",
@@ -56,7 +56,7 @@ const services = [
       "RESTful API design and development",
       "Third-party API integration",
       "Webhook and event-driven systems",
-      "API documentation (OpenAPI/Swagger)",
+      "API documentation and specs",
       "Authentication and rate limiting",
       "Data transformation pipelines",
     ],
@@ -68,7 +68,7 @@ const services = [
       "Automated build, test, and deploy pipelines so your team ships faster with fewer surprises. We set up the infrastructure that lets you focus on code.",
     features: [
       "CI/CD pipeline setup and automation",
-      "Docker containerization",
+      "Containerization",
       "Automated testing integration",
       "Environment management (staging, prod)",
       "Monitoring and alerting",

@@ -95,7 +95,7 @@ export default function Navbar() {
 
           {/* CTA button */}
           <Link
-            href="/#contact"
+            href="/contact"
             className="ml-4 px-5 py-2 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-blue-700 transition-colors shadow-md shadow-primary/20"
           >
             Get a Quote
@@ -163,7 +163,7 @@ export default function Navbar() {
 
           <div className="pt-4 mt-4 border-t border-slate-800">
             <Link
-              href="/#contact"
+              href="/contact"
               className="block w-full text-center py-3.5 rounded-xl bg-primary text-white font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-primary/25"
             >
               Get a Quote

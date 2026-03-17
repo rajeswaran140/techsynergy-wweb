@@ -154,7 +154,7 @@ export default function ProductsPage() {
             Want to learn how our products can help your business?
           </p>
           <Link
-            href="/#contact"
+            href="/contact"
             className="inline-block px-8 py-3.5 rounded-lg bg-primary text-white font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-primary/25"
           >
             Get in Touch

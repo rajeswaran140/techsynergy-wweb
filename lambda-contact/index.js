@@ -58,6 +58,7 @@ exports.handler = async (event) => {
       Destination: {
         ToAddresses: [process.env.RECIPIENT_EMAIL],
       },
+      ReplyToAddresses: [email],
       Message: {
         Subject: {
           Data: `New Contact Form Submission - ${service || 'General Inquiry'}`,

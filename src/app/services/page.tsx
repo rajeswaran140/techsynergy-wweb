@@ -37,10 +37,10 @@ const services = [
     icon: HiCloud,
     title: "Cloud Infrastructure",
     description:
-      "AWS-hosted, Canadian-resident cloud architecture built for reliability, compliance, and performance. We design infrastructure that scales with your business.",
+      "Canadian-resident cloud architecture built for reliability, compliance, and performance. We design infrastructure that scales with your business.",
     features: [
-      "AWS Canada (ca-central-1) hosting",
-      "Serverless architecture (Lambda, API Gateway)",
+      "Canadian-hosted infrastructure",
+      "Serverless architecture",
       "Infrastructure as Code (Terraform, CDK)",
       "Auto-scaling and load balancing",
       "Cost optimization and monitoring",
@@ -67,11 +67,11 @@ const services = [
     description:
       "Automated build, test, and deploy pipelines so your team ships faster with fewer surprises. We set up the infrastructure that lets you focus on code.",
     features: [
-      "CI/CD pipeline setup (GitHub Actions, AWS)",
+      "CI/CD pipeline setup and automation",
       "Docker containerization",
       "Automated testing integration",
       "Environment management (staging, prod)",
-      "Monitoring and alerting (CloudWatch)",
+      "Monitoring and alerting",
       "Security scanning in pipeline",
     ],
   },

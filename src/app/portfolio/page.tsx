@@ -16,8 +16,8 @@ const projects = [
     name: "Mobily.ca",
     category: "SaaS Product",
     description:
-      "A Canadian URL shortener with custom branded links, real-time analytics, QR code generation, and password-protected links. PIPEDA compliant, hosted on AWS Canada.",
-    tech: ["Next.js", "AWS Lambda", "DynamoDB", "CloudFront"],
+      "A Canadian URL shortener with custom branded links, real-time analytics, QR code generation, and password-protected links. PIPEDA compliant, Canadian-hosted.",
+    tech: ["Next.js", "Serverless", "NoSQL", "CDN"],
     href: "https://mobily.ca",
     color: "from-blue-600 to-cyan-500",
   },
@@ -25,8 +25,8 @@ const projects = [
     name: "SeoSync.ca",
     category: "SaaS Product",
     description:
-      "An AI-powered SEO audit platform running 34 automated checks per audit, with daily SERP tracking, competitor analysis, and AI-generated fix suggestions. Built on AWS Canada.",
-    tech: ["React", "Node.js", "AWS", "OpenAI API"],
+      "An AI-powered SEO audit platform running 34 automated checks per audit, with daily SERP tracking, competitor analysis, and AI-generated fix suggestions. Canadian-hosted.",
+    tech: ["React", "Node.js", "Cloud Infrastructure", "OpenAI API"],
     href: "https://seosync.ca",
     color: "from-violet-600 to-purple-500",
   },
@@ -34,8 +34,8 @@ const projects = [
     name: "TechSynergy.ca",
     category: "Company Website",
     description:
-      "This website — a modern Next.js 16 application with server-side rendering, lazy-loaded animations, and responsive design. Deployed on AWS Amplify.",
-    tech: ["Next.js 16", "React 19", "Tailwind CSS 4", "AWS Amplify"],
+      "This website — a modern Next.js 16 application with server-side rendering, lazy-loaded animations, and responsive design. Canadian-hosted.",
+    tech: ["Next.js 16", "React 19", "Tailwind CSS 4", "Cloud Hosting"],
     href: "https://techsynergy.ca",
     color: "from-primary to-blue-400",
   },

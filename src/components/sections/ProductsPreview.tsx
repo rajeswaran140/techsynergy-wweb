@@ -21,7 +21,7 @@ const products = [
     name: "SeoSync.ca",
     tagline: "AI-Powered SEO Audit Platform",
     description:
-      "34 automated SEO checks, daily SERP tracking, and AI-generated fix suggestions — built on AWS Canada.",
+      "34 automated SEO checks, daily SERP tracking, and AI-generated fix suggestions — Canadian-hosted.",
     href: "https://seosync.ca",
     color: "from-violet-600 to-purple-500",
   },

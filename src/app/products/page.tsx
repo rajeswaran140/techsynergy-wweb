@@ -41,7 +41,7 @@ const products = [
       "AI-generated fix suggestions",
       "Competitor gap analysis",
       "Core Web Vitals monitoring",
-      "Canadian data residency (AWS Canada)",
+      "Canadian data residency",
     ],
     pricing: "Free — 3 audits/mo. Pro from $49 CAD/mo.",
     href: "https://seosync.ca",

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none">
+  <!-- Icon-only monochrome black — for stamps, embossing, single-color print -->
+  <g transform="translate(1, 1)">
+    <line x1="17" y1="6" x2="9" y2="14" stroke="#000000" stroke-width="1.8" opacity="0.3"/>
+    <line x1="17" y1="6" x2="25" y2="14" stroke="#000000" stroke-width="1.8" opacity="0.3"/>
+    <line x1="9" y1="19" x2="1" y2="27" stroke="#000000" stroke-width="1.8" opacity="0.2"/>
+    <line x1="9" y1="19" x2="17" y2="27" stroke="#000000" stroke-width="1.8" opacity="0.3"/>
+    <line x1="25" y1="19" x2="17" y2="27" stroke="#000000" stroke-width="1.8" opacity="0.3"/>
+    <line x1="25" y1="19" x2="33" y2="27" stroke="#000000" stroke-width="1.8" opacity="0.2"/>
+    <circle cx="17" cy="3.5" r="3.5" fill="#000000"/>
+    <circle cx="9" cy="16.5" r="3.5" fill="#000000"/>
+    <circle cx="25" cy="16.5" r="3.5" fill="#000000"/>
+    <circle cx="1" cy="30" r="3.5" fill="#000000" opacity="0.6"/>
+    <circle cx="17" cy="30" r="3.5" fill="#000000"/>
+    <circle cx="33" cy="30" r="3.5" fill="#000000" opacity="0.6"/>
+  </g>
+</svg>

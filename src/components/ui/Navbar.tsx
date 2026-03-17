@@ -89,8 +89,8 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-100 transition-all duration-300 ${
         scrolled
-          ? "bg-[#0f172a]/95 backdrop-blur-md shadow-lg shadow-black/10 border-b border-slate-800/60"
-          : "bg-[#0f172a]"
+          ? "bg-[#071237]/95 backdrop-blur-md shadow-lg shadow-black/10 border-b border-slate-800/60"
+          : "bg-[#071237]"
       }`}
     >
       <nav aria-label="Main navigation">
@@ -189,7 +189,7 @@ export default function Navbar() {
         role="dialog"
         aria-modal={mobileOpen ? "true" : undefined}
         aria-label="Mobile navigation"
-        className={`fixed top-16 left-0 right-0 bottom-0 z-40 md:hidden bg-[#0f172a] overflow-y-auto transition-all duration-300 ${
+        className={`fixed top-16 left-0 right-0 bottom-0 z-40 md:hidden bg-[#071237] overflow-y-auto transition-all duration-300 ${
           mobileOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-4 pointer-events-none"

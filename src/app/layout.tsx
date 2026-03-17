@@ -42,6 +42,9 @@ export const metadata: Metadata = {
     description:
       "End-to-end software development services that empower businesses to scale, innovate, and lead in the digital age.",
   },
+  icons: {
+    icon: "/icon.svg",
+  },
   metadataBase: new URL(process.env.NEXTAUTH_URL || "https://techsynergy.ca"),
   verification: {
     google: "G-EYSYQF5TMF",

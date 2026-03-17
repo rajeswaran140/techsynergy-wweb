@@ -60,7 +60,7 @@ export default function AboutPage() {
   return (
     <div>
       {/* Hero — dark navy to match site header */}
-      <section className="bg-[#0f172a] py-14 sm:py-18 md:py-22">
+      <section className="bg-[#071237] py-14 sm:py-18 md:py-22">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
             About TechSynergy Corp
@@ -78,7 +78,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 overflow-hidden grid grid-cols-1 lg:grid-cols-2">
             {/* Product showcase instead of stock team photo */}
-            <div className="relative h-56 sm:h-72 lg:h-auto lg:min-h-100 bg-linear-to-br from-[#0f172a] to-slate-800 flex items-center justify-center p-8 sm:p-12">
+            <div className="relative h-56 sm:h-72 lg:h-auto lg:min-h-100 bg-linear-to-br from-[#071237] to-slate-800 flex items-center justify-center p-8 sm:p-12">
               <div className="space-y-6 w-full max-w-sm">
                 <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-5">
                   <p className="text-xs font-medium text-primary uppercase tracking-widest mb-2">
@@ -129,7 +129,7 @@ export default function AboutPage() {
                   <a href="https://seosync.ca" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
                     SeoSync.ca
                   </a>
-                  . Every product is hosted on AWS Canada and PIPEDA compliant
+                  . Every product is Canadian-hosted and PIPEDA compliant
                   from day one.
                 </p>
               </div>
@@ -184,7 +184,7 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="relative h-56 sm:h-72 lg:h-auto lg:min-h-100 order-1 lg:order-2">
-              <div className="absolute inset-0 bg-linear-to-br from-[#0f172a] to-slate-800 flex items-center justify-center">
+              <div className="absolute inset-0 bg-linear-to-br from-[#071237] to-slate-800 flex items-center justify-center">
                 <div className="text-center px-6">
                   <p className="text-6xl sm:text-7xl lg:text-8xl font-bold text-white mb-2">
                     25+

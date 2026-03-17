@@ -1,5 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 40" fill="none">
-  <text x="0" y="32" font-family="Poppins, sans-serif" font-weight="700" font-size="32">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 40" fill="none">
+  <!-- Stacked node pyramid icon -->
+  <g transform="translate(2, 3)">
+    <!-- Connection lines (behind nodes) -->
+    <line x1="17" y1="7" x2="9" y2="14" stroke="#2563eb" stroke-width="1.5" opacity="0.45"/>
+    <line x1="17" y1="7" x2="25" y2="14" stroke="#2563eb" stroke-width="1.5" opacity="0.45"/>
+    <line x1="9" y1="20" x2="1" y2="27" stroke="#3b82f6" stroke-width="1.5" opacity="0.35"/>
+    <line x1="9" y1="20" x2="17" y2="27" stroke="#2563eb" stroke-width="1.5" opacity="0.45"/>
+    <line x1="25" y1="20" x2="17" y2="27" stroke="#2563eb" stroke-width="1.5" opacity="0.45"/>
+    <line x1="25" y1="20" x2="33" y2="27" stroke="#3b82f6" stroke-width="1.5" opacity="0.35"/>
+    <!-- Top node (apex) -->
+    <circle cx="17" cy="4" r="3.5" fill="#2563eb"/>
+    <!-- Middle row - 2 nodes -->
+    <circle cx="9" cy="17" r="3.5" fill="#2563eb"/>
+    <circle cx="25" cy="17" r="3.5" fill="#2563eb"/>
+    <!-- Bottom row - 3 nodes -->
+    <circle cx="1" cy="30" r="3.5" fill="#3b82f6"/>
+    <circle cx="17" cy="30" r="3.5" fill="#2563eb"/>
+    <circle cx="33" cy="30" r="3.5" fill="#3b82f6"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="46" y="31" font-family="Poppins, sans-serif" font-weight="700" font-size="28">
     <tspan fill="#0f172a">Tech</tspan><tspan fill="#2563eb">Synergy</tspan>
   </text>
 </svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none">
+  <!-- Icon-only mark (no wordmark) — for favicons, app icons, watermarks -->
+  <g transform="translate(1, 1)">
+    <line x1="17" y1="6" x2="9" y2="14" stroke="#3b82f6" stroke-width="1.8" opacity="0.45"/>
+    <line x1="17" y1="6" x2="25" y2="14" stroke="#3b82f6" stroke-width="1.8" opacity="0.45"/>
+    <line x1="9" y1="19" x2="1" y2="27" stroke="#60a5fa" stroke-width="1.8" opacity="0.35"/>
+    <line x1="9" y1="19" x2="17" y2="27" stroke="#3b82f6" stroke-width="1.8" opacity="0.45"/>
+    <line x1="25" y1="19" x2="17" y2="27" stroke="#3b82f6" stroke-width="1.8" opacity="0.45"/>
+    <line x1="25" y1="19" x2="33" y2="27" stroke="#60a5fa" stroke-width="1.8" opacity="0.35"/>
+    <circle cx="17" cy="3.5" r="3.5" fill="#3b82f6"/>
+    <circle cx="9" cy="16.5" r="3.5" fill="#3b82f6"/>
+    <circle cx="25" cy="16.5" r="3.5" fill="#3b82f6"/>
+    <circle cx="1" cy="30" r="3.5" fill="#60a5fa"/>
+    <circle cx="17" cy="30" r="3.5" fill="#3b82f6"/>
+    <circle cx="33" cy="30" r="3.5" fill="#60a5fa"/>
+  </g>
+</svg>

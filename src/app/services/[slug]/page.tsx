@@ -39,14 +39,14 @@ const services = [
     description:
       "Scalable cloud infrastructure and migration services to power your business growth. We help you leverage the cloud to reduce costs, improve reliability, and accelerate innovation.",
     features: [
-      "AWS, Azure, and GCP deployment",
+      "Cloud platform deployment",
       "Cloud migration strategies",
       "Serverless architecture",
       "Auto-scaling and load balancing",
       "Infrastructure as Code",
       "Cost optimization and monitoring",
     ],
-    technologies: ["AWS", "Azure", "Google Cloud", "Terraform", "Docker", "Kubernetes"],
+    technologies: ["Cloud Platforms", "Terraform", "Docker", "Kubernetes", "Serverless", "CDN"],
   },
   {
     slug: "ui-ux-design",
@@ -76,7 +76,7 @@ const services = [
       "Backup and disaster recovery",
       "Real-time data streaming",
     ],
-    technologies: ["PostgreSQL", "MongoDB", "DynamoDB", "Redis", "Elasticsearch", "Apache Kafka"],
+    technologies: ["PostgreSQL", "MongoDB", "NoSQL", "Redis", "Elasticsearch", "Apache Kafka"],
   },
   {
     slug: "cybersecurity",
@@ -91,7 +91,7 @@ const services = [
       "Identity and access management",
       "Security awareness training",
     ],
-    technologies: ["OWASP", "OAuth 2.0", "JWT", "AWS IAM", "Cloudflare", "Vault"],
+    technologies: ["OWASP", "OAuth 2.0", "JWT", "IAM", "Cloudflare", "Vault"],
   },
 ];
 

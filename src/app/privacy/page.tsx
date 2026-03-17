@@ -85,8 +85,7 @@ const sections = [
     content: (
       <>
         <p>
-          All personal data is stored on servers located in Canada (AWS
-          ca-central-1 region, Montreal). We implement industry-standard
+          All personal data is stored on servers located in Canada. We implement industry-standard
           security measures, including:
         </p>
         <ul className="list-disc pl-5 space-y-1.5 mt-2">
@@ -121,8 +120,8 @@ const sections = [
     title: "6. Third-Party Services",
     content: (
       <p>
-        We may use third-party service providers — such as Amazon Web Services
-        (AWS) and analytics tools — to help operate our website and deliver our
+        We may use third-party service providers — such as cloud hosting
+        and analytics tools — to help operate our website and deliver our
         services. These providers are contractually obligated to protect your
         information, process it only for the purposes we specify, and comply
         with applicable privacy laws.

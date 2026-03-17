@@ -1,0 +1,90 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient Background -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#071237;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1160f7;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Subtle pattern overlay -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Decorative elements -->
+  <circle cx="100" cy="100" r="120" fill="rgba(255,255,255,0.03)"/>
+  <circle cx="1100" cy="530" r="150" fill="rgba(255,255,255,0.03)"/>
+
+  <!-- Content Container -->
+  <g transform="translate(600, 315)">
+    <!-- Company Name / Logo Text -->
+    <text
+      x="0"
+      y="-120"
+      font-family="system-ui, -apple-system, sans-serif"
+      font-size="72"
+      font-weight="700"
+      fill="white"
+      text-anchor="middle"
+      letter-spacing="2">
+      TechSynergy
+    </text>
+
+    <!-- Main Headline -->
+    <text
+      x="0"
+      y="-20"
+      font-family="system-ui, -apple-system, sans-serif"
+      font-size="48"
+      font-weight="600"
+      fill="white"
+      text-anchor="middle"
+      opacity="0.95">
+      Canadian Software Development
+    </text>
+
+    <!-- Subheadline -->
+    <text
+      x="0"
+      y="40"
+      font-family="system-ui, -apple-system, sans-serif"
+      font-size="28"
+      font-weight="400"
+      fill="white"
+      text-anchor="middle"
+      opacity="0.8">
+      Privacy-First SaaS Products
+    </text>
+
+    <!-- Divider Line -->
+    <line
+      x1="-200"
+      y1="80"
+      x2="200"
+      y2="80"
+      stroke="rgba(255,255,255,0.3)"
+      stroke-width="2"/>
+
+    <!-- Bottom tagline -->
+    <text
+      x="0"
+      y="130"
+      font-family="system-ui, -apple-system, sans-serif"
+      font-size="22"
+      font-weight="500"
+      fill="white"
+      text-anchor="middle"
+      opacity="0.7"
+      letter-spacing="4">
+      PIPEDA COMPLIANT • CANADIAN HOSTED
+    </text>
+  </g>
+
+  <!-- Bottom accent -->
+  <rect x="0" y="615" width="1200" height="15" fill="rgba(17, 96, 247, 0.5)"/>
+</svg>

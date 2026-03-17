@@ -16,21 +16,19 @@ export default function ContactPage() {
   return (
     <div>
       {/* Hero banner */}
-      <section className="relative bg-primary py-16 sm:py-20 md:py-24">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+      <section className="bg-primary py-14 sm:py-18 md:py-22">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3">
             Get in Touch
           </h1>
-          <p className="text-white/80 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Ready to start your next project? Send us a message and
-            we&apos;ll get back to you within 24 hours.
+          <p className="text-white/80 text-sm sm:text-base lg:text-lg max-w-xl mx-auto leading-relaxed">
+            Send us a message and we&apos;ll get back to you within 24 hours.
           </p>
         </div>
       </section>
 
       {/* Form */}
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-18">
         <ContactForm variant="standalone" />
       </div>
     </div>

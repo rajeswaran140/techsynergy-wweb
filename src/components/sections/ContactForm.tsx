@@ -10,7 +10,6 @@ const services = [
   "Mobile App Development",
   "Cloud Solutions",
   "UI/UX Design",
-  "DevOps & CI/CD",
   "Other",
 ];
 

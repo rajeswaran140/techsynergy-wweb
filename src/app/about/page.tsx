@@ -158,7 +158,7 @@ export default function AboutPage() {
                 </p>
                 <p>
                   From SaaS product development and cloud infrastructure to API
-                  integrations and DevOps pipelines, I handle the full stack so
+                  integrations and automation, I handle the full stack so
                   you can focus on growing your business.
                 </p>
               </div>

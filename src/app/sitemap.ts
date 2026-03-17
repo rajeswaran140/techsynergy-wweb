@@ -3,12 +3,12 @@ import type { MetadataRoute } from "next";
 const BASE_URL = "https://techsynergy.ca";
 
 const blogSlugs = [
-  "future-of-ai-in-software-development",
-  "building-scalable-cloud-architectures",
-  "ux-design-trends-2026",
-  "cybersecurity-best-practices-for-startups",
-  "guide-to-headless-cms",
-  "devops-pipeline-optimization",
+  "digital-transformation-canadian-businesses-2026",
+  "how-to-measure-roi-of-custom-software",
+  "choosing-the-right-technology-partner",
+  "data-privacy-competitive-advantage-canada",
+  "building-a-product-roadmap-that-drives-growth",
+  "why-startups-fail-and-how-to-avoid-it",
 ];
 
 const serviceSlugs = [

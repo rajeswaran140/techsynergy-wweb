@@ -4,13 +4,12 @@ import {
   HiChip,
   HiCloud,
   HiCode,
-  HiCog,
 } from "react-icons/hi";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "TechSynergy services — SaaS product development, cloud infrastructure, API integrations, and DevOps for Canadian businesses.",
+    "TechSynergy services — SaaS product development, cloud infrastructure, and API integrations for Canadian businesses.",
   openGraph: {
     title: "Services | TechSynergy",
     description:
@@ -59,20 +58,6 @@ const services = [
       "API documentation and specs",
       "Authentication and rate limiting",
       "Data transformation pipelines",
-    ],
-  },
-  {
-    icon: HiCog,
-    title: "DevOps & CI/CD",
-    description:
-      "Automated build, test, and deploy pipelines so your team ships faster with fewer surprises. We set up the infrastructure that lets you focus on code.",
-    features: [
-      "CI/CD pipeline setup and automation",
-      "Containerization",
-      "Automated testing integration",
-      "Environment management (staging, prod)",
-      "Monitoring and alerting",
-      "Security scanning in pipeline",
     ],
   },
 ];

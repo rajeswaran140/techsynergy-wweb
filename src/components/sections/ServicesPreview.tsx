@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { HiCode, HiCloud, HiCog, HiChip } from "react-icons/hi";
+import { HiCode, HiCloud, HiChip } from "react-icons/hi";
 
 const MotionDiv = dynamic(
   () => import("framer-motion").then((mod) => ({ default: mod.motion.div })),
@@ -33,14 +33,6 @@ const services = [
       "Clean, well-documented RESTful APIs and third-party integrations that connect your systems and automate workflows.",
     highlights: ["REST API design", "Webhook systems", "OpenAPI documentation"],
     color: "from-violet-500 to-purple-500",
-  },
-  {
-    icon: HiCog,
-    title: "DevOps & CI/CD",
-    description:
-      "Automated build, test, and deploy pipelines so you ship faster with fewer surprises and zero downtime.",
-    highlights: ["CI/CD pipelines", "Containerization", "Monitoring & alerts"],
-    color: "from-amber-500 to-orange-500",
   },
 ];
 

@@ -7,7 +7,6 @@ const footerLinks = {
     { href: "/services", label: "SaaS Development" },
     { href: "/services", label: "Cloud Infrastructure" },
     { href: "/services", label: "API & Integrations" },
-    { href: "/services", label: "DevOps & CI/CD" },
   ],
   Products: [
     { href: "https://mobily.ca", label: "Mobily.ca", external: true },

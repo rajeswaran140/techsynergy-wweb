@@ -39,7 +39,8 @@ export default function CrudTable({
       </div>
 
       <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-        <table className="w-full">
+        <div className="overflow-x-auto">
+        <table className="w-full min-w-150">
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
               {columns.map((col) => (
@@ -96,6 +97,7 @@ export default function CrudTable({
             )}
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   );

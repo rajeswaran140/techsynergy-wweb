@@ -1,40 +1,43 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function PricingPage() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    requestAnimationFrame(() => setVisible(true));
+  }, []);
+
   return (
     <main className="min-h-screen bg-background">
       {/* Hero Banner */}
-      <section className="relative bg-primary py-24 md:py-32">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <section className="relative bg-primary py-16 sm:py-24 md:py-32">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-size-[4rem_4rem]" />
         <div className="container relative mx-auto px-4 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl font-bold text-white md:text-5xl lg:text-6xl"
+          <h1
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white transition-all duration-600 ${
+              visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+            }`}
           >
             Pricing Plans
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mx-auto mt-4 max-w-2xl text-lg text-white/80"
+          </h1>
+          <p
+            className={`mx-auto mt-4 max-w-2xl text-base sm:text-lg text-white/80 transition-all duration-600 delay-200 ${
+              visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+            }`}
           >
             Transparent pricing for every stage of your business.
-          </motion.p>
+          </p>
         </div>
       </section>
 
       <section className="container mx-auto px-4 py-16 md:py-24">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mx-auto max-w-2xl text-center"
+        <div
+          className={`mx-auto max-w-2xl text-center transition-all duration-500 delay-100 ${
+            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
         >
           <p className="text-muted-foreground mb-8">
             Pricing details coming soon. Contact us for a custom quote.
@@ -45,7 +48,7 @@ export default function PricingPage() {
           >
             Contact Us
           </Link>
-        </motion.div>
+        </div>
       </section>
     </main>
   );

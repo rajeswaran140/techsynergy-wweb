@@ -78,7 +78,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 overflow-hidden grid grid-cols-1 lg:grid-cols-2">
             {/* Product showcase instead of stock team photo */}
-            <div className="relative h-64 sm:h-80 lg:h-auto lg:min-h-100 bg-linear-to-br from-[#0f172a] to-slate-800 flex items-center justify-center p-8 sm:p-12">
+            <div className="relative h-56 sm:h-72 lg:h-auto lg:min-h-100 bg-linear-to-br from-[#0f172a] to-slate-800 flex items-center justify-center p-8 sm:p-12">
               <div className="space-y-6 w-full max-w-sm">
                 <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-5">
                   <p className="text-xs font-medium text-primary uppercase tracking-widest mb-2">
@@ -183,7 +183,7 @@ export default function AboutPage() {
                 </span>
               </div>
             </div>
-            <div className="relative h-64 sm:h-80 lg:h-auto lg:min-h-100 order-1 lg:order-2">
+            <div className="relative h-56 sm:h-72 lg:h-auto lg:min-h-100 order-1 lg:order-2">
               <div className="absolute inset-0 bg-linear-to-br from-[#0f172a] to-slate-800 flex items-center justify-center">
                 <div className="text-center px-6">
                   <p className="text-6xl sm:text-7xl lg:text-8xl font-bold text-white mb-2">

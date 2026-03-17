@@ -34,7 +34,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              Markham, Ontario &bull; 25+ Years in Software
+              Markham, Ontario &bull; Founded 2023 &bull; 25+ Years Experience
             </MotionDiv>
 
             <MotionDiv

@@ -191,7 +191,7 @@ export default async function BlogPostPage({
             </p>
 
             {/* Author + date */}
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-blog-accent/15 flex items-center justify-center">
                   <span className="text-sm font-bold text-blog-accent">
@@ -265,8 +265,8 @@ export default async function BlogPostPage({
                 {post.author}
               </p>
               <p className="text-sm text-blog-muted leading-relaxed mt-1">
-                Founder &amp; Developer at TechSynergy. Helping Canadian businesses
-                grow through technology and strategy.
+                Expert insights and thought leadership on technology, strategy, and
+                business growth for Canadian companies.
               </p>
             </div>
           </div>

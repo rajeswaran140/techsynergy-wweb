@@ -38,7 +38,7 @@ export const blogPosts: BlogPost[] = [
     title: "Why Digital Transformation Is No Longer Optional for Canadian Businesses",
     excerpt:
       "Canadian companies that delay digital transformation risk falling behind. Here is what business leaders need to know.",
-    author: "Raj",
+    author: "TechSynergy Team",
     date: "March 10, 2026",
     dateISO: "2026-03-10",
     tags: ["Digital Transformation", "Canadian Business"],
@@ -84,7 +84,7 @@ Digital transformation is not a one-time project. It is an ongoing commitment to
     title: "How to Measure the ROI of Custom Software Development",
     excerpt:
       "Not sure if custom software is worth the investment? Here is a practical framework for calculating real returns.",
-    author: "Raj",
+    author: "TechSynergy Team",
     date: "March 5, 2026",
     dateISO: "2026-03-05",
     tags: ["ROI", "Strategy"],
@@ -142,7 +142,7 @@ The key is to be honest about what you need and measure the results. The best in
     title: "How to Choose the Right Technology Partner for Your Business",
     excerpt:
       "Hiring a development team is a big decision. Here is what to look for — and what red flags to avoid.",
-    author: "Raj",
+    author: "TechSynergy Team",
     date: "February 28, 2026",
     dateISO: "2026-02-28",
     tags: ["Outsourcing", "Strategy"],
@@ -198,7 +198,7 @@ Beyond checklists and references, pay attention to how the relationship feels. D
     title: "Why Data Privacy Is a Competitive Advantage for Canadian Companies",
     excerpt:
       "Privacy compliance is not just a legal obligation — it is a business differentiator that builds customer trust.",
-    author: "Raj",
+    author: "TechSynergy Team",
     date: "February 20, 2026",
     dateISO: "2026-02-20",
     tags: ["Privacy", "Compliance", "Canadian Business"],
@@ -254,7 +254,7 @@ In a market where competitors cut corners on data protection, your commitment to
     title: "Building a Product Roadmap That Actually Drives Growth",
     excerpt:
       "Most product roadmaps fail because they focus on features instead of outcomes. Here is a better approach.",
-    author: "Raj",
+    author: "TechSynergy Team",
     date: "February 14, 2026",
     dateISO: "2026-02-14",
     tags: ["Strategy", "Growth"],
@@ -314,7 +314,7 @@ A roadmap is not a contract. Review it monthly, adjust quarterly, and be willing
     title: "Why Most Startups Fail — and How Canadian Founders Can Beat the Odds",
     excerpt:
       "90% of startups fail. Understanding the common reasons gives you a fighting chance to succeed.",
-    author: "Raj",
+    author: "TechSynergy Team",
     date: "February 7, 2026",
     dateISO: "2026-02-07",
     tags: ["Startups", "Growth", "Leadership"],

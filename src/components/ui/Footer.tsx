@@ -23,7 +23,7 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { href: "https://www.linkedin.com/company/techsynergy-corp", icon: FaLinkedin, label: "LinkedIn" },
+  { href: "https://www.linkedin.com/in/rajwaran/", icon: FaLinkedin, label: "LinkedIn" },
 ];
 
 export default function Footer() {

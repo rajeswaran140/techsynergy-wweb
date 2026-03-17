@@ -5,6 +5,11 @@ export const metadata: Metadata = {
   title: "Products",
   description:
     "Privacy-first SaaS products built by TechSynergy — Mobily.ca for Canadian link shortening and analytics, and SeoSync.ca for AI-powered SEO audits.",
+  openGraph: {
+    title: "Products | TechSynergy",
+    description:
+      "Privacy-first SaaS products built and hosted in Canada — Mobily.ca and SeoSync.ca.",
+  },
 };
 
 const products = [
@@ -46,10 +51,10 @@ const products = [
 
 export default function ProductsPage() {
   return (
-    <section className="py-20 sm:py-28">
+    <section className="py-16 sm:py-24 lg:py-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-3">
             Our Products
           </p>
@@ -59,39 +64,39 @@ export default function ProductsPage() {
               Built in Canada
             </span>
           </h1>
-          <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-sm sm:text-base lg:text-lg leading-relaxed">
             We don&apos;t just build software for clients — we ship our own
             products. Each one is designed, developed, and hosted in Canada.
           </p>
         </div>
 
         {/* Product cards */}
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
           {products.map((product) => (
             <div
               key={product.name}
-              className="group relative rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-8 sm:p-10 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 transition-all duration-300"
+              className="group relative rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8 lg:p-10 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 transition-all duration-300"
             >
               {/* Gradient accent bar */}
               <div
-                className={`absolute top-0 left-8 right-8 h-1 rounded-b-full bg-linear-to-r ${product.color}`}
+                className={`absolute top-0 left-6 right-6 sm:left-8 sm:right-8 h-1 rounded-b-full bg-linear-to-r ${product.color}`}
               />
 
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-1">
                 {product.name}
               </h2>
-              <p className="text-sm font-medium text-primary mb-4">
+              <p className="text-sm font-medium text-primary mb-3 sm:mb-4">
                 {product.tagline}
               </p>
-              <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-4 sm:mb-6">
                 {product.description}
               </p>
 
-              <p className="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-700/50 rounded-lg px-3 py-2 mb-6 inline-block">
+              <p className="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-700/50 rounded-lg px-3 py-2 mb-5 sm:mb-6 inline-block">
                 {product.pricing}
               </p>
 
-              <ul className="space-y-2.5 mb-8">
+              <ul className="space-y-2 sm:space-y-2.5 mb-6 sm:mb-8">
                 {product.features.map((feature) => (
                   <li
                     key={feature}
@@ -102,6 +107,7 @@ export default function ProductsPage() {
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -119,7 +125,7 @@ export default function ProductsPage() {
                 href={product.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-linear-to-r ${product.color} text-white font-semibold text-sm hover:opacity-90 transition-opacity shadow-lg`}
+                className={`inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-lg bg-linear-to-r ${product.color} text-white font-semibold text-sm hover:opacity-90 transition-opacity shadow-lg w-full sm:w-auto justify-center sm:justify-start`}
               >
                 Visit {product.name}
                 <svg
@@ -127,6 +133,7 @@ export default function ProductsPage() {
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -135,15 +142,16 @@ export default function ProductsPage() {
                     d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                   />
                 </svg>
+                <span className="sr-only">(opens in new tab)</span>
               </a>
             </div>
           ))}
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-12 sm:mt-16">
           <p className="text-slate-500 dark:text-slate-400 mb-4">
-            Have an idea for a product? Let&apos;s talk.
+            Want to learn how our products can help your business?
           </p>
           <Link
             href="/#contact"

@@ -131,20 +131,18 @@ export default function Navbar() {
       </div>
 
       {/* Mobile overlay */}
-      <div
-        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300 ${
-          mobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
-        onClick={() => setMobileOpen(false)}
-        aria-hidden="true"
-      />
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+          onClick={() => setMobileOpen(false)}
+          aria-hidden="true"
+        />
+      )}
 
       {/* Mobile menu panel */}
-      <div
-        className={`fixed top-16 left-0 right-0 bottom-0 z-40 md:hidden bg-[#0f172a] transition-transform duration-300 ease-out ${
-          mobileOpen ? "translate-y-0" : "-translate-y-full"
-        }`}
-      >
+      {mobileOpen && (
+        <div className="fixed top-16 left-0 right-0 bottom-0 z-40 md:hidden bg-[#0f172a] overflow-y-auto">
+
         <div className="px-6 pt-6 pb-8 space-y-1">
           {navLinks.map((link) => {
             const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
@@ -172,7 +170,8 @@ export default function Navbar() {
             </Link>
           </div>
         </div>
-      </div>
+        </div>
+      )}
     </nav>
   );
 }

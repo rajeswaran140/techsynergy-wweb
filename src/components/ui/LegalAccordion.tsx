@@ -29,9 +29,9 @@ export default function LegalAccordion({
               className="w-full flex items-center justify-between gap-4 px-5 sm:px-6 py-4 sm:py-5 text-left cursor-pointer"
               aria-expanded={isOpen}
             >
-              <span className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white">
+              <h2 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white">
                 {section.title}
-              </span>
+              </h2>
               <svg
                 className={`w-5 h-5 text-primary shrink-0 transition-transform duration-300 ${
                   isOpen ? "rotate-180" : ""

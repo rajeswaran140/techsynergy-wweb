@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { blogPosts, getTagColor } from "@/lib/blog-data";
+import CategoryFilter from "@/components/blog/CategoryFilter";
+import PostIllustration from "@/components/blog/PostIllustration";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -13,140 +16,174 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogPage() {
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>;
+}) {
+  const { category } = await searchParams;
+  const allCategories = Array.from(new Set(blogPosts.map((p) => p.category)));
   const allTags = Array.from(new Set(blogPosts.flatMap((p) => p.tags)));
 
+  const filtered = category
+    ? blogPosts.filter((p) => p.category === category)
+    : blogPosts;
+
+  const [featured, ...rest] = filtered;
+
   return (
-    <div>
-      {/* Hero */}
-      <section className="bg-primary py-14 sm:py-18 md:py-22">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
-            Blog
-          </h1>
-          <p className="text-blue-100 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Insights, tutorials, and thought leadership from the TechSynergy
-            team.
-          </p>
-        </div>
-      </section>
+    <div className="bg-blog-base min-h-screen font-(family-name:--font-blog-body) text-white">
+      {/* Hero — featured post */}
+      {featured && (
+        <section className="pt-12 pb-16 sm:pt-16 sm:pb-20 border-b border-white/5">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-10 sm:mb-14">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-(family-name:--font-display) tracking-tight mb-3">
+                Blog
+              </h1>
+              <p className="text-blog-muted text-lg max-w-xl">
+                Insights on strategy, growth, and digital transformation for
+                Canadian businesses.
+              </p>
+            </div>
 
-      {/* Posts — single-column feed */}
-      <section className="py-14 sm:py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-6">
-            {blogPosts.map((post) => {
-              const catColor = getTagColor(post.tags[0]);
-              return (
-                <article key={post.slug}>
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="group block rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8 hover:shadow-xl hover:shadow-slate-200/60 dark:hover:shadow-slate-900/60 transition-all duration-300 hover:-translate-y-0.5"
-                  >
-                    {/* Top row: category + read time */}
-                    <div className="flex items-center justify-between mb-4">
-                      <span
-                        className={`inline-block rounded-full px-3 py-1 text-xs font-semibold ${catColor.bg} ${catColor.text}`}
-                      >
-                        {post.category}
-                      </span>
-                      <span className="text-xs text-slate-400 dark:text-slate-500">
-                        {post.readTime}
-                      </span>
-                    </div>
+            <Link
+              href={`/blog/${featured.slug}`}
+              className="group block rounded-2xl bg-blog-surface overflow-hidden transition-all duration-300 hover:ring-1 hover:ring-blog-accent/30"
+            >
+              <PostIllustration slug={featured.slug} className="w-full h-auto" />
 
-                    {/* Title */}
-                    <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-primary transition-colors leading-tight">
-                      {post.title}
-                    </h2>
-
-                    {/* Excerpt */}
-                    <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
-                      {post.excerpt}
-                    </p>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-5">
-                      {post.tags.map((tag) => {
-                        const tc = getTagColor(tag);
-                        return (
-                          <span
-                            key={tag}
-                            className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${tc.bg} ${tc.text}`}
-                          >
-                            #{tag}
-                          </span>
-                        );
-                      })}
-                    </div>
-
-                    {/* Bottom row: author, date, read link */}
-                    <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/50">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                          <span className="text-xs font-bold text-primary">
-                            {post.author.charAt(0)}
-                          </span>
-                        </div>
-                        <div className="text-sm">
-                          <span className="font-medium text-slate-900 dark:text-white">
-                            {post.author}
-                          </span>
-                          <span className="mx-2 text-slate-300 dark:text-slate-600">
-                            &middot;
-                          </span>
-                          <time
-                            dateTime={post.dateISO}
-                            className="text-slate-500 dark:text-slate-400"
-                          >
-                            {post.date}
-                          </time>
-                        </div>
-                      </div>
-                      <span className="text-sm font-semibold text-primary group-hover:underline flex items-center gap-1">
-                        Read
-                        <svg
-                          className="w-4 h-4 transition-transform group-hover:translate-x-0.5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
-                      </span>
-                    </div>
-                  </Link>
-                </article>
-              );
-            })}
+              <div className="p-6 sm:p-8 lg:p-10">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="rounded-full bg-blog-accent/15 px-3 py-1 text-xs font-semibold text-blog-accent">
+                    {featured.category}
+                  </span>
+                  <span className="text-xs text-blog-muted font-(family-name:--font-blog-mono)">
+                    {featured.readTime}
+                  </span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-(family-name:--font-display) leading-tight mb-4 group-hover:text-blog-accent transition-colors">
+                  {featured.title}
+                </h2>
+                <p className="text-blog-muted text-base sm:text-lg leading-relaxed max-w-2xl mb-6">
+                  {featured.excerpt}
+                </p>
+                <div className="flex items-center gap-3 text-sm text-blog-muted">
+                  <div className="w-8 h-8 rounded-full bg-blog-accent/15 flex items-center justify-center">
+                    <span className="text-xs font-bold text-blog-accent">
+                      {featured.author.charAt(0)}
+                    </span>
+                  </div>
+                  <span className="text-white font-medium">
+                    {featured.author}
+                  </span>
+                  <span className="text-white/20">&middot;</span>
+                  <time dateTime={featured.dateISO}>{featured.date}</time>
+                </div>
+              </div>
+            </Link>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Popular Topics */}
-      <section className="py-12 sm:py-16 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-5">
-            Popular Topics
-          </h2>
-          <div className="flex flex-wrap justify-center gap-2">
-            {allTags.map((tag) => {
-              const tc = getTagColor(tag);
-              return (
-                <span
-                  key={tag}
-                  className={`rounded-full px-4 py-1.5 text-sm font-medium ${tc.bg} ${tc.text}`}
+      {/* Filter + Grid + Sidebar — asymmetric 70/30 */}
+      <section className="py-12 sm:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Category filter */}
+          <div className="mb-10">
+            <Suspense fallback={null}>
+              <CategoryFilter categories={allCategories} />
+            </Suspense>
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-14">
+            {/* Main grid — 70% */}
+            <div className="flex-1 min-w-0">
+              {rest.length === 0 && !featured && (
+                <p className="text-blog-muted text-center py-20">
+                  No posts found.
+                </p>
+              )}
+              <div className="grid gap-6 sm:grid-cols-2">
+                {rest.map((post) => {
+                  const catColor = getTagColor(post.tags[0]);
+                  return (
+                    <article key={post.slug}>
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="group flex flex-col h-full rounded-2xl bg-blog-surface border border-white/5 overflow-hidden transition-all duration-300 hover:border-blog-accent/20 hover:shadow-lg hover:shadow-blog-accent/5"
+                      >
+                        <PostIllustration slug={post.slug} className="w-full h-auto" />
+
+                        <div className="flex flex-col flex-1 p-5 sm:p-6">
+                          <div className="flex items-center gap-2 mb-3">
+                            <span className="rounded-full bg-blog-accent/15 px-2.5 py-0.5 text-xs font-semibold text-blog-accent">
+                              {post.category}
+                            </span>
+                            <span className="text-xs text-blog-muted font-(family-name:--font-blog-mono)">
+                              {post.readTime}
+                            </span>
+                          </div>
+                          <h3 className="text-lg font-bold font-(family-name:--font-display) leading-snug mb-2 group-hover:text-blog-accent transition-colors">
+                            {post.title}
+                          </h3>
+                          <p className="text-sm text-blog-muted leading-relaxed flex-1 mb-4">
+                            {post.excerpt}
+                          </p>
+                          <div className="flex items-center gap-2 text-xs text-blog-muted pt-3 border-t border-white/5">
+                            <span className="text-white/70 font-medium">
+                              {post.author}
+                            </span>
+                            <span className="text-white/20">&middot;</span>
+                            <time dateTime={post.dateISO}>{post.date}</time>
+                          </div>
+                        </div>
+                      </Link>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Sidebar — 30% */}
+            <aside className="w-full lg:w-72 xl:w-80 shrink-0 space-y-10">
+              {/* Tag Cloud */}
+              <div>
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-blog-muted mb-4 font-(family-name:--font-blog-mono)">
+                  Topics
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {allTags.map((tag) => {
+                    const tc = getTagColor(tag);
+                    return (
+                      <span
+                        key={tag}
+                        className={`rounded-full px-3 py-1 text-xs font-medium ${tc.bg} ${tc.text}`}
+                      >
+                        #{tag}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Newsletter CTA */}
+              <div className="rounded-2xl bg-blog-surface border border-white/5 p-6">
+                <h3 className="text-lg font-bold font-(family-name:--font-display) mb-2">
+                  Stay in the loop
+                </h3>
+                <p className="text-sm text-blog-muted mb-4 leading-relaxed">
+                  Get the latest insights on strategy and growth delivered to
+                  your inbox.
+                </p>
+                <Link
+                  href="/contact"
+                  className="inline-block w-full text-center rounded-lg bg-blog-accent px-4 py-2.5 text-sm font-semibold text-blog-base hover:bg-blog-accent/90 transition-colors"
                 >
-                  #{tag}
-                </span>
-              );
-            })}
+                  Get in Touch
+                </Link>
+              </div>
+            </aside>
           </div>
         </div>
       </section>

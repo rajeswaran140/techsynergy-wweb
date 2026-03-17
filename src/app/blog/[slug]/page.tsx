@@ -7,6 +7,9 @@ import {
   getRelatedPosts,
   getTagColor,
 } from "@/lib/blog-data";
+import ReadingProgress from "@/components/blog/ReadingProgress";
+import TableOfContents from "@/components/blog/TableOfContents";
+import PostIllustration from "@/components/blog/PostIllustration";
 
 export function generateStaticParams() {
   return blogPosts.map((p) => ({ slug: p.slug }));
@@ -27,7 +30,24 @@ export function generateMetadata({
   });
 }
 
-/** Safe markdown-like renderer */
+/** Extract ## headings for ToC */
+function extractHeadings(content: string) {
+  const headings: { id: string; text: string }[] = [];
+  for (const line of content.split("\n")) {
+    const match = line.match(/^## (.+)$/);
+    if (match) {
+      const text = match[1].trim();
+      const id = text
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
+      headings.push({ id, text });
+    }
+  }
+  return headings;
+}
+
+/** Render markdown-like content with IDs on h2s */
 function renderContent(raw: string) {
   return raw
     .trim()
@@ -36,12 +56,18 @@ function renderContent(raw: string) {
       const trimmed = block.trim();
 
       if (trimmed.startsWith("## ")) {
+        const text = trimmed.slice(3).trim();
+        const id = text
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/(^-|-$)/g, "");
         return (
           <h2
             key={i}
-            className="mb-4 mt-12 text-2xl font-bold text-slate-900 dark:text-white"
+            id={id}
+            className="mb-4 mt-14 text-2xl sm:text-3xl font-bold font-(family-name:--font-display) text-white scroll-mt-24"
           >
-            {trimmed.slice(3)}
+            {text}
           </h2>
         );
       }
@@ -53,18 +79,18 @@ function renderContent(raw: string) {
         return (
           <ul
             key={i}
-            className="mb-6 list-disc space-y-2 pl-6 text-slate-600 dark:text-slate-300"
+            className="mb-6 space-y-2.5 pl-5 text-blog-muted list-none"
           >
             {items.map((item, j) => {
               const parts = item.split(/\*\*(.*?)\*\*/g);
               return (
-                <li key={j}>
+                <li
+                  key={j}
+                  className="relative pl-4 before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:rounded-full before:bg-blog-accent/60"
+                >
                   {parts.map((part, k) =>
                     k % 2 === 1 ? (
-                      <strong
-                        key={k}
-                        className="text-slate-900 dark:text-white"
-                      >
+                      <strong key={k} className="text-white font-semibold">
                         {part}
                       </strong>
                     ) : (
@@ -81,7 +107,7 @@ function renderContent(raw: string) {
       return (
         <p
           key={i}
-          className="mb-6 text-lg leading-relaxed text-slate-600 dark:text-slate-300"
+          className="mb-6 text-lg leading-[1.8] text-blog-muted"
         >
           {trimmed}
         </p>
@@ -100,6 +126,7 @@ export default async function BlogPostPage({
   if (!post) notFound();
 
   const related = getRelatedPosts(slug, 3);
+  const headings = extractHeadings(post.content);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -117,81 +144,126 @@ export default async function BlogPostPage({
   };
 
   return (
-    <main className="min-h-screen bg-background">
+    <div className="bg-blog-base min-h-screen font-(family-name:--font-blog-body) text-white">
+      <ReadingProgress />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Hero */}
-      <section className="bg-primary py-16 sm:py-22 md:py-28">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          {/* Category badge */}
-          <span className="inline-block rounded-full px-4 py-1.5 text-xs font-semibold mb-6 bg-white/20 text-white">
-            {post.category}
-          </span>
-
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+      {/* Breadcrumb */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+        <nav className="flex items-center gap-2 text-sm text-blog-muted font-(family-name:--font-blog-mono)">
+          <Link href="/blog" className="hover:text-blog-accent transition-colors">
+            Blog
+          </Link>
+          <span className="text-white/20">/</span>
+          <span className="text-white/50 truncate max-w-xs">
             {post.title}
-          </h1>
+          </span>
+        </nav>
+      </div>
 
-          {/* Meta row */}
-          <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-white/70">
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
-                <span className="text-xs font-bold text-white">
-                  {post.author.charAt(0)}
-                </span>
-              </div>
-              <span className="text-white/90 font-medium">{post.author}</span>
+      {/* Hero */}
+      <header className="pb-12 sm:pb-16 border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <PostIllustration slug={post.slug} className="w-full h-auto rounded-2xl mb-8 sm:mb-10" />
+
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-3 mb-5">
+              <span className="rounded-full bg-blog-accent/15 px-3 py-1 text-xs font-semibold text-blog-accent">
+                {post.category}
+              </span>
+              <span className="text-xs text-blog-muted font-(family-name:--font-blog-mono)">
+                {post.readTime}
+              </span>
             </div>
-            <span className="hidden sm:inline text-white/40">&middot;</span>
-            <time dateTime={post.dateISO}>{post.date}</time>
-            <span className="hidden sm:inline text-white/40">&middot;</span>
-            <span>{post.readTime}</span>
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-(family-name:--font-display) leading-[1.1] tracking-tight mb-6">
+              {post.title}
+            </h1>
+
+            <p className="text-lg sm:text-xl text-blog-muted leading-relaxed mb-8 max-w-2xl">
+              {post.excerpt}
+            </p>
+
+            {/* Author + date */}
+            <div className="flex flex-wrap items-center gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-blog-accent/15 flex items-center justify-center">
+                  <span className="text-sm font-bold text-blog-accent">
+                    {post.author.charAt(0)}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-white">
+                    {post.author}
+                  </p>
+                  <p className="text-xs text-blog-muted">TechSynergy</p>
+                </div>
+              </div>
+              <span className="text-white/10">|</span>
+              <time
+                dateTime={post.dateISO}
+                className="text-sm text-blog-muted font-(family-name:--font-blog-mono)"
+              >
+                {post.date}
+              </time>
+            </div>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 mt-6">
+              {post.tags.map((tag) => {
+                const tc = getTagColor(tag);
+                return (
+                  <span
+                    key={tag}
+                    className={`rounded-full px-3 py-1 text-xs font-medium ${tc.bg} ${tc.text}`}
+                  >
+                    #{tag}
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Content + ToC */}
+      <section className="py-12 sm:py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
+            {/* Article — centered 720px */}
+            <article className="flex-1 min-w-0 max-w-3xl mx-auto lg:mx-0">
+              {renderContent(post.content)}
+            </article>
+
+            {/* ToC sidebar */}
+            {headings.length > 0 && (
+              <aside className="hidden lg:block w-64 xl:w-72 shrink-0">
+                <TableOfContents headings={headings} />
+              </aside>
+            )}
           </div>
         </div>
       </section>
 
-      {/* Tags bar */}
-      <div className="border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap items-center gap-2">
-          {post.tags.map((tag) => {
-            const tc = getTagColor(tag);
-            return (
-              <span
-                key={tag}
-                className={`rounded-full px-3 py-1 text-xs font-medium ${tc.bg} ${tc.text}`}
-              >
-                #{tag}
-              </span>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Content */}
-      <section className="py-12 sm:py-16 md:py-20">
-        <article className="mx-auto max-w-3xl px-4 sm:px-6">
-          {renderContent(post.content)}
-        </article>
-      </section>
-
       {/* Author card */}
-      <section className="border-t border-slate-200 dark:border-slate-700">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-          <div className="flex items-center gap-4 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 p-6">
-            <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-              <span className="text-xl font-bold text-primary">
+      <section className="border-t border-white/5">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+          <div className="flex items-center gap-5 rounded-2xl bg-blog-surface border border-white/5 p-6 sm:p-8">
+            <div className="w-16 h-16 rounded-full bg-blog-accent/15 flex items-center justify-center shrink-0">
+              <span className="text-2xl font-bold text-blog-accent">
                 {post.author.charAt(0)}
               </span>
             </div>
             <div>
-              <p className="font-semibold text-slate-900 dark:text-white">
+              <p className="text-lg font-bold font-(family-name:--font-display) text-white">
                 {post.author}
               </p>
-              <p className="text-sm text-slate-500 dark:text-slate-400">
-                TechSynergy Team
+              <p className="text-sm text-blog-muted leading-relaxed mt-1">
+                Founder &amp; Developer at TechSynergy. Helping Canadian businesses
+                grow through technology and strategy.
               </p>
             </div>
           </div>
@@ -200,50 +272,46 @@ export default async function BlogPostPage({
 
       {/* Related Posts */}
       {related.length > 0 && (
-        <section className="border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 py-14 sm:py-16">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 dark:text-white">
+        <section className="border-t border-white/5 py-14 sm:py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl sm:text-3xl font-bold font-(family-name:--font-display) mb-10">
               Related Posts
             </h2>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((rel) => {
-                const relColor = getTagColor(rel.tags[0]);
-                return (
-                  <article key={rel.slug}>
-                    <Link
-                      href={`/blog/${rel.slug}`}
-                      className="group flex flex-col h-full rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-                    >
-                      <span
-                        className={`self-start rounded-full px-3 py-1 text-xs font-semibold mb-3 ${relColor.bg} ${relColor.text}`}
-                      >
+              {related.map((rel) => (
+                <article key={rel.slug}>
+                  <Link
+                    href={`/blog/${rel.slug}`}
+                    className="group flex flex-col h-full rounded-2xl bg-blog-surface border border-white/5 overflow-hidden transition-all duration-300 hover:border-blog-accent/20"
+                  >
+                    <PostIllustration slug={rel.slug} className="w-full h-auto" />
+                    <div className="flex flex-col flex-1 p-5 sm:p-6">
+                      <span className="self-start rounded-full bg-blog-accent/15 px-2.5 py-0.5 text-xs font-semibold text-blog-accent mb-3">
                         {rel.category}
                       </span>
-                      <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors leading-snug">
+                      <h3 className="text-lg font-bold font-(family-name:--font-display) leading-snug mb-2 group-hover:text-blog-accent transition-colors">
                         {rel.title}
                       </h3>
-                      <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed flex-1 mb-4">
+                      <p className="text-sm text-blog-muted leading-relaxed flex-1 mb-4">
                         {rel.excerpt}
                       </p>
-                      <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 pt-3 border-t border-slate-100 dark:border-slate-700/50">
-                        <div>
-                          <span className="font-medium text-slate-700 dark:text-slate-300">
-                            {rel.author}
-                          </span>
-                          <span className="mx-1.5">&middot;</span>
-                          <time dateTime={rel.dateISO}>{rel.date}</time>
-                        </div>
-                        <span>{rel.readTime}</span>
+                      <div className="flex items-center gap-2 text-xs text-blog-muted pt-3 border-t border-white/5">
+                        <span className="text-white/70 font-medium">
+                          {rel.author}
+                        </span>
+                        <span className="text-white/20">&middot;</span>
+                        <time dateTime={rel.dateISO}>{rel.date}</time>
                       </div>
-                    </Link>
-                  </article>
-                );
-              })}
+                    </div>
+                  </Link>
+                </article>
+              ))}
             </div>
-            <div className="mt-10 text-center">
+
+            <div className="mt-12 text-center">
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-6 py-2.5 text-sm font-semibold text-primary hover:bg-primary/20 transition-colors"
+                className="inline-flex items-center gap-2 rounded-full bg-blog-accent/10 px-6 py-2.5 text-sm font-semibold text-blog-accent hover:bg-blog-accent/20 transition-colors"
               >
                 <svg
                   className="w-4 h-4"
@@ -265,6 +333,6 @@ export default async function BlogPostPage({
           </div>
         </section>
       )}
-    </main>
+    </div>
   );
 }

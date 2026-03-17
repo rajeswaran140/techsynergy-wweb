@@ -3,9 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const CONTACT_API =
-  process.env.NEXT_PUBLIC_CONTACT_API ||
-  "https://nb2f5iw2hd.execute-api.us-east-1.amazonaws.com/production/contact";
+const CONTACT_API = "/api/contact";
 
 const services = [
   "Web Development",

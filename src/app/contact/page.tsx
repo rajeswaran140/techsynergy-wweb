@@ -37,10 +37,10 @@ export default function ContactPage() {
       <section className="bg-primary py-14 sm:py-18 md:py-22">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3">
-            Get in Touch
+            Contact TechSynergy
           </h1>
           <p className="text-white/80 text-sm sm:text-base lg:text-lg max-w-xl mx-auto leading-relaxed">
-            Send us a message and we&apos;ll get back to you within 24 hours.
+            Get in touch with our team. We&apos;ll respond within 24 hours.
           </p>
         </div>
       </section>

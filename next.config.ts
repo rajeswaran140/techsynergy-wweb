@@ -40,7 +40,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https:",
               "font-src 'self' data:",
-              "connect-src 'self' https://www.google-analytics.com",
+              "connect-src 'self' https://www.google-analytics.com https://vs2t2s2ew3.execute-api.us-east-1.amazonaws.com",
               "frame-ancestors 'none'",
             ].join('; '),
           },

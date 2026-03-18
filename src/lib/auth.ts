@@ -23,12 +23,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         if (!adminEmail || !adminPassword) return null;
 
-        if (email === adminEmail && password === adminPassword) {
-          return {
-            id: "1",
-            email: adminEmail,
-            name: "Admin",
-          };
+        // Secure password comparison using bcrypt
+        if (email === adminEmail) {
+          const isValidPassword = await bcrypt.compare(password, adminPassword);
+
+          if (isValidPassword) {
+            return {
+              id: "1",
+              email: adminEmail,
+              name: "Admin",
+            };
+          }
         }
 
         return null;

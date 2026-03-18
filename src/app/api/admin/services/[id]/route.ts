@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { getService, updateService, deleteService } from "@/lib/models/services";
+import { validateRequest, serviceSchema } from "@/lib/validation";
 
 export async function GET(
   request: NextRequest,
@@ -24,7 +25,13 @@ export async function PUT(
 
   const { id } = await params;
   const body = await request.json();
-  const service = await updateService(id, body);
+
+  const validation = validateRequest(serviceSchema, body);
+  if (!validation.success) {
+    return NextResponse.json({ error: validation.error }, { status: 400 });
+  }
+
+  const service = await updateService(id, validation.data);
   if (!service) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json(service);
 }

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { getBlogPost, updateBlogPost, deleteBlogPost } from "@/lib/models/blog";
+import { validateRequest, blogPostSchema } from "@/lib/validation";
 
 export async function GET(
   request: NextRequest,
@@ -24,7 +25,13 @@ export async function PUT(
 
   const { id } = await params;
   const body = await request.json();
-  const post = await updateBlogPost(id, body);
+
+  const validation = validateRequest(blogPostSchema, body);
+  if (!validation.success) {
+    return NextResponse.json({ error: validation.error }, { status: 400 });
+  }
+
+  const post = await updateBlogPost(id, validation.data);
   if (!post) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json(post);
 }

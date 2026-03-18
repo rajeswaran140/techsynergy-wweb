@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createInquiry } from "@/lib/models/inquiries";
 import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
+import { checkRateLimit } from "@/lib/rate-limit";
+import { validateRequest, contactFormSchema } from "@/lib/validation";
 
 const ses = new SESClient({
   region: process.env.MY_AWS_REGION || "us-east-1",
@@ -11,23 +13,19 @@ const FROM_EMAIL = `TechSynergy <noreply@techsynergy.ca>`;
 
 export async function POST(request: NextRequest) {
   try {
+    // Check rate limit first
+    const rateLimitResponse = await checkRateLimit(request, 'contact');
+    if (rateLimitResponse) return rateLimitResponse;
+
     const body = await request.json();
-    const { name, email, phone, company, service, message } = body;
 
-    if (!name || !email || !service || !message) {
-      return NextResponse.json(
-        { error: "Name, email, service, and message are required." },
-        { status: 400 }
-      );
+    // Validate request with Zod
+    const validation = validateRequest(contactFormSchema, body);
+    if (!validation.success) {
+      return NextResponse.json({ error: validation.error }, { status: 400 });
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: "Invalid email address." },
-        { status: 400 }
-      );
-    }
+    const { name, email, phone, company, service, message } = validation.data;
 
     const inquiry = await createInquiry({
       name,

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { getPortfolioItem, updatePortfolioItem, deletePortfolioItem } from "@/lib/models/portfolio";
+import { validateRequest, portfolioSchema } from "@/lib/validation";
 
 export async function GET(
   request: NextRequest,
@@ -24,7 +25,13 @@ export async function PUT(
 
   const { id } = await params;
   const body = await request.json();
-  const item = await updatePortfolioItem(id, body);
+
+  const validation = validateRequest(portfolioSchema, body);
+  if (!validation.success) {
+    return NextResponse.json({ error: validation.error }, { status: 400 });
+  }
+
+  const item = await updatePortfolioItem(id, validation.data);
   if (!item) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json(item);
 }

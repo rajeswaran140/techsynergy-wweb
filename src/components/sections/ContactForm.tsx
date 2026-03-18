@@ -144,15 +144,18 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
       )}
 
       <form onSubmit={handleSubmit} noValidate className="space-y-5">
-        {/* Honeypot */}
-        <div className="absolute opacity-0 -z-10" aria-hidden="true">
+        {/* Honeypot - hidden from users and bots, positioned off-screen */}
+        <div style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }} aria-hidden="true">
+          <label htmlFor="website_url">Website</label>
           <input
             type="text"
+            id="website_url"
             name="_honey"
             value={form._honey}
             onChange={handleChange}
             tabIndex={-1}
             autoComplete="off"
+            placeholder=""
           />
         </div>
 

@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Products",
+  title: "Privacy-First Canadian SaaS Products | Email & Analytics Tools | TechSynergy",
   description:
     "Privacy-first SaaS products built by TechSynergy — Mobily.ca for Canadian link shortening and analytics, and SeoSync.ca for AI-powered SEO audits.",
   alternates: {
     canonical: "/products",
   },
   openGraph: {
-    title: "Products | TechSynergy",
+    title: "Privacy-First Canadian SaaS Products | Email & Analytics Tools | TechSynergy",
     description:
       "Privacy-first SaaS products built and hosted in Canada — Mobily.ca and SeoSync.ca.",
     url: "https://techsynergy.ca/products",

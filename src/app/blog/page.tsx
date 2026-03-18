@@ -6,14 +6,14 @@ import CategoryFilter from "@/components/blog/CategoryFilter";
 import PostIllustration from "@/components/blog/PostIllustration";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Software Development Insights & Canadian Business Tech Blog | TechSynergy",
   description:
     "Insights and thought leadership from TechSynergy on digital transformation, business strategy, and growth for Canadian businesses.",
   alternates: {
     canonical: "/blog",
   },
   openGraph: {
-    title: "Blog | TechSynergy",
+    title: "Software Development Insights & Canadian Business Tech Blog | TechSynergy",
     description:
       "Business insights from TechSynergy — strategy, growth, and digital transformation.",
     url: "https://techsynergy.ca/blog",

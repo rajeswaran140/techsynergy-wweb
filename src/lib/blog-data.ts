@@ -35,7 +35,7 @@ export function getTagColor(tag: string) {
 export const blogPosts: BlogPost[] = [
   {
     slug: "digital-transformation-canadian-businesses-2026",
-    title: "Why Digital Transformation Is Essential for Canadian Business",
+    title: "Digital Transformation for Canadian Businesses in 2026",
     excerpt:
       "Canadian companies that delay digital transformation risk falling behind. Here is what business leaders need to know.",
     author: "TechSynergy Team",
@@ -81,7 +81,7 @@ Digital transformation is not a one-time project. It is an ongoing commitment to
   },
   {
     slug: "how-to-measure-roi-of-custom-software",
-    title: "How to Measure the ROI of Custom Software Development",
+    title: "Measuring ROI of Custom Software Development",
     excerpt:
       "Not sure if custom software is worth the investment? Here is a practical framework for calculating real returns.",
     author: "TechSynergy Team",
@@ -195,7 +195,7 @@ Beyond checklists and references, pay attention to how the relationship feels. D
   },
   {
     slug: "data-privacy-competitive-advantage-canada",
-    title: "Why Data Privacy Is a Competitive Advantage in Canada",
+    title: "Data Privacy as a Competitive Advantage in Canada",
     excerpt:
       "Privacy compliance is not just a legal obligation — it is a business differentiator that builds customer trust.",
     author: "TechSynergy Team",
@@ -251,7 +251,7 @@ In a market where competitors cut corners on data protection, your commitment to
   },
   {
     slug: "building-a-product-roadmap-that-drives-growth",
-    title: "Building a Product Roadmap That Actually Drives Growth",
+    title: "Building a Product Roadmap That Drives Growth",
     excerpt:
       "Most product roadmaps fail because they focus on features instead of outcomes. Here is a better approach.",
     author: "TechSynergy Team",
@@ -311,7 +311,7 @@ A roadmap is not a contract. Review it monthly, adjust quarterly, and be willing
   },
   {
     slug: "why-startups-fail-and-how-to-avoid-it",
-    title: "Why Most Startups Fail and How Canadian Founders Succeed",
+    title: "Why Canadian Startups Fail & How to Succeed",
     excerpt:
       "90% of startups fail. Understanding the common reasons gives you a fighting chance to succeed.",
     author: "TechSynergy Team",

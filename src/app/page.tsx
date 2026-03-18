@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import type { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
 
 const ServicesPreview = dynamic(
@@ -8,6 +9,12 @@ const ProductsPreview = dynamic(
   () => import("@/components/sections/ProductsPreview")
 );
 const CTA = dynamic(() => import("@/components/sections/CTA"));
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function Home() {
   const organizationSchema = {

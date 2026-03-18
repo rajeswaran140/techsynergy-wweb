@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: "Software Development Portfolio | Canadian Client Success Stories | TechSynergy",
   description:
     "See the products and projects TechSynergy has built — from SaaS platforms to cloud infrastructure.",
   alternates: {
     canonical: "/portfolio",
   },
   openGraph: {
-    title: "Portfolio | TechSynergy",
+    title: "Software Development Portfolio | Canadian Client Success Stories | TechSynergy",
     description: "Products and projects built by TechSynergy Corp.",
     url: "https://techsynergy.ca/portfolio",
     images: [

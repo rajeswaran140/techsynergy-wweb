@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import ContactForm from "@/components/sections/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact TechSynergy | Get Your Software Project Quote",
   description:
     "Get in touch with TechSynergy Corp. Based in Markham, Ontario — we'd love to hear about your project.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
-    title: "Contact | TechSynergy",
+    title: "Contact TechSynergy | Get Your Software Project Quote",
     description:
       "Get in touch with TechSynergy Corp. Based in Markham, Ontario.",
     url: "https://techsynergy.ca/contact",

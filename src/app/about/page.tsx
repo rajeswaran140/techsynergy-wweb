@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About TechSynergy | Canadian Software Development Company",
   description:
     "TechSynergy Corp — founded in 2023 in Markham, Ontario by Raj. 25+ years of experience building privacy-first SaaS products for Canadian businesses.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "About Us | TechSynergy Corp",
+    title: "About TechSynergy | Canadian Software Development Company",
     description:
       "A Canadian software company building privacy-first SaaS products from Markham, Ontario.",
     url: "https://techsynergy.ca/about",

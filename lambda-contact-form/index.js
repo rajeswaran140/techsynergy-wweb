@@ -3,8 +3,13 @@ const { SESClient, SendEmailCommand } = require('@aws-sdk/client-ses');
 const ses = new SESClient({ region: 'us-east-1' });
 
 exports.handler = async (event) => {
+  // Support both techsynergy.ca and www.techsynergy.ca
+  const allowedOrigins = ['https://techsynergy.ca', 'https://www.techsynergy.ca'];
+  const origin = event.headers?.origin || event.headers?.Origin;
+  const corsOrigin = allowedOrigins.includes(origin) ? origin : 'https://techsynergy.ca';
+
   const headers = {
-    'Access-Control-Allow-Origin': 'https://techsynergy.ca',
+    'Access-Control-Allow-Origin': corsOrigin,
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'POST,OPTIONS',
     'Content-Type': 'application/json',

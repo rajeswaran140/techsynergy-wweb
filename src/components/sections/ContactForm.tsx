@@ -52,12 +52,20 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    console.log("=== FORM SUBMIT TRIGGERED ===");
     e.preventDefault();
-    if (form._honey) return;
+    if (form._honey) {
+      console.log("Honeypot filled, blocking submission");
+      return;
+    }
 
+    console.log("Validating form...");
     const errs = validate();
     setErrors(errs);
-    if (Object.keys(errs).length > 0) return;
+    if (Object.keys(errs).length > 0) {
+      console.log("Validation errors:", errs);
+      return;
+    }
 
     setStatus("loading");
     try {

@@ -44,7 +44,9 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
     else if (form.email.length > 254) errs.email = "Email is too long.";
     if (form.phone.length > 30) errs.phone = "Phone is too long.";
     if (form.company.length > 100) errs.company = "Company name is too long.";
+    if (!form.service.trim()) errs.service = "Please select a service.";
     if (!form.message.trim()) errs.message = "Message is required.";
+    else if (form.message.length < 10) errs.message = "Message must be at least 10 characters.";
     else if (form.message.length > 2000) errs.message = "Message is too long (max 2000 characters).";
     return errs;
   };
@@ -232,7 +234,7 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
 
         <div>
           <label htmlFor="cf-service" className="mb-2 block text-sm font-medium text-slate-700">
-            Service Interested In
+            Service Interested In <span className="text-primary">*</span>
           </label>
           <select
             id="cf-service"
@@ -248,6 +250,11 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
               <option key={s} value={s}>{s}</option>
             ))}
           </select>
+          {errors.service && (
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-1.5 text-xs text-red-400">
+              {errors.service}
+            </motion.p>
+          )}
         </div>
 
         <div>

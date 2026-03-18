@@ -63,15 +63,29 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
     try {
       const { _honey, ...payload } = form;
       void _honey;
+
+      console.log("Submitting to:", CONTACT_API);
+      console.log("Payload:", payload);
+
       const res = await fetch(CONTACT_API, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error("Failed to send message.");
+
+      console.log("Response status:", res.status);
+      const responseData = await res.json();
+      console.log("Response data:", responseData);
+
+      if (!res.ok) {
+        console.error("Error response:", responseData);
+        throw new Error(responseData.error || "Failed to send message.");
+      }
+
       setStatus("success");
       setForm({ name: "", email: "", phone: "", company: "", service: "", message: "", _honey: "" });
-    } catch {
+    } catch (error) {
+      console.error("Contact form error:", error);
       setStatus("error");
     }
   };

@@ -5,7 +5,7 @@ import { auth } from '@/lib/auth';
 const publicPaths = ['/admin/login', '/api/auth'];
 const protectedPaths = ['/admin', '/api/admin'];
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // TODO: Add CSRF protection when a stable library is available

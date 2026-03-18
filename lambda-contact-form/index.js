@@ -15,8 +15,15 @@ exports.handler = async (event) => {
     'Content-Type': 'application/json',
   };
 
+  // Detect HTTP method from both API Gateway v1 and v2 formats
+  const httpMethod = event.httpMethod || event.requestContext?.http?.method || event.requestContext?.httpMethod;
+
+  console.log('Event:', JSON.stringify(event, null, 2));
+  console.log('HTTP Method:', httpMethod);
+
   // Handle preflight OPTIONS request
-  if (event.httpMethod === 'OPTIONS') {
+  if (httpMethod === 'OPTIONS') {
+    console.log('Handling OPTIONS preflight request');
     return { statusCode: 200, headers, body: '' };
   }
 

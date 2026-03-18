@@ -7,14 +7,14 @@ import {
 } from "react-icons/hi";
 
 export const metadata: Metadata = {
-  title: "Custom Software Development Services | Canadian Technology Partner | TechSynergy",
+  title: "Custom Software Development Services | TechSynergy",
   description:
     "TechSynergy offers full-stack SaaS development, Canadian-hosted cloud infrastructure, and API integrations. 25+ years experience, PIPEDA-compliant.",
   alternates: {
     canonical: "/services",
   },
   openGraph: {
-    title: "Custom Software Development Services | Canadian Technology Partner | TechSynergy",
+    title: "Custom Software Development Services | TechSynergy",
     description:
       "End-to-end software services from a Canadian company with 25+ years of experience.",
     url: "https://techsynergy.ca/services",

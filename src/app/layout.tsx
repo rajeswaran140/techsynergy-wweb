@@ -43,7 +43,7 @@ export const viewport = {
 export const metadata: Metadata = {
   title: {
     default: "TechSynergy | Canadian Software Development",
-    template: "%s | TechSynergy",
+    template: "%s",
   },
   description:
     "TechSynergy delivers cutting-edge software development, cloud solutions, and digital transformation services for Canadian businesses.",

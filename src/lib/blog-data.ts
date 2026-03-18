@@ -35,7 +35,7 @@ export function getTagColor(tag: string) {
 export const blogPosts: BlogPost[] = [
   {
     slug: "digital-transformation-canadian-businesses-2026",
-    title: "Digital Transformation for Canadian Businesses in 2026",
+    title: "Digital Transformation for Canadian Business 2026",
     excerpt:
       "Canadian companies that delay digital transformation risk falling behind. Here is what business leaders need to know.",
     author: "TechSynergy Team",
@@ -195,7 +195,7 @@ Beyond checklists and references, pay attention to how the relationship feels. D
   },
   {
     slug: "data-privacy-competitive-advantage-canada",
-    title: "Data Privacy as a Competitive Advantage in Canada",
+    title: "Data Privacy as Competitive Advantage | TechSynergy",
     excerpt:
       "Privacy compliance is not just a legal obligation — it is a business differentiator that builds customer trust.",
     author: "TechSynergy Team",

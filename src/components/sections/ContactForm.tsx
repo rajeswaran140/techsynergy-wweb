@@ -52,28 +52,17 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    console.log("=== FORM SUBMIT TRIGGERED ===");
     e.preventDefault();
-    if (form._honey) {
-      console.log("Honeypot filled, blocking submission");
-      return;
-    }
+    if (form._honey) return;
 
-    console.log("Validating form...");
     const errs = validate();
     setErrors(errs);
-    if (Object.keys(errs).length > 0) {
-      console.log("Validation errors:", errs);
-      return;
-    }
+    if (Object.keys(errs).length > 0) return;
 
     setStatus("loading");
     try {
       const { _honey, ...payload } = form;
       void _honey;
-
-      console.log("Submitting to:", CONTACT_API);
-      console.log("Payload:", payload);
 
       const res = await fetch(CONTACT_API, {
         method: "POST",
@@ -81,12 +70,9 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
         body: JSON.stringify(payload),
       });
 
-      console.log("Response status:", res.status);
-      const responseData = await res.json();
-      console.log("Response data:", responseData);
-
       if (!res.ok) {
-        console.error("Error response:", responseData);
+        const responseData = await res.json();
+        console.error("Contact form submission failed:", responseData);
         throw new Error(responseData.error || "Failed to send message.");
       }
 

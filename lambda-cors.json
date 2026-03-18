@@ -1,0 +1,6 @@
+{
+  "AllowOrigins": ["https://techsynergy.ca", "https://www.techsynergy.ca"],
+  "AllowMethods": ["POST", "OPTIONS"],
+  "AllowHeaders": ["Content-Type"],
+  "MaxAge": 300
+}

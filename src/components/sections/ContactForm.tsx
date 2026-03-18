@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const CONTACT_API = "/api/contact";
+const CONTACT_API = "https://vs2t2s2ew3.execute-api.us-east-1.amazonaws.com/";
 
 const services = [
   "Web Development",

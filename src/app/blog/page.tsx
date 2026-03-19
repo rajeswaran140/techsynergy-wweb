@@ -57,11 +57,13 @@ export default async function BlogPage({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-10 sm:mb-14">
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-(family-name:--font-display) tracking-tight mb-3">
-                Blog
+                {category ? `${category} Articles` : 'Blog'}
               </h1>
               <p className="text-blog-muted text-lg max-w-xl">
-                Insights on strategy, growth, and digital transformation for
-                Canadian businesses.
+                {category
+                  ? `Expert insights on ${category.toLowerCase()} for Canadian businesses.`
+                  : 'Insights on strategy, growth, and digital transformation for Canadian businesses.'
+                }
               </p>
             </div>
 
@@ -109,7 +111,17 @@ export default async function BlogPage({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Category filter */}
           <div className="mb-10">
-            <Suspense fallback={null}>
+            <Suspense fallback={
+              <div className="flex flex-wrap gap-2" aria-label="Loading filters">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <div
+                    key={i}
+                    className="h-8 rounded-full bg-blog-surface animate-pulse"
+                    style={{ width: `${60 + Math.random() * 40}px` }}
+                  />
+                ))}
+              </div>
+            }>
               <CategoryFilter categories={allCategories} />
             </Suspense>
           </div>
@@ -118,9 +130,30 @@ export default async function BlogPage({
             {/* Main grid — 70% */}
             <div className="flex-1 min-w-0">
               {rest.length === 0 && !featured && (
-                <p className="text-blog-muted text-center py-20">
-                  No posts found.
-                </p>
+                <div className="text-center py-20">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-blog-accent/10 flex items-center justify-center">
+                    <svg className="w-8 h-8 text-blog-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <p className="text-blog-muted text-lg mb-4">
+                    {category
+                      ? `No posts found in "${category}" category.`
+                      : 'No posts found.'
+                    }
+                  </p>
+                  {category && (
+                    <Link
+                      href="/blog"
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-blog-accent hover:underline"
+                    >
+                      View all posts
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </Link>
+                  )}
+                </div>
               )}
               <div className="grid gap-6 sm:grid-cols-2">
                 {rest.map((post) => {
@@ -185,20 +218,19 @@ export default async function BlogPage({
                 </div>
               </div>
 
-              {/* Newsletter CTA */}
+              {/* Contact CTA */}
               <div className="rounded-lg bg-blog-surface border border-white/5 p-6">
                 <h3 className="text-lg font-bold font-(family-name:--font-display) mb-2">
-                  Stay in the loop
+                  Need Expert Guidance?
                 </h3>
                 <p className="text-sm text-blog-muted mb-4 leading-relaxed">
-                  Get the latest insights on strategy and growth delivered to
-                  your inbox.
+                  Get personalized advice on software development, cloud infrastructure, and digital transformation.
                 </p>
                 <Link
                   href="/contact"
                   className="inline-block w-full text-center rounded-lg bg-blog-accent px-4 py-2.5 text-sm font-semibold text-blog-base hover:bg-blog-accent/90 transition-colors"
                 >
-                  Get in Touch
+                  Contact Our Team
                 </Link>
               </div>
             </aside>

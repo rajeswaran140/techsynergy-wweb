@@ -44,7 +44,7 @@ export const blogPosts: BlogPost[] = [
     tags: ["Digital Transformation", "Canadian Business"],
     category: "Strategy",
     readTime: "6 min read",
-    image: "/images/blog/digital-transformation.webp",
+    image: "/coding_Image_2.webp",
     content: `The conversation around digital transformation has shifted. It is no longer about whether Canadian businesses should invest in technology — it is about how quickly they can adapt before competitors pull ahead. From retail to professional services, companies that embrace digital tools are winning customers, reducing costs, and building resilience against economic uncertainty.
 
 ## The Cost of Standing Still
@@ -90,7 +90,7 @@ Digital transformation is not a one-time project. It is an ongoing commitment to
     tags: ["ROI", "Strategy"],
     category: "Business",
     readTime: "7 min read",
-    image: "/images/blog/roi-software.webp",
+    image: "/coding_4.jpg",
     content: `Custom software is a significant investment, and business leaders rightfully want to know what they are getting in return. The challenge is that the value of software is not always immediately obvious — it shows up in time saved, errors prevented, customers retained, and opportunities unlocked. Here is a practical framework for measuring real ROI.
 
 ## Direct Cost Savings
@@ -148,7 +148,7 @@ The key is to be honest about what you need and measure the results. The best in
     tags: ["Outsourcing", "Strategy"],
     category: "Leadership",
     readTime: "6 min read",
-    image: "/images/blog/technology-partner.webp",
+    image: "/team_image_1.webp",
     content: `Choosing a technology partner is one of the most consequential decisions a business leader can make. The right partner accelerates your growth. The wrong one wastes your budget and sets you back months. Here is what to look for — and the warning signs that should give you pause.
 
 ## What to Look For
@@ -204,7 +204,7 @@ Beyond checklists and references, pay attention to how the relationship feels. D
     tags: ["Privacy", "Compliance", "Canadian Business"],
     category: "Compliance",
     readTime: "5 min read",
-    image: "/images/blog/data-privacy.webp",
+    image: "/robot_1.jpg",
     content: `In a world of data breaches, surveillance scandals, and growing consumer awareness, privacy is no longer just a compliance requirement — it is a genuine competitive advantage. Canadian businesses are uniquely positioned to lead on this front, thanks to strong legislation and a culture of trust.
 
 ## The Trust Economy
@@ -260,7 +260,7 @@ In a market where competitors cut corners on data protection, your commitment to
     tags: ["Strategy", "Growth"],
     category: "Strategy",
     readTime: "7 min read",
-    image: "/images/blog/product-roadmap.webp",
+    image: "/code_image_3.jpg",
     content: `A product roadmap should be the most important strategic document in your business. But too often, roadmaps devolve into feature wish lists — long backlogs of requests that satisfy no one and drive the product in no clear direction. Here is how to build a roadmap that actually moves the needle.
 
 ## Start with Outcomes, Not Features
@@ -320,7 +320,7 @@ A roadmap is not a contract. Review it monthly, adjust quarterly, and be willing
     tags: ["Startups", "Growth", "Leadership"],
     category: "Startups",
     readTime: "8 min read",
-    image: "/images/blog/startups-success.webp",
+    image: "/2_persons.jpg",
     content: `The statistics are sobering: roughly 90% of startups fail. But behind that number lies a pattern. Most failures are not caused by bad luck or bad ideas — they are caused by avoidable mistakes that repeat across industries and geographies. Understanding these patterns gives Canadian founders a meaningful edge.
 
 ## The Number One Killer: No Market Need

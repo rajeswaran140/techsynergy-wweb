@@ -29,6 +29,28 @@ export function generateMetadata({
       alternates: {
         canonical: `/blog/${slug}`,
       },
+      openGraph: {
+        title: post.title,
+        description: post.excerpt,
+        url: `https://techsynergy.ca/blog/${slug}`,
+        images: [
+          {
+            url: post.image,
+            width: 1200,
+            height: 630,
+            alt: post.title,
+          },
+        ],
+        type: 'article',
+        publishedTime: post.dateISO,
+        authors: [post.author],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: post.title,
+        description: post.excerpt,
+        images: [post.image],
+      },
     };
   });
 }
@@ -136,12 +158,17 @@ export default async function BlogPostPage({
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
+    image: `https://techsynergy.ca${post.image}`,
     author: { "@type": "Person", name: post.author },
     datePublished: post.dateISO,
     publisher: {
       "@type": "Organization",
       name: "TechSynergy",
       url: "https://techsynergy.ca",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://techsynergy.ca/logo-light.svg",
+      },
     },
     keywords: post.tags.join(", "),
   };

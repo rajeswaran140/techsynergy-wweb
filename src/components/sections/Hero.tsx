@@ -82,13 +82,13 @@ export default function Hero() {
               }`}
             >
               A Markham-based software company building privacy-first SaaS
-              products for Canadian businesses — including Mobily.ca and
-              SeoSync.ca.
+              products serving customers in 150+ countries — including TalkyMobile,
+              WebCore, Mobily, and SeoSync.
             </p>
 
             {/* Trust signals */}
             <div
-              className={`flex flex-wrap gap-x-6 gap-y-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 transition-all duration-600 delay-350 ${
+              className={`flex flex-wrap gap-x-6 gap-y-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 transition-all duration-500 delay-350 ${
                 visible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-5"
@@ -96,7 +96,7 @@ export default function Hero() {
             >
               <span className="flex items-center gap-1.5">
                 <CheckIcon />
-                25+ Years Experience
+                150+ Countries Served
               </span>
               <span className="flex items-center gap-1.5">
                 <CheckIcon />
@@ -104,12 +104,12 @@ export default function Hero() {
               </span>
               <span className="flex items-center gap-1.5">
                 <CheckIcon />
-                Canadian-Built
+                PIPEDA Compliant
               </span>
             </div>
 
             <div
-              className={`flex flex-col sm:flex-row gap-3 pt-2 transition-all duration-700 delay-[450ms] ${
+              className={`flex flex-col sm:flex-row gap-3 pt-2 transition-all duration-700 delay-500 ${
                 visible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
@@ -134,7 +134,7 @@ export default function Hero() {
 
       {/* Right — Hero image */}
       <div
-        className={`relative h-64 sm:h-80 lg:h-auto lg:min-h-screen transition-opacity duration-800 delay-300 ${
+        className={`relative h-80 sm:h-96 lg:h-auto lg:min-h-screen transition-opacity duration-700 delay-300 ${
           visible ? "opacity-100" : "opacity-0"
         }`}
       >

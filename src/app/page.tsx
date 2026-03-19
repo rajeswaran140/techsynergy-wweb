@@ -11,8 +11,30 @@ const ProductsPreview = dynamic(
 const CTA = dynamic(() => import("@/components/sections/CTA"));
 
 export const metadata: Metadata = {
+  title: "TechSynergy | Privacy-First SaaS Development in Canada",
+  description: "Canadian software company with 25+ years experience building privacy-first SaaS products. Full-stack development, cloud infrastructure, and API integrations. PIPEDA compliant. Serving customers in 150+ countries.",
   alternates: {
     canonical: "/",
+  },
+  openGraph: {
+    title: "TechSynergy | Privacy-First SaaS Development",
+    description: "25+ years building Canadian-hosted SaaS products including TalkyMobile, WebCore, Mobily, and SeoSync. PIPEDA compliant from day one.",
+    url: "https://techsynergy.ca",
+    type: "website",
+    images: [
+      {
+        url: "/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "TechSynergy - Canadian Software Development Company",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TechSynergy | Privacy-First SaaS Development",
+    description: "Canadian software company building privacy-first SaaS products. 25+ years experience.",
+    images: ["/og-default.png"],
   },
 };
 

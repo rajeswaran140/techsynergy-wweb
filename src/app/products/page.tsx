@@ -4,14 +4,14 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Privacy-First SaaS Products | Built in Canada",
   description:
-    "Privacy-first SaaS products built by TechSynergy — Mobily.ca for Canadian link shortening and analytics, and SeoSync.ca for AI-powered SEO audits.",
+    "Privacy-first SaaS products built by TechSynergy — TalkyMobile.ca for international mobile top-ups, WebCore.ca for managed WordPress hosting, Mobily.ca for link shortening, and SeoSync.ca for SEO audits.",
   alternates: {
     canonical: "/products",
   },
   openGraph: {
     title: "Privacy-First SaaS Products | Built in Canada",
     description:
-      "Privacy-first SaaS products built and hosted in Canada — Mobily.ca and SeoSync.ca.",
+      "Privacy-first SaaS products built and hosted in Canada — TalkyMobile.ca, WebCore.ca, Mobily.ca, and SeoSync.ca.",
     url: "https://techsynergy.ca/products",
     images: [
       {
@@ -31,6 +31,40 @@ export const metadata: Metadata = {
 };
 
 const products = [
+  {
+    name: "TalkyMobile.ca",
+    tagline: "Send Mobile Credit & Data In Seconds",
+    description:
+      "International mobile top-up and eSIM service delivering prepaid airtime and data bundles to 150+ countries. Instant delivery in 5-30 seconds with transparent pricing, bank-level security, and multi-provider reliability.",
+    features: [
+      "Mobile top-ups to 150+ countries",
+      "Data bundles in 80+ countries",
+      "eSIM plans & digital SIM cards",
+      "Instant 5-30 second delivery",
+      "PCI DSS compliant & SSL encrypted",
+      "99.9% uptime guarantee",
+    ],
+    pricing: "Transparent pricing. No subscriptions or hidden fees.",
+    href: "https://talkymobile.ca",
+    color: "from-orange-600 to-amber-500",
+  },
+  {
+    name: "WebCore.ca",
+    tagline: "Launch Your WordPress Site in 6 Minutes",
+    description:
+      "Canadian managed WordPress hosting with automated setup, enterprise-grade security, and PIPEDA compliance. Built for Canadian businesses who need reliable hosting without the complexity.",
+    features: [
+      "6-minute automated site setup",
+      "Enterprise security & SSL included",
+      "Canadian data centers (PIPEDA compliant)",
+      "WooCommerce optimization",
+      "24/7 phone & email support",
+      "30-day money-back guarantee",
+    ],
+    pricing: "Plans from $9 CAD/mo. Free migration included.",
+    href: "https://webcore.ca",
+    color: "from-emerald-600 to-teal-500",
+  },
   {
     name: "Mobily.ca",
     tagline: "Shorten Links Without Compromising Privacy",
@@ -89,7 +123,7 @@ export default function ProductsPage() {
         </div>
 
         {/* Product cards */}
-        <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-2 xl:grid-cols-4 md:grid-cols-2">
           {products.map((product) => (
             <div
               key={product.name}

@@ -78,12 +78,21 @@ export default function AboutPage() {
   return (
     <div>
       {/* Hero — dark navy to match site header */}
-      <section className="bg-[#071237] py-14 sm:py-18 md:py-22">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+      <section className="relative bg-[#071237] py-14 sm:py-18 md:py-22 overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
+          style={{ backgroundImage: "url('/coding_Image_2.webp')" }}
+        />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-linear-to-br from-[#071237]/55 via-slate-900/45 to-blue-900/60" />
+
+        {/* Content */}
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center z-10">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
             About TechSynergy Corp
           </h1>
-          <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed drop-shadow-md">
             Founded in 2023 by Raj, a self-taught software developer with 25+
             years of experience — building privacy-first SaaS products for
             Canadian businesses.
@@ -97,22 +106,40 @@ export default function AboutPage() {
           <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 overflow-hidden grid grid-cols-1 lg:grid-cols-2">
             {/* Product showcase instead of stock team photo */}
             <div className="relative h-56 sm:h-72 lg:h-auto lg:min-h-100 bg-linear-to-br from-[#071237] to-slate-800 flex items-center justify-center p-8 sm:p-12">
-              <div className="space-y-6 w-full max-w-sm">
-                <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-5">
-                  <p className="text-xs font-medium text-primary uppercase tracking-widest mb-2">
+              <div className="space-y-3 w-full max-w-sm">
+                <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-3">
+                  <p className="text-xs font-medium text-orange-400 uppercase tracking-widest mb-1">
                     Product
                   </p>
-                  <p className="text-lg font-bold text-white mb-1">Mobily.ca</p>
-                  <p className="text-sm text-slate-300">
+                  <p className="text-base font-bold text-white mb-1">TalkyMobile.ca</p>
+                  <p className="text-xs text-slate-300">
+                    Mobile top-ups to 150+ countries in seconds
+                  </p>
+                </div>
+                <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-3">
+                  <p className="text-xs font-medium text-emerald-400 uppercase tracking-widest mb-1">
+                    Product
+                  </p>
+                  <p className="text-base font-bold text-white mb-1">WebCore.ca</p>
+                  <p className="text-xs text-slate-300">
+                    Managed WordPress hosting with 6-minute setup
+                  </p>
+                </div>
+                <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-3">
+                  <p className="text-xs font-medium text-primary uppercase tracking-widest mb-1">
+                    Product
+                  </p>
+                  <p className="text-base font-bold text-white mb-1">Mobily.ca</p>
+                  <p className="text-xs text-slate-300">
                     Canadian URL shortener with analytics & QR codes
                   </p>
                 </div>
-                <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-5">
-                  <p className="text-xs font-medium text-violet-400 uppercase tracking-widest mb-2">
+                <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-3">
+                  <p className="text-xs font-medium text-violet-400 uppercase tracking-widest mb-1">
                     Product
                   </p>
-                  <p className="text-lg font-bold text-white mb-1">SeoSync.ca</p>
-                  <p className="text-sm text-slate-300">
+                  <p className="text-base font-bold text-white mb-1">SeoSync.ca</p>
+                  <p className="text-xs text-slate-300">
                     AI-powered SEO audits with 34 automated checks
                   </p>
                 </div>
@@ -140,10 +167,18 @@ export default function AboutPage() {
                   The mission was clear from day one: build software that
                   respects user privacy and serves Canadian businesses. Today, I
                   ship my own SaaS products —{" "}
+                  <a href="https://talkymobile.ca" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                    TalkyMobile.ca
+                  </a>
+                  ,{" "}
+                  <a href="https://webcore.ca" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                    WebCore.ca
+                  </a>
+                  ,{" "}
                   <a href="https://mobily.ca" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
                     Mobily.ca
-                  </a>{" "}
-                  and{" "}
+                  </a>
+                  , and{" "}
                   <a href="https://seosync.ca" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
                     SeoSync.ca
                   </a>

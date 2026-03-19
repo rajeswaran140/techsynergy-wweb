@@ -84,12 +84,21 @@ export default function ServicesPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-primary py-14 sm:py-18 md:py-22">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+      <section className="relative bg-primary py-14 sm:py-18 md:py-22 overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
+          style={{ backgroundImage: "url('/robot_1.jpg')" }}
+        />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-linear-to-br from-primary/70 via-blue-900/65 to-slate-900/75" />
+
+        {/* Content */}
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center z-10">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
             Our Services
           </h1>
-          <p className="text-blue-100 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-blue-100 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed drop-shadow-md">
             End-to-end software services for Canadian businesses — from first
             commit to production.
           </p>

@@ -12,6 +12,15 @@ Full-stack business website and CMS for TechSynergy, built with Next.js 16, Dyna
 | Amplify Default | https://main.d3i5z3t11ekgps.amplifyapp.com |
 | Admin CMS | https://techsynergy.ca/admin |
 
+## TechSynergy Products
+
+| Product | URL | Description |
+|---------|-----|-------------|
+| TalkyMobile.ca | https://talkymobile.ca | International mobile top-up and eSIM service delivering airtime and data to 150+ countries in seconds |
+| WebCore.ca | https://webcore.ca | Canadian managed WordPress hosting with 6-minute setup, enterprise security, and PIPEDA compliance |
+| Mobily.ca | https://mobily.ca | Canadian URL shortener with analytics, QR codes, and custom branded links |
+| SeoSync.ca | https://seosync.ca | AI-powered SEO audit platform with 34 automated checks and daily SERP tracking |
+
 ## Tech Stack
 
 - **Frontend**: Next.js 16.1.6 (App Router), React 19, Tailwind CSS 4, Framer Motion

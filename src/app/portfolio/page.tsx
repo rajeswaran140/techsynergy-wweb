@@ -31,6 +31,24 @@ export const metadata: Metadata = {
 
 const projects = [
   {
+    name: "TalkyMobile.ca",
+    category: "SaaS Product",
+    description:
+      "International mobile credit transfer service sending prepaid airtime and data bundles to 150+ countries. Instant delivery in 5-30 seconds with transparent pricing, bank-level security, and 99.9% uptime.",
+    tech: ["Payment Processing", "API Integration", "Multi-Currency", "Global Network"],
+    href: "https://talkymobile.ca",
+    color: "from-orange-600 to-amber-500",
+  },
+  {
+    name: "WebCore.ca",
+    category: "SaaS Product",
+    description:
+      "Canadian managed WordPress hosting with automated 6-minute setup, enterprise security, and PIPEDA compliance. Plans from $9/month with 24/7 support, free SSL, and WooCommerce optimization.",
+    tech: ["WordPress Hosting", "Enterprise Security", "Canadian Data Centers", "Managed Infrastructure"],
+    href: "https://webcore.ca",
+    color: "from-emerald-600 to-teal-500",
+  },
+  {
     name: "Mobily.ca",
     category: "SaaS Product",
     description:
@@ -63,12 +81,21 @@ export default function PortfolioPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-primary py-14 sm:py-18 md:py-22">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+      <section className="relative bg-slate-900 py-14 sm:py-18 md:py-22 overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
+          style={{ backgroundImage: "url('/coding_4.jpg')" }}
+        />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/70 via-blue-900/60 to-slate-900/80" />
+
+        {/* Content */}
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center z-10">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
             Our Portfolio
           </h1>
-          <p className="text-blue-100 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-blue-100 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed drop-shadow-md">
             Products and projects we&apos;ve designed, built, and shipped.
           </p>
         </div>

@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import ContactForm from "@/components/sections/ContactForm";
+import dynamic from "next/dynamic";
+
+const ContactForm = dynamic(() => import("@/components/sections/ContactForm"), {
+  loading: () => <div className="animate-pulse bg-slate-100 border border-slate-300 rounded-2xl h-150" />,
+});
 
 export const metadata: Metadata = {
   title: "Contact Us | Get Your Project Quote | TechSynergy",

@@ -47,6 +47,7 @@ export default function Home() {
       "Web Development",
       "Mobile App Development",
       "API Integration",
+      "Managed WordPress Hosting",
     ],
   };
 

@@ -4,9 +4,9 @@ import { FaLinkedin } from "react-icons/fa";
 
 const footerLinks = {
   Services: [
-    { href: "/services", label: "SaaS Development" },
-    { href: "/services", label: "Cloud Infrastructure" },
-    { href: "/services", label: "API & Integrations" },
+    { href: "/services#saas-development", label: "SaaS Development" },
+    { href: "/services#cloud-infrastructure", label: "Cloud Infrastructure" },
+    { href: "/services#api-integrations", label: "API & Integrations" },
   ],
   Products: [
     { href: "https://mobily.ca", label: "Mobily.ca", external: true },

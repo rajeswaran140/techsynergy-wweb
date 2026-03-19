@@ -37,6 +37,7 @@ export const metadata: Metadata = {
 
 const services = [
   {
+    id: "saas-development",
     icon: HiChip,
     title: "SaaS Product Development",
     description:
@@ -51,6 +52,7 @@ const services = [
     ],
   },
   {
+    id: "cloud-infrastructure",
     icon: HiCloud,
     title: "Cloud Infrastructure",
     description:
@@ -65,6 +67,7 @@ const services = [
     ],
   },
   {
+    id: "api-integrations",
     icon: HiCode,
     title: "API & Integrations",
     description:
@@ -113,7 +116,8 @@ export default function ServicesPage() {
             return (
               <div
                 key={service.title}
-                className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8 lg:p-10"
+                id={service.id}
+                className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8 lg:p-10 scroll-mt-20"
               >
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">

@@ -3,6 +3,19 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone",
 
+  async redirects() {
+    return [
+      // /portfolio was retired in favour of /products — they were 90%
+      // duplicate content with no real "client portfolio" data to surface.
+      // Permanent 308 preserves any inbound SEO + bookmarks.
+      {
+        source: "/portfolio",
+        destination: "/products",
+        permanent: true,
+      },
+    ];
+  },
+
   async headers() {
     return [
       {

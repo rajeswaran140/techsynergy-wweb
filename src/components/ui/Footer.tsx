@@ -4,8 +4,10 @@ import { FaLinkedin } from "react-icons/fa";
 
 const footerLinks = {
   Services: [
-    { href: "/services#saas-development", label: "SaaS Development" },
-    { href: "/services#cloud-infrastructure", label: "Cloud Infrastructure" },
+    { href: "/services#saas-product-development", label: "SaaS Development" },
+    { href: "/services#ai-mcp-integration", label: "AI & MCP Integration" },
+    { href: "/services#cloud-data-residency", label: "Cloud & Data Residency" },
+    { href: "/services#mobile-apps", label: "Mobile Apps" },
     { href: "/services#api-integrations", label: "API & Integrations" },
   ],
   Products: [
@@ -16,7 +18,6 @@ const footerLinks = {
   ],
   Company: [
     { href: "/about", label: "About Us", external: false },
-    { href: "/portfolio", label: "Portfolio", external: false },
     { href: "/blog", label: "Blog", external: false },
     { href: "/contact", label: "Contact", external: false },
   ],

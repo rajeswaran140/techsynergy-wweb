@@ -1,99 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
-const services = [
-  {
-    slug: "web-development",
-    title: "Web Development",
-    description:
-      "We build fast, responsive, and scalable web applications using modern frameworks and best practices. Our team delivers custom solutions that align with your business goals, from single-page applications to complex enterprise platforms.",
-    features: [
-      "Custom web application development",
-      "Progressive Web Apps (PWAs)",
-      "E-commerce platforms",
-      "API development and integration",
-      "Performance optimization",
-      "SEO-friendly architecture",
-    ],
-    technologies: ["Modern Frameworks", "Server-Side Rendering", "Responsive UI", "REST APIs", "Performance Optimization", "SEO"],
-  },
-  {
-    slug: "mobile-app-development",
-    title: "Mobile App Development",
-    description:
-      "Native and cross-platform mobile applications that deliver seamless experiences on every device. We guide you from concept to launch, ensuring your app stands out in the marketplace.",
-    features: [
-      "iOS and Android native apps",
-      "Cross-platform development",
-      "App Store optimization",
-      "Push notifications and analytics",
-      "Offline-first capabilities",
-      "In-app purchase integration",
-    ],
-    technologies: ["iOS", "Android", "Cross-Platform", "Push Notifications", "Offline-First", "App Store"],
-  },
-  {
-    slug: "cloud-solutions",
-    title: "Cloud Solutions",
-    description:
-      "Scalable cloud infrastructure and migration services to power your business growth. We help you leverage the cloud to reduce costs, improve reliability, and accelerate innovation.",
-    features: [
-      "Cloud platform deployment",
-      "Cloud migration strategies",
-      "Serverless architecture",
-      "Auto-scaling and load balancing",
-      "Infrastructure as Code",
-      "Cost optimization and monitoring",
-    ],
-    technologies: ["Cloud Migration", "Infrastructure as Code", "Containers", "Orchestration", "Serverless", "CDN"],
-  },
-  {
-    slug: "ui-ux-design",
-    title: "UI/UX Design",
-    description:
-      "User-centered design that creates intuitive, engaging, and visually stunning digital experiences. We combine research, strategy, and creativity to craft interfaces that users love.",
-    features: [
-      "User research and personas",
-      "Wireframing and prototyping",
-      "Design systems and style guides",
-      "Usability testing",
-      "Responsive design",
-      "Accessibility compliance (WCAG)",
-    ],
-    technologies: ["Wireframing", "Prototyping", "Design Systems", "Component Libraries", "Responsive Design", "Motion Design"],
-  },
-  {
-    slug: "database-architecture",
-    title: "Database Architecture",
-    description:
-      "Robust database design and optimization for high-performance, data-driven applications. We architect data solutions that scale with your business and keep your information secure.",
-    features: [
-      "Relational and NoSQL databases",
-      "Data modeling and schema design",
-      "Performance tuning and indexing",
-      "Database migration and scaling",
-      "Backup and disaster recovery",
-      "Real-time data streaming",
-    ],
-    technologies: ["Relational DB", "Document DB", "Key-Value Store", "Caching", "Search Engine", "Event Streaming"],
-  },
-  {
-    slug: "cybersecurity",
-    title: "Cybersecurity",
-    description:
-      "Comprehensive security solutions to protect your digital assets and ensure regulatory compliance. We identify vulnerabilities, implement defenses, and prepare your organization for emerging threats.",
-    features: [
-      "Security audits and assessments",
-      "Penetration testing",
-      "Compliance consulting (GDPR, SOC 2)",
-      "Incident response planning",
-      "Identity and access management",
-      "Security awareness training",
-    ],
-    technologies: ["Security Audits", "Authentication", "Authorization", "Access Management", "DDoS Protection", "Secrets Management"],
-  },
-];
+import { services, getServiceBySlug } from "@/lib/services-data";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -105,27 +13,22 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const service = services.find((s) => s.slug === slug);
+  const service = getServiceBySlug(slug);
   if (!service)
     return {
       title: "Service Not Found",
       description: "The requested service page could not be found.",
     };
 
-  const description =
-    service.description.length > 160
-      ? service.description.slice(0, 157) + "..."
-      : service.description;
-
   return {
     title: service.title,
-    description,
+    description: service.shortDescription,
     alternates: {
       canonical: `/services/${slug}`,
     },
     openGraph: {
       title: `${service.title} | TechSynergy`,
-      description,
+      description: service.shortDescription,
       type: "website",
       url: `https://techsynergy.ca/services/${slug}`,
       images: [
@@ -140,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: `${service.title} | TechSynergy`,
-      description,
+      description: service.shortDescription,
       images: ["/og-default.png"],
     },
   };
@@ -148,17 +51,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ServiceDetailPage({ params }: Props) {
   const { slug } = await params;
-  const service = services.find((s) => s.slug === slug);
+  const service = getServiceBySlug(slug);
 
   if (!service) {
     notFound();
   }
+
+  const Icon = service.icon;
 
   return (
     <div className="min-h-screen">
       {/* Hero */}
       <section className="bg-muted py-24 text-center">
         <div className="mx-auto max-w-4xl px-6">
+          <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
+            <Icon className="h-7 w-7 text-primary" aria-hidden="true" />
+          </div>
           <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl">
             {service.title}
           </h1>

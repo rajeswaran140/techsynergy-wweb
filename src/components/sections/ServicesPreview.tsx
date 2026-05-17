@@ -1,40 +1,5 @@
 import Link from "next/link";
-import { HiCode, HiCloud, HiChip, HiSupport } from "react-icons/hi";
-
-const services = [
-  {
-    icon: HiChip,
-    title: "SaaS Product Development",
-    description:
-      "I design, build, and launch privacy-first SaaS products — from initial MVP to production-ready platform.",
-    highlights: ["Full-stack development", "Multi-tenant architecture", "PIPEDA compliant"],
-    color: "from-primary to-blue-400",
-  },
-  {
-    icon: HiCloud,
-    title: "Cloud Infrastructure",
-    description:
-      "Canadian-resident cloud architecture built for reliability, compliance, and cost efficiency.",
-    highlights: ["Canadian-hosted infrastructure", "Infrastructure as Code", "Auto-scaling"],
-    color: "from-cyan-500 to-blue-500",
-  },
-  {
-    icon: HiCode,
-    title: "API & Integrations",
-    description:
-      "Clean, well-documented RESTful APIs and third-party integrations that connect your systems and automate workflows.",
-    highlights: ["REST API design", "Webhook systems", "OpenAPI documentation"],
-    color: "from-violet-500 to-purple-500",
-  },
-  {
-    icon: HiSupport,
-    title: "Maintenance & Support",
-    description:
-      "Ongoing maintenance, updates, and technical support to keep your applications running smoothly and securely.",
-    highlights: ["24/7 monitoring", "Bug fixes & updates", "Performance optimization"],
-    color: "from-emerald-500 to-teal-500",
-  },
-];
+import { featuredServices } from "@/lib/services-data";
 
 export default function ServicesPreview() {
   return (
@@ -42,26 +7,27 @@ export default function ServicesPreview() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-14">
           <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-3">
-            What I Do
+            What We Do
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-3">
             Full-Stack Services,{" "}
             <span className="bg-linear-to-r from-primary to-blue-400 bg-clip-text text-transparent">
-              One Developer
+              End to End
             </span>
           </h2>
           <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            From first commit to production — I handle the full stack so you can
-            focus on growing your business.
+            From first commit to production — we handle the full stack so you
+            can focus on growing your business.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
-          {services.map((service, i) => (
-            <div
-              key={service.title}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          {featuredServices.map((service, i) => (
+            <Link
+              key={service.slug}
+              href={`/services/${service.slug}`}
               className="group relative rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 transition-shadow duration-300 animate-fade-in-up"
-              style={{ animationDelay: `${i * 100}ms` }}
+              style={{ animationDelay: `${i * 80}ms` }}
             >
               {/* Gradient accent bar */}
               <div
@@ -75,7 +41,9 @@ export default function ServicesPreview() {
                 {service.title}
               </h3>
               <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                {service.description}
+                {service.description.length > 140
+                  ? service.description.slice(0, 137) + "…"
+                  : service.description}
               </p>
 
               {/* Highlights */}
@@ -89,7 +57,7 @@ export default function ServicesPreview() {
                   </span>
                 ))}
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 

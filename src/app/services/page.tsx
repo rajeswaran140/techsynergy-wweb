@@ -1,15 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  HiChip,
-  HiCloud,
-  HiCode,
-} from "react-icons/hi";
+import { services } from "@/lib/services-data";
 
 export const metadata: Metadata = {
   title: "Custom Software Development Services | TechSynergy",
   description:
-    "TechSynergy offers full-stack SaaS development, Canadian-hosted cloud infrastructure, and API integrations. 25+ years experience, PIPEDA-compliant.",
+    "Full-stack SaaS development, AI & MCP integration, Canadian-hosted cloud, mobile apps, and API integrations. 25+ years experience, PIPEDA-compliant.",
   alternates: {
     canonical: "/services",
   },
@@ -30,58 +26,11 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Services | TechSynergy",
-    description: "Full-stack SaaS development and cloud infrastructure services.",
+    description:
+      "Full-stack SaaS development, AI integration, and cloud infrastructure services.",
     images: ["/og-default.png"],
   },
 };
-
-const services = [
-  {
-    id: "saas-development",
-    icon: HiChip,
-    title: "SaaS Product Development",
-    description:
-      "End-to-end design, build, and launch of privacy-first SaaS products. We take your idea from MVP to production-ready — with Canadian data residency baked in.",
-    features: [
-      "Full-stack product development",
-      "MVP scoping and rapid prototyping",
-      "Multi-tenant architecture",
-      "Subscription billing integration",
-      "PIPEDA-compliant data handling",
-      "Ongoing maintenance and support",
-    ],
-  },
-  {
-    id: "cloud-infrastructure",
-    icon: HiCloud,
-    title: "Cloud Infrastructure",
-    description:
-      "Canadian-resident cloud architecture built for reliability, compliance, and performance. We design infrastructure that scales with your business.",
-    features: [
-      "Canadian-hosted infrastructure",
-      "Serverless architecture",
-      "Infrastructure as Code",
-      "Auto-scaling and load balancing",
-      "Cost optimization and monitoring",
-      "Disaster recovery planning",
-    ],
-  },
-  {
-    id: "api-integrations",
-    icon: HiCode,
-    title: "API & Integrations",
-    description:
-      "RESTful APIs and third-party integrations that connect your systems and automate workflows. We build clean, well-documented APIs that developers love.",
-    features: [
-      "RESTful API design and development",
-      "Third-party API integration",
-      "Webhook and event-driven systems",
-      "API documentation and specs",
-      "Authentication and rate limiting",
-      "Data transformation pipelines",
-    ],
-  },
-];
 
 export default function ServicesPage() {
   return (
@@ -115,13 +64,13 @@ export default function ServicesPage() {
             const Icon = service.icon;
             return (
               <div
-                key={service.title}
-                id={service.id}
+                key={service.slug}
+                id={service.slug}
                 className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8 lg:p-10 scroll-mt-20"
               >
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <Icon className="w-6 h-6 text-primary" />
+                    <Icon className="w-6 h-6 text-primary" aria-hidden="true" />
                   </div>
                   <div>
                     <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
@@ -132,7 +81,7 @@ export default function ServicesPage() {
                 <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
                   {service.description}
                 </p>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6">
                   {service.features.map((feature) => (
                     <li
                       key={feature}
@@ -156,6 +105,26 @@ export default function ServicesPage() {
                     </li>
                   ))}
                 </ul>
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+                >
+                  Learn more about {service.title}
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </Link>
               </div>
             );
           })}

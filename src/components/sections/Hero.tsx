@@ -37,7 +37,7 @@ export default function Hero() {
       aria-labelledby="hero-heading"
     >
       {/* Left — CTA */}
-      <div className="relative flex items-center justify-center bg-linear-to-br from-slate-100 via-slate-200 to-blue-100 dark:from-slate-900 dark:via-slate-800 dark:to-blue-950 overflow-hidden">
+      <div className="relative flex items-center justify-center bg-linear-to-br from-slate-100 via-slate-200 to-blue-100 dark:bg-slate-950 dark:bg-none overflow-hidden">
         {/* Background orbs — decorative */}
         <div
           className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/10 blur-3xl hidden md:block animate-[orb1_12s_ease-in-out_infinite]"

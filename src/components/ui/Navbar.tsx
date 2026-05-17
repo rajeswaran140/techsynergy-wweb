@@ -87,14 +87,15 @@ export default function Navbar() {
   }, [mobileOpen, handleKeyDown]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-100 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#071237]/95 backdrop-blur-md shadow-lg shadow-black/10 border-b border-slate-800/60"
-          : "bg-[#071237]"
-      }`}
-    >
-      <nav aria-label="Main navigation">
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-100 transition-all duration-300 ${
+          scrolled
+            ? "bg-[#071237]/95 backdrop-blur-md shadow-lg shadow-black/10 border-b border-slate-800/60"
+            : "bg-[#071237]"
+        }`}
+      >
+        <nav aria-label="Main navigation">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
           <Link href="/" aria-label="TechSynergy Home" className="relative z-50">
             <Image
@@ -180,10 +181,20 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+      </header>
+
+      {/*
+        Overlay + panel live OUTSIDE the <header> on purpose: <header> gains
+        `backdrop-blur-md` when scrolled, and any `backdrop-filter` value
+        establishes a containing block for fixed descendants — that would
+        collapse a `fixed top-16 ... bottom-0` panel to zero height because
+        the header itself is only 64px tall. Keeping these siblings of the
+        header anchors them to the viewport regardless of scroll state.
+      */}
 
       {/* Mobile overlay */}
       <div
-        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-90 md:hidden transition-opacity duration-300 ${
           mobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMobileOpen(false)}
@@ -197,7 +208,7 @@ export default function Navbar() {
         role="dialog"
         aria-modal={mobileOpen ? "true" : undefined}
         aria-label="Mobile navigation"
-        className={`fixed top-16 left-0 right-0 bottom-0 z-40 md:hidden bg-[#071237] overflow-y-auto transition-all duration-300 ${
+        className={`fixed top-16 left-0 right-0 bottom-0 z-90 md:hidden bg-[#071237] overflow-y-auto transition-all duration-300 ${
           mobileOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-4 pointer-events-none"
@@ -236,6 +247,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }

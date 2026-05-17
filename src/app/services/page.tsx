@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { services } from "@/lib/services-data";
+import { glassCard, glassIconOrb } from "@/lib/ui-tokens";
 
 export const metadata: Metadata = {
   title: "Custom Software Development Services | TechSynergy",
@@ -58,25 +59,23 @@ export default function ServicesPage() {
       </section>
 
       {/* Services */}
-      <section className="py-14 sm:py-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
+      <section className="section-glow py-14 sm:py-20 overflow-hidden">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
           {services.map((service) => {
             const Icon = service.icon;
             return (
               <div
                 key={service.slug}
                 id={service.slug}
-                className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8 lg:p-10 scroll-mt-20"
+                className={`${glassCard} p-6 sm:p-8 lg:p-10 scroll-mt-20`}
               >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <Icon className="w-6 h-6 text-primary" aria-hidden="true" />
+                <div className="flex items-start gap-4 mb-5">
+                  <div className={glassIconOrb(service.color)}>
+                    <Icon className="w-6 h-6 text-white" aria-hidden="true" />
                   </div>
-                  <div>
-                    <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
-                      {service.title}
-                    </h2>
-                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white pt-1">
+                    {service.title}
+                  </h2>
                 </div>
                 <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
                   {service.description}
@@ -132,7 +131,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 sm:py-20 bg-slate-50 dark:bg-slate-900/50">
+      <section className="section-glow section-glow-alt py-14 sm:py-20 overflow-hidden">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
             Ready to Get Started?

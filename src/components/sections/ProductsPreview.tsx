@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { glassCard, glassCardHover } from "@/lib/ui-tokens";
 
 const products = [
   {
@@ -41,7 +42,7 @@ export default function ProductsPreview() {
   const visibleProducts = products.filter((p) => !p.disabled);
 
   return (
-    <section className="py-16 sm:py-24">
+    <section className="section-glow section-glow-alt py-16 sm:py-24 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-14">
           <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-3">
@@ -63,11 +64,13 @@ export default function ProductsPreview() {
           {visibleProducts.map((product, i) => (
             <div
               key={product.name}
-              className="group relative rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8 hover:shadow-lg hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 transition-shadow duration-300 animate-fade-in-up"
+              className={`group ${glassCard} ${glassCardHover} p-6 sm:p-8 animate-fade-in-up overflow-hidden`}
               style={{ animationDelay: `${i * 120}ms` }}
             >
+              {/* Gradient top accent — pinned to the inner card edge, not the section */}
               <div
                 className={`absolute top-0 left-6 right-6 sm:left-8 sm:right-8 h-1 rounded-b-full bg-linear-to-r ${product.color}`}
+                aria-hidden="true"
               />
               <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-1">
                 {product.name}
@@ -82,7 +85,7 @@ export default function ProductsPreview() {
                 href={product.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-linear-to-r ${product.color} text-white font-semibold text-sm hover:opacity-90 transition-opacity shadow-md`}
+                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-linear-to-r ${product.color} text-white font-semibold text-sm hover:opacity-90 transition-opacity shadow-md shadow-black/10`}
               >
                 Visit {product.name}
                 <svg

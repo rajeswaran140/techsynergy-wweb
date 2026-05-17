@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { featuredServices } from "@/lib/services-data";
+import { glassCard, glassCardHover, glassChip, glassIconOrb } from "@/lib/ui-tokens";
 
 export default function ServicesPreview() {
   return (
-    <section className="py-16 sm:py-24 bg-slate-50 dark:bg-slate-900/50">
+    <section className="section-glow py-16 sm:py-24 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-14">
           <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-3">
@@ -26,33 +27,24 @@ export default function ServicesPreview() {
             <Link
               key={service.slug}
               href={`/services/${service.slug}`}
-              className="group relative rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 transition-shadow duration-300 animate-fade-in-up"
+              className={`group ${glassCard} ${glassCardHover} p-6 sm:p-7 animate-fade-in-up flex flex-col`}
               style={{ animationDelay: `${i * 80}ms` }}
             >
-              {/* Gradient accent bar */}
-              <div
-                className={`absolute top-0 left-6 right-6 sm:left-8 sm:right-8 h-1 rounded-b-full bg-linear-to-r ${service.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-              />
-
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                <service.icon className="w-6 h-6 text-primary" aria-hidden="true" />
+              <div className={glassIconOrb(service.color) + " mb-5"}>
+                <service.icon className="w-6 h-6 text-white" aria-hidden="true" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2">
                 {service.title}
               </h3>
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-5 flex-1">
                 {service.description.length > 140
                   ? service.description.slice(0, 137) + "…"
                   : service.description}
               </p>
 
-              {/* Highlights */}
               <div className="flex flex-wrap gap-2">
                 {service.highlights.map((h) => (
-                  <span
-                    key={h}
-                    className="text-xs font-medium bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 px-2.5 py-1 rounded-full"
-                  >
+                  <span key={h} className={glassChip}>
                     {h}
                   </span>
                 ))}

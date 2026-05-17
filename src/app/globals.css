@@ -82,6 +82,74 @@ body {
   animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/*
+ * Section ambient backdrop for glassmorphism.
+ * The glass cards need *something* tinted behind them or the backdrop-filter
+ * has nothing to blur. This paints a soft gradient + two large blurred colour
+ * blobs that read as "frosted glass over a designed surface."
+ */
+.section-glow {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(
+    135deg,
+    rgb(248 250 252) 0%,
+    rgb(241 245 249) 50%,
+    rgb(239 246 255) 100%
+  );
+}
+.section-glow::before,
+.section-glow::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  z-index: -1;
+  pointer-events: none;
+}
+.section-glow::before {
+  top: -10%;
+  left: 10%;
+  width: 28rem;
+  height: 28rem;
+  background: rgb(17 96 247 / 0.18);
+}
+.section-glow::after {
+  bottom: -10%;
+  right: 10%;
+  width: 32rem;
+  height: 32rem;
+  background: rgb(124 58 237 / 0.15);
+}
+:root.dark .section-glow {
+  background: linear-gradient(
+    135deg,
+    rgb(2 6 23) 0%,
+    rgb(15 23 42) 50%,
+    rgb(2 6 23) 100%
+  );
+}
+:root.dark .section-glow::before {
+  background: rgb(17 96 247 / 0.18);
+}
+:root.dark .section-glow::after {
+  background: rgb(124 58 237 / 0.22);
+}
+
+/* Alternate accent palette (cyan + rose) for adjacent sections so the page reads as varied. */
+.section-glow-alt::before {
+  background: rgb(6 182 212 / 0.16);
+}
+.section-glow-alt::after {
+  background: rgb(244 63 94 / 0.13);
+}
+:root.dark .section-glow-alt::before {
+  background: rgb(6 182 212 / 0.16);
+}
+:root.dark .section-glow-alt::after {
+  background: rgb(244 63 94 / 0.18);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in-up,
   .animate-\[orb1_12s_ease-in-out_infinite\],

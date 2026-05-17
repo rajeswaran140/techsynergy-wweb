@@ -4,14 +4,14 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Privacy-First SaaS Products | Built in Canada",
   description:
-    "Privacy-first SaaS products built by TechSynergy — TalkyMobile.ca for international mobile top-ups, WebCore.ca for managed WordPress hosting, Mobily.ca for link shortening, and SeoSync.ca for SEO audits.",
+    "Privacy-first SaaS products built and hosted in Canada by TechSynergy — agentic developer tools, enterprise messaging, and link analytics.",
   alternates: {
     canonical: "/products",
   },
   openGraph: {
     title: "Privacy-First SaaS Products | Built in Canada",
     description:
-      "Privacy-first SaaS products built and hosted in Canada — TalkyMobile.ca, WebCore.ca, Mobily.ca, and SeoSync.ca.",
+      "Privacy-first SaaS products built and hosted in Canada by TechSynergy.",
     url: "https://techsynergy.ca/products",
     images: [
       {
@@ -32,6 +32,40 @@ export const metadata: Metadata = {
 
 const products = [
   {
+    name: "Crowvault.ai",
+    tagline: "Built for Developers Who Ship",
+    description:
+      "API-first code generation platform with 327 production-ready tools for scaffolding microservices, databases, APIs, CI/CD pipelines, and DDD patterns. Schema-validated generators produce deterministic, AI-enhanced output — same input, same result, every time.",
+    features: [
+      "327 production-ready dev tools",
+      "Microservices, DB schemas, K8s configs",
+      "OpenAPI / GraphQL / gRPC specs",
+      "CI/CD pipelines & DDD patterns",
+      "9 specialized MCP servers",
+      "REST API + optional CLI/SDKs",
+    ],
+    pricing: "Contact for access.",
+    href: "https://crowvault.ai",
+    color: "from-indigo-600 to-violet-500",
+  },
+  {
+    name: "Talky.ca",
+    tagline: "Enterprise SMS & SMPP Reseller Platform",
+    description:
+      "Canadian-hosted SMS gateway with SMPP support and reseller-ready APIs. Built for businesses and resellers delivering transactional and marketing messages at carrier-grade reliability.",
+    features: [
+      "Enterprise SMS API",
+      "SMPP gateway support",
+      "Reseller-friendly platform",
+      "Carrier-grade delivery",
+      "Canadian-hosted infrastructure",
+      "Transactional & marketing messaging",
+    ],
+    pricing: "Contact for volume pricing.",
+    href: "https://talky.ca",
+    color: "from-rose-600 to-pink-500",
+  },
+  {
     name: "TalkyMobile.ca",
     tagline: "Send Mobile Credit & Data In Seconds",
     description:
@@ -47,6 +81,7 @@ const products = [
     pricing: "Transparent pricing. No subscriptions or hidden fees.",
     href: "https://talkymobile.ca",
     color: "from-orange-600 to-amber-500",
+    disabled: true,
   },
   {
     name: "WebCore.ca",
@@ -64,6 +99,7 @@ const products = [
     pricing: "Plans from $9 CAD/mo. Free migration included.",
     href: "https://webcore.ca",
     color: "from-emerald-600 to-teal-500",
+    disabled: true,
   },
   {
     name: "Mobily.ca",
@@ -98,6 +134,18 @@ const products = [
     pricing: "Free — 3 audits/mo. Pro from $49 CAD/mo.",
     href: "https://seosync.ca",
     color: "from-violet-600 to-purple-500",
+    disabled: true,
+  },
+  {
+    name: "Telexier.com",
+    tagline: "Coming Soon",
+    description:
+      "Next-generation telecom and messaging platform — details coming soon.",
+    features: [],
+    pricing: "",
+    href: "",
+    color: "from-amber-600 to-yellow-500",
+    comingSoon: true,
   },
 ];
 
@@ -124,7 +172,7 @@ export default function ProductsPage() {
 
         {/* Product cards */}
         <div className="grid gap-6 sm:gap-8 lg:grid-cols-2 xl:grid-cols-4 md:grid-cols-2">
-          {products.map((product) => (
+          {products.filter((product) => !product.disabled).map((product) => (
             <div
               key={product.name}
               className="group relative rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8 lg:p-10 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 transition-all duration-300"
@@ -144,58 +192,70 @@ export default function ProductsPage() {
                 {product.description}
               </p>
 
-              <p className="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-700/50 rounded-lg px-3 py-2 mb-5 sm:mb-6 inline-block">
-                {product.pricing}
-              </p>
+              {product.pricing && (
+                <p className="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-700/50 rounded-lg px-3 py-2 mb-5 sm:mb-6 inline-block">
+                  {product.pricing}
+                </p>
+              )}
 
-              <ul className="space-y-2 sm:space-y-2.5 mb-6 sm:mb-8">
-                {product.features.map((feature) => (
-                  <li
-                    key={feature}
-                    className="flex items-center gap-2.5 text-sm text-slate-700 dark:text-slate-300"
-                  >
-                    <svg
-                      className="w-4 h-4 text-primary shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
+              {product.features.length > 0 && (
+                <ul className="space-y-2 sm:space-y-2.5 mb-6 sm:mb-8">
+                  {product.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-center gap-2.5 text-sm text-slate-700 dark:text-slate-300"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
+                      <svg
+                        className="w-4 h-4 text-primary shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              )}
 
-              <a
-                href={product.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-lg bg-linear-to-r ${product.color} text-white font-semibold text-sm hover:opacity-90 transition-opacity shadow-lg w-full sm:w-auto justify-center sm:justify-start`}
-              >
-                Visit {product.name}
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
+              {product.comingSoon ? (
+                <span
+                  className={`inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-lg bg-linear-to-r ${product.color} text-white font-semibold text-sm shadow-lg w-full sm:w-auto justify-center sm:justify-start cursor-default`}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-                <span className="sr-only">(opens in new tab)</span>
-              </a>
+                  Coming Soon
+                </span>
+              ) : (
+                <a
+                  href={product.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-lg bg-linear-to-r ${product.color} text-white font-semibold text-sm hover:opacity-90 transition-opacity shadow-lg w-full sm:w-auto justify-center sm:justify-start`}
+                >
+                  Visit {product.name}
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                  <span className="sr-only">(opens in new tab)</span>
+                </a>
+              )}
             </div>
           ))}
         </div>

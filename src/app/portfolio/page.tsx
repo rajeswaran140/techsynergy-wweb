@@ -34,8 +34,8 @@ const projects = [
     name: "Crowvault.ai",
     category: "SaaS Product",
     description:
-      "Self-hosted, privacy-first agentic IDE with built-in AI coding assistance, MCP integrations, and full data sovereignty. Runs on your own infrastructure — no code or credentials leave your environment.",
-    tech: ["Agentic IDE", "Self-Hosted", "Privacy-First", "MCP Integrations"],
+      "API-first code generation platform with 327 production-ready developer tools for scaffolding microservices, database schemas, APIs, CI/CD pipelines, and DDD patterns. Schema-validated generators produce deterministic, AI-enhanced output.",
+    tech: ["Code Generation", "API-First", "MCP Servers", "Schema-Validated"],
     href: "https://crowvault.ai",
     color: "from-indigo-600 to-violet-500",
   },

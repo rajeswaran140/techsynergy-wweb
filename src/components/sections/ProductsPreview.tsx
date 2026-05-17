@@ -11,9 +11,9 @@ const MotionDiv = dynamic(
 const products = [
   {
     name: "Crowvault.ai",
-    tagline: "Self-Hosted Agentic IDE",
+    tagline: "API-First Code Generation Platform",
     description:
-      "Privacy-first AI coding environment running on your own infrastructure. Built-in MCP integrations and full data sovereignty.",
+      "327 production-ready developer tools for scaffolding microservices, databases, APIs, and CI/CD pipelines. Schema-validated, deterministic output — built on MCP.",
     href: "https://crowvault.ai",
     color: "from-indigo-600 to-violet-500",
   },

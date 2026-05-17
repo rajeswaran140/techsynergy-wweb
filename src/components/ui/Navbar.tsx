@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const navLinks = [
   { href: "/services", label: "Services" },
@@ -133,43 +134,50 @@ export default function Navbar() {
               })}
             </ul>
 
+            <ThemeToggle className="ml-2" />
+
             {/* CTA button */}
             <Link
               href="/contact"
-              className="ml-4 px-5 py-2 rounded-md bg-primary text-white text-sm font-semibold hover:bg-blue-700 transition-colors shadow-md shadow-primary/20"
+              className="ml-2 px-5 py-2 rounded-md bg-primary text-white text-sm font-semibold hover:bg-blue-700 transition-colors shadow-md shadow-primary/20"
             >
               Get a Quote
             </Link>
           </div>
 
-          {/* Mobile hamburger */}
-          <button
-            ref={hamburgerRef}
-            type="button"
-            className="relative z-50 md:hidden text-slate-300 hover:text-white p-2 rounded-md hover:bg-white/10 transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-            aria-controls="mobile-menu"
-          >
-            <div className="w-5 h-4 relative flex flex-col justify-between">
-              <span
-                className={`block h-0.5 w-5 bg-current rounded-full transition-all duration-300 origin-center ${
-                  mobileOpen ? "translate-y-1.75 rotate-45" : ""
-                }`}
-              />
-              <span
-                className={`block h-0.5 w-5 bg-current rounded-full transition-all duration-300 ${
-                  mobileOpen ? "opacity-0 scale-x-0" : ""
-                }`}
-              />
-              <span
-                className={`block h-0.5 w-5 bg-current rounded-full transition-all duration-300 origin-center ${
-                  mobileOpen ? "-translate-y-1.75 -rotate-45" : ""
-                }`}
-              />
-            </div>
-          </button>
+          {/* Mobile actions (toggle + hamburger) */}
+          <div className="flex items-center gap-1 md:hidden">
+            <ThemeToggle />
+
+            {/* Mobile hamburger */}
+            <button
+              ref={hamburgerRef}
+              type="button"
+              className="relative z-50 text-slate-300 hover:text-white p-2 rounded-md hover:bg-white/10 transition-colors"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-menu"
+            >
+              <div className="w-5 h-4 relative flex flex-col justify-between">
+                <span
+                  className={`block h-0.5 w-5 bg-current rounded-full transition-all duration-300 origin-center ${
+                    mobileOpen ? "translate-y-1.75 rotate-45" : ""
+                  }`}
+                />
+                <span
+                  className={`block h-0.5 w-5 bg-current rounded-full transition-all duration-300 ${
+                    mobileOpen ? "opacity-0 scale-x-0" : ""
+                  }`}
+                />
+                <span
+                  className={`block h-0.5 w-5 bg-current rounded-full transition-all duration-300 origin-center ${
+                    mobileOpen ? "-translate-y-1.75 -rotate-45" : ""
+                  }`}
+                />
+              </div>
+            </button>
+          </div>
         </div>
       </nav>
 

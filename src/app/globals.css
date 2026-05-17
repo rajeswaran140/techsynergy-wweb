@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @source "../lib/blog-data.ts";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #0f172a;
@@ -36,16 +38,14 @@
   --font-blog-mono: var(--font-ibm-plex-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --foreground: #f8fafc;
-    --primary: #1160f7;
-    --primary-dark: #0e50d4;
-    --muted: #1e293b;
-    --muted-foreground: #94a3b8;
-    --border: #334155;
-  }
+:root.dark {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --primary: #1160f7;
+  --primary-dark: #0e50d4;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --border: #334155;
 }
 
 body {

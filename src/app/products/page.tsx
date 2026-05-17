@@ -137,6 +137,24 @@ const products = [
     disabled: true,
   },
   {
+    name: "Crowvault.ca",
+    tagline: "Code from Anywhere",
+    description:
+      "Cloud-native IDE running a full VS Code experience securely in the browser. Open your browser, log in, and start building — no local setup, no machine to configure. Backed by integrated AI assistance and dedicated hardened infrastructure.",
+    features: [
+      "Full VS Code in the browser",
+      "Integrated AI coding assistance",
+      "TLS + SSH hardening defaults",
+      "Persistent workspaces across sessions",
+      "Browser terminal + full file system",
+      "Azure-hosted, dedicated VM",
+    ],
+    pricing: "",
+    href: "",
+    color: "from-purple-600 to-fuchsia-500",
+    comingSoon: true,
+  },
+  {
     name: "Telexier.com",
     tagline: "Coming Soon",
     description:

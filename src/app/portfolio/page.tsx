@@ -88,6 +88,16 @@ const projects = [
     disabled: true,
   },
   {
+    name: "Crowvault.ca",
+    category: "SaaS Product",
+    description:
+      "Cloud-native IDE delivering a full VS Code experience securely in the browser. No local setup — open your browser, log in, and start building. Coming soon.",
+    tech: ["Cloud IDE", "VS Code in Browser", "AI-Assisted", "Azure-Hosted"],
+    href: "",
+    color: "from-purple-600 to-fuchsia-500",
+    comingSoon: true,
+  },
+  {
     name: "Telexier.com",
     category: "SaaS Product",
     description:

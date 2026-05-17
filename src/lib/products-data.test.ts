@@ -70,7 +70,7 @@ describe("products-data", () => {
     expect(getProductBySlug("mobily-ca")?.name).toBe("Mobily.ca");
   });
 
-  it("keeps Talky off the landing preview but visible on /products", () => {
+  it("keeps Talky off the landing preview but visible on /portfolio", () => {
     const talky = getProductBySlug("talky-ca");
     expect(talky).toBeDefined();
     expect(talky?.enabled).toBe(true);

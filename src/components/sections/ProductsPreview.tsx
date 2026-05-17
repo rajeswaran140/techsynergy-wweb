@@ -73,7 +73,7 @@ export default function ProductsPreview() {
 
         <div className="text-center mt-8 sm:mt-10">
           <Link
-            href="/products"
+            href="/portfolio"
             className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:underline"
           >
             See all products

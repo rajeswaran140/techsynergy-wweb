@@ -3,6 +3,21 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone",
 
+  async redirects() {
+    return [
+      // /products was retired in favour of /portfolio. They surfaced the same
+      // catalogue (both read from src/lib/products-data) and the unique
+      // commerce-style data on /products (pricing, full feature bullets) is
+      // canonically available on each product's own external site. Permanent
+      // 308 preserves any inbound SEO + bookmarks.
+      {
+        source: "/products",
+        destination: "/portfolio",
+        permanent: true,
+      },
+    ];
+  },
+
   async headers() {
     return [
       {

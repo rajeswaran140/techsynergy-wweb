@@ -14,7 +14,7 @@ const footerLinks = {
     { href: "https://crowvault.ai", label: "Crowvault.ai", external: true },
     { href: "https://talky.ca", label: "Talky.ca", external: true },
     { href: "https://mobily.ca", label: "Mobily.ca", external: true },
-    { href: "/products", label: "All Products", external: false },
+    { href: "/portfolio", label: "All Products", external: false },
   ],
   Company: [
     { href: "/about", label: "About Us", external: false },

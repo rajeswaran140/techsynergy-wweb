@@ -96,7 +96,7 @@ export default function Hero() {
                 See Our Services
               </Link>
               <Link
-                href="/products"
+                href="/portfolio"
                 className="px-7 py-3.5 rounded-lg border-2 border-slate-300 dark:border-slate-500 text-slate-700 dark:text-slate-200 font-semibold hover:border-primary hover:text-primary transition-colors text-base text-center"
               >
                 View Our Work

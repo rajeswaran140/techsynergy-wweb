@@ -22,6 +22,8 @@ export type Product = {
   /** Full description for /products. */
   description: string;
   features: readonly string[];
+  /** Short tech/positioning tags shown on the /portfolio showcase cards. */
+  portfolioTags?: readonly string[];
   pricing?: string;
   /** Live URL. Omit when `comingSoon` is true. */
   href?: string;
@@ -49,6 +51,7 @@ export const products: readonly Product[] = [
       "9 specialized MCP servers",
       "REST API + optional CLI/SDKs",
     ],
+    portfolioTags: ["Code Generation", "API-First", "MCP Servers", "Schema-Validated"],
     pricing: "Contact for access.",
     href: "https://crowvault.ai",
     color: "from-indigo-600 to-violet-500",
@@ -71,6 +74,7 @@ export const products: readonly Product[] = [
       "REST API for automation",
       "PIPEDA compliant, Canadian-hosted",
     ],
+    portfolioTags: ["Web App", "Analytics", "QR Generation", "CDN"],
     pricing: "Free — 50 links forever. Plans from $19 CAD/mo.",
     href: "https://mobily.ca",
     color: "from-blue-600 to-cyan-500",
@@ -93,6 +97,7 @@ export const products: readonly Product[] = [
       "Canadian-hosted infrastructure",
       "Transactional & marketing messaging",
     ],
+    portfolioTags: ["Enterprise SMS", "SMPP Gateway", "Reseller Platform", "Canadian-Hosted"],
     pricing: "Contact for volume pricing.",
     href: "https://talky.ca",
     color: "from-rose-600 to-pink-500",
@@ -116,6 +121,7 @@ export const products: readonly Product[] = [
       "Browser terminal + full file system",
       "Azure-hosted, dedicated VM",
     ],
+    portfolioTags: ["Cloud IDE", "VS Code in Browser", "AI-Assisted", "Azure-Hosted"],
     color: "from-purple-600 to-fuchsia-500",
     enabled: true,
     featured: false,
@@ -130,6 +136,7 @@ export const products: readonly Product[] = [
     description:
       "Next-generation telecom and messaging platform — details coming soon.",
     features: [],
+    portfolioTags: ["Telecom", "Messaging"],
     color: "from-amber-600 to-yellow-500",
     enabled: true,
     featured: false,

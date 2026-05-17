@@ -6,7 +6,7 @@ import { glassCard, glassCardHover, glassChip } from "@/lib/ui-tokens";
 export const metadata: Metadata = {
   title: "Our Portfolio | Products & Projects by TechSynergy",
   description:
-    "Products and projects designed, built, and shipped by TechSynergy Corp — privacy-first SaaS, Canadian-hosted infrastructure, and the company website itself.",
+    "Products and projects designed, built, and shipped by TechSynergy Corp — privacy-first SaaS and Canadian-hosted infrastructure.",
   alternates: {
     canonical: "/portfolio",
   },
@@ -31,29 +31,6 @@ export const metadata: Metadata = {
       "Products and projects designed, built, and shipped by TechSynergy Corp.",
     images: ["/og-default.png"],
   },
-};
-
-/**
- * Meta-entry for the company website itself — not a product so it doesn't
- * belong in products-data. Inline here because /portfolio is the only
- * surface that lists it.
- */
-const metaEntry = {
-  slug: "techsynergy-ca",
-  name: "TechSynergy.ca",
-  category: "Company Website",
-  description:
-    "This website — a modern Next.js 16 App Router application with React 19 server components, Tailwind 4 glass styling, statically generated routes, and Canadian-hosted infrastructure via AWS Amplify in ca-central-1.",
-  portfolioTags: [
-    "Next.js 16",
-    "React 19",
-    "Tailwind 4",
-    "SSR + SSG",
-    "AWS Amplify (ca-central-1)",
-  ],
-  href: "https://techsynergy.ca",
-  color: "from-primary to-blue-400",
-  comingSoon: false,
 };
 
 export default function PortfolioPage() {
@@ -149,55 +126,6 @@ export default function PortfolioPage() {
                 ) : null}
               </div>
             ))}
-
-            {/* Meta-entry — the company website itself */}
-            <div
-              className={`${glassCard} ${glassCardHover} p-6 sm:p-8 lg:p-10 overflow-hidden`}
-            >
-              <div
-                className={`absolute top-0 left-6 right-6 sm:left-8 sm:right-8 h-1 rounded-b-full bg-linear-to-r ${metaEntry.color}`}
-                aria-hidden="true"
-              />
-              <p className="text-xs font-medium text-primary uppercase tracking-widest mb-2">
-                {metaEntry.category}
-              </p>
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3">
-                {metaEntry.name}
-              </h2>
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
-                {metaEntry.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {metaEntry.portfolioTags.map((t) => (
-                  <span key={t} className={glassChip}>
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <a
-                href={metaEntry.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-linear-to-r ${metaEntry.color} text-white font-semibold text-sm hover:opacity-90 transition-opacity shadow-md`}
-              >
-                Visit {metaEntry.name}
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-                <span className="sr-only">(opens in new tab)</span>
-              </a>
-            </div>
           </div>
         </div>
       </section>

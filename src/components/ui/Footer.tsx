@@ -9,8 +9,9 @@ const footerLinks = {
     { href: "/services#api-integrations", label: "API & Integrations" },
   ],
   Products: [
+    { href: "https://crowvault.ai", label: "Crowvault.ai", external: true },
+    { href: "https://talky.ca", label: "Talky.ca", external: true },
     { href: "https://mobily.ca", label: "Mobily.ca", external: true },
-    { href: "https://seosync.ca", label: "SeoSync.ca", external: true },
     { href: "/products", label: "All Products", external: false },
   ],
   Company: [

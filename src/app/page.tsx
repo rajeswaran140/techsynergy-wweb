@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "TechSynergy | Privacy-First SaaS Development",
-    description: "25+ years building Canadian-hosted SaaS products including TalkyMobile, WebCore, Mobily, and SeoSync. PIPEDA compliant from day one.",
+    description: "25+ years building Canadian-hosted SaaS products including Crowvault, Talky, and Mobily. PIPEDA compliant from day one.",
     url: "https://techsynergy.ca",
     type: "website",
     images: [

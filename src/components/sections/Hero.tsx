@@ -82,8 +82,8 @@ export default function Hero() {
               }`}
             >
               A Markham-based software company building privacy-first SaaS
-              products serving customers in 150+ countries — including TalkyMobile,
-              WebCore, Mobily, and SeoSync.
+              products serving developers and businesses across Canada and
+              beyond — including Crowvault, Talky, and Mobily.
             </p>
 
             {/* Trust signals */}

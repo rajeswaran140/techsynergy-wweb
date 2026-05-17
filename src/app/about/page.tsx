@@ -108,21 +108,21 @@ export default function AboutPage() {
             <div className="relative h-56 sm:h-72 lg:h-auto lg:min-h-100 bg-linear-to-br from-[#071237] to-slate-800 flex items-center justify-center p-8 sm:p-12">
               <div className="space-y-3 w-full max-w-sm">
                 <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-3">
-                  <p className="text-xs font-medium text-orange-400 uppercase tracking-widest mb-1">
+                  <p className="text-xs font-medium text-indigo-400 uppercase tracking-widest mb-1">
                     Product
                   </p>
-                  <p className="text-base font-bold text-white mb-1">TalkyMobile.ca</p>
+                  <p className="text-base font-bold text-white mb-1">Crowvault.ai</p>
                   <p className="text-xs text-slate-300">
-                    Mobile top-ups to 150+ countries in seconds
+                    API-first code generation with 327 production-ready dev tools
                   </p>
                 </div>
                 <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-3">
-                  <p className="text-xs font-medium text-emerald-400 uppercase tracking-widest mb-1">
+                  <p className="text-xs font-medium text-rose-400 uppercase tracking-widest mb-1">
                     Product
                   </p>
-                  <p className="text-base font-bold text-white mb-1">WebCore.ca</p>
+                  <p className="text-base font-bold text-white mb-1">Talky.ca</p>
                   <p className="text-xs text-slate-300">
-                    Managed WordPress hosting with 6-minute setup
+                    Enterprise SMS &amp; SMPP reseller platform, Canadian-hosted
                   </p>
                 </div>
                 <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-3">
@@ -131,16 +131,7 @@ export default function AboutPage() {
                   </p>
                   <p className="text-base font-bold text-white mb-1">Mobily.ca</p>
                   <p className="text-xs text-slate-300">
-                    Canadian URL shortener with analytics & QR codes
-                  </p>
-                </div>
-                <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-3">
-                  <p className="text-xs font-medium text-violet-400 uppercase tracking-widest mb-1">
-                    Product
-                  </p>
-                  <p className="text-base font-bold text-white mb-1">SeoSync.ca</p>
-                  <p className="text-xs text-slate-300">
-                    AI-powered SEO audits with 34 automated checks
+                    Canadian URL shortener with analytics &amp; QR codes
                   </p>
                 </div>
                 <p className="text-xs text-slate-500 text-center">
@@ -167,20 +158,16 @@ export default function AboutPage() {
                   The mission was clear from day one: build software that
                   respects user privacy and serves Canadian businesses. Today, I
                   ship my own SaaS products —{" "}
-                  <a href="https://talkymobile.ca" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-                    TalkyMobile.ca
+                  <a href="https://crowvault.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                    Crowvault.ai
                   </a>
                   ,{" "}
-                  <a href="https://webcore.ca" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-                    WebCore.ca
-                  </a>
-                  ,{" "}
-                  <a href="https://mobily.ca" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-                    Mobily.ca
+                  <a href="https://talky.ca" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                    Talky.ca
                   </a>
                   , and{" "}
-                  <a href="https://seosync.ca" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-                    SeoSync.ca
+                  <a href="https://mobily.ca" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                    Mobily.ca
                   </a>
                   . Every product is Canadian-hosted and PIPEDA compliant
                   from day one.

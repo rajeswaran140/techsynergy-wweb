@@ -1,44 +1,24 @@
-"use client";
-
-import dynamic from "next/dynamic";
 import Link from "next/link";
-
-const MotionDiv = dynamic(
-  () => import("framer-motion").then((mod) => ({ default: mod.motion.div })),
-  { ssr: false }
-);
 
 export default function CTA() {
   return (
     <section className="py-16 sm:py-24 bg-linear-to-r from-primary to-blue-700">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <MotionDiv
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
-            Let&apos;s Build Something Together
-          </h2>
-        </MotionDiv>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 animate-fade-in-up">
+          Let&apos;s Build Something Together
+        </h2>
 
-        <MotionDiv
-          className="text-blue-100 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.15 }}
+        <p
+          className="text-blue-100 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in-up"
+          style={{ animationDelay: "120ms" }}
         >
           Whether you need a SaaS product, cloud migration, or custom API —
           we&apos;re ready to help your Canadian business grow.
-        </MotionDiv>
+        </p>
 
-        <MotionDiv
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+        <div
+          className="animate-fade-in-up"
+          style={{ animationDelay: "240ms" }}
         >
           <Link
             href="/contact"
@@ -46,7 +26,7 @@ export default function CTA() {
           >
             Get a Free Quote
           </Link>
-        </MotionDiv>
+        </div>
       </div>
     </section>
   );

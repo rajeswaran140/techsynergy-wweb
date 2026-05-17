@@ -1,12 +1,4 @@
-"use client";
-
-import dynamic from "next/dynamic";
 import Link from "next/link";
-
-const MotionDiv = dynamic(
-  () => import("framer-motion").then((mod) => ({ default: mod.motion.div })),
-  { ssr: false }
-);
 
 const products = [
   {
@@ -46,6 +38,8 @@ const products = [
 ];
 
 export default function ProductsPreview() {
+  const visibleProducts = products.filter((p) => !p.disabled);
+
   return (
     <section className="py-16 sm:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,14 +60,11 @@ export default function ProductsPreview() {
         </div>
 
         <div className="grid gap-5 sm:gap-6 md:grid-cols-2">
-          {products.filter((product) => !product.disabled).map((product, i) => (
-            <MotionDiv
+          {visibleProducts.map((product, i) => (
+            <div
               key={product.name}
-              className="group relative rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8 hover:shadow-lg hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 transition-all duration-300"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
+              className="group relative rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8 hover:shadow-lg hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 transition-shadow duration-300 animate-fade-in-up"
+              style={{ animationDelay: `${i * 120}ms` }}
             >
               <div
                 className={`absolute top-0 left-6 right-6 sm:left-8 sm:right-8 h-1 rounded-b-full bg-linear-to-r ${product.color}`}
@@ -110,7 +101,7 @@ export default function ProductsPreview() {
                 </svg>
                 <span className="sr-only">(opens in new tab)</span>
               </a>
-            </MotionDiv>
+            </div>
           ))}
         </div>
 

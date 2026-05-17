@@ -1,14 +1,8 @@
-import dynamic from "next/dynamic";
 import type { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
-
-const ServicesPreview = dynamic(
-  () => import("@/components/sections/ServicesPreview")
-);
-const ProductsPreview = dynamic(
-  () => import("@/components/sections/ProductsPreview")
-);
-const CTA = dynamic(() => import("@/components/sections/CTA"));
+import ServicesPreview from "@/components/sections/ServicesPreview";
+import ProductsPreview from "@/components/sections/ProductsPreview";
+import CTA from "@/components/sections/CTA";
 
 export const metadata: Metadata = {
   title: "TechSynergy | Privacy-First SaaS Development in Canada",

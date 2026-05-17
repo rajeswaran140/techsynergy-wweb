@@ -53,8 +53,10 @@ body {
   color: var(--foreground);
 }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @keyframes orb1 {
@@ -69,4 +71,21 @@ html {
   25% { transform: translate(-50px, 40px) scale(0.85); }
   50% { transform: translate(40px, -30px) scale(1.15); }
   75% { transform: translate(-20px, 10px) scale(0.95); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(1.25rem); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-\[orb1_12s_ease-in-out_infinite\],
+  .animate-\[orb2_15s_ease-in-out_infinite\] {
+    animation: none !important;
+  }
 }

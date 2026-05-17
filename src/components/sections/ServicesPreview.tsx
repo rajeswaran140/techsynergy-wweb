@@ -1,13 +1,5 @@
-"use client";
-
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { HiCode, HiCloud, HiChip, HiSupport } from "react-icons/hi";
-
-const MotionDiv = dynamic(
-  () => import("framer-motion").then((mod) => ({ default: mod.motion.div })),
-  { ssr: false }
-);
 
 const services = [
   {
@@ -66,13 +58,10 @@ export default function ServicesPreview() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
           {services.map((service, i) => (
-            <MotionDiv
+            <div
               key={service.title}
-              className="group relative rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 transition-all duration-300"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="group relative rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 transition-shadow duration-300 animate-fade-in-up"
+              style={{ animationDelay: `${i * 100}ms` }}
             >
               {/* Gradient accent bar */}
               <div
@@ -80,7 +69,7 @@ export default function ServicesPreview() {
               />
 
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                <service.icon className="w-6 h-6 text-primary" />
+                <service.icon className="w-6 h-6 text-primary" aria-hidden="true" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2">
                 {service.title}
@@ -100,7 +89,7 @@ export default function ServicesPreview() {
                   </span>
                 ))}
               </div>
-            </MotionDiv>
+            </div>
           ))}
         </div>
 

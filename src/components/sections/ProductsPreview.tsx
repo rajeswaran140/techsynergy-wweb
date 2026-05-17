@@ -10,6 +10,22 @@ const MotionDiv = dynamic(
 
 const products = [
   {
+    name: "Crowvault.ai",
+    tagline: "Self-Hosted Agentic IDE",
+    description:
+      "Privacy-first AI coding environment running on your own infrastructure. Built-in MCP integrations and full data sovereignty.",
+    href: "https://crowvault.ai",
+    color: "from-indigo-600 to-violet-500",
+  },
+  {
+    name: "Talky.ca",
+    tagline: "Enterprise SMS & SMPP Reseller Platform",
+    description:
+      "Canadian-hosted SMS gateway with SMPP support and reseller-ready APIs for transactional and marketing messages at carrier-grade reliability.",
+    href: "https://talky.ca",
+    color: "from-rose-600 to-pink-500",
+  },
+  {
     name: "Mobily.ca",
     tagline: "Canadian URL Shortener & Analytics",
     description:
@@ -24,6 +40,7 @@ const products = [
       "34 automated SEO checks, daily SERP tracking, and AI-generated fix suggestions — Canadian-hosted.",
     href: "https://seosync.ca",
     color: "from-violet-600 to-purple-500",
+    disabled: true,
   },
 ];
 
@@ -48,7 +65,7 @@ export default function ProductsPreview() {
         </div>
 
         <div className="grid gap-5 sm:gap-6 md:grid-cols-2">
-          {products.map((product, i) => (
+          {products.filter((product) => !product.disabled).map((product, i) => (
             <MotionDiv
               key={product.name}
               className="group relative rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8 hover:shadow-lg hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 transition-all duration-300"

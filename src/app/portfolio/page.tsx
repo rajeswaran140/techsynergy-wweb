@@ -31,6 +31,24 @@ export const metadata: Metadata = {
 
 const projects = [
   {
+    name: "Crowvault.ai",
+    category: "SaaS Product",
+    description:
+      "Self-hosted, privacy-first agentic IDE with built-in AI coding assistance, MCP integrations, and full data sovereignty. Runs on your own infrastructure — no code or credentials leave your environment.",
+    tech: ["Agentic IDE", "Self-Hosted", "Privacy-First", "MCP Integrations"],
+    href: "https://crowvault.ai",
+    color: "from-indigo-600 to-violet-500",
+  },
+  {
+    name: "Talky.ca",
+    category: "SaaS Product",
+    description:
+      "Enterprise SMS and SMPP reseller platform — Canadian-hosted infrastructure for businesses and resellers to deliver transactional and marketing messages with carrier-grade reliability.",
+    tech: ["Enterprise SMS", "SMPP Gateway", "Reseller Platform", "Canadian-Hosted"],
+    href: "https://talky.ca",
+    color: "from-rose-600 to-pink-500",
+  },
+  {
     name: "TalkyMobile.ca",
     category: "SaaS Product",
     description:
@@ -38,6 +56,7 @@ const projects = [
     tech: ["Payment Processing", "API Integration", "Multi-Currency", "Global Network"],
     href: "https://talkymobile.ca",
     color: "from-orange-600 to-amber-500",
+    disabled: true,
   },
   {
     name: "WebCore.ca",
@@ -47,6 +66,7 @@ const projects = [
     tech: ["WordPress Hosting", "Enterprise Security", "Canadian Data Centers", "Managed Infrastructure"],
     href: "https://webcore.ca",
     color: "from-emerald-600 to-teal-500",
+    disabled: true,
   },
   {
     name: "Mobily.ca",
@@ -65,6 +85,7 @@ const projects = [
     tech: ["Web App", "AI-Powered", "Cloud Infrastructure", "SEO Analytics"],
     href: "https://seosync.ca",
     color: "from-violet-600 to-purple-500",
+    disabled: true,
   },
   {
     name: "TechSynergy.ca",
@@ -105,7 +126,7 @@ export default function PortfolioPage() {
       <section className="py-14 sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-6 sm:space-y-8">
-            {projects.map((project) => (
+            {projects.filter((project) => !project.disabled).map((project) => (
               <div
                 key={project.name}
                 className="relative rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8 lg:p-10 hover:shadow-lg hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 transition-all duration-300"

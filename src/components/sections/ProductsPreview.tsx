@@ -24,6 +24,7 @@ const products = [
       "Canadian-hosted SMS gateway with SMPP support and reseller-ready APIs for transactional and marketing messages at carrier-grade reliability.",
     href: "https://talky.ca",
     color: "from-rose-600 to-pink-500",
+    disabled: true,
   },
   {
     name: "Mobily.ca",

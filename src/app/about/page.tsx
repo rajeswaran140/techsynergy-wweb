@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { featuredProducts } from "@/lib/products-data";
+import { glassCard, glassChip } from "@/lib/ui-tokens";
 
 export const metadata: Metadata = {
   title: "About TechSynergy | Canadian Software Development",
   description:
-    "TechSynergy Corp — founded in 2023 in Markham, Ontario by Raj. 25+ years of experience building privacy-first SaaS products for Canadian businesses.",
+    "TechSynergy Corp — founded in 2023 in Markham, Ontario by Raj Thangarajah. 25+ years of experience building privacy-first, Canadian-hosted SaaS products.",
   alternates: {
     canonical: "/about",
   },
@@ -24,17 +26,37 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Us | TechSynergy Corp",
-    description: "Canadian software company building privacy-first SaaS products.",
+    title: "About TechSynergy | Canadian Software Development",
+    description:
+      "A Canadian software company building privacy-first SaaS products from Markham, Ontario.",
     images: ["/og-default.png"],
   },
 };
+
+function CheckIcon({ className = "w-4 h-4 text-primary" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    </svg>
+  );
+}
 
 const values = [
   {
     title: "Privacy First",
     description:
-      "Every product I build is designed with data privacy at its core — PIPEDA compliant, Canadian-hosted, and zero data resale.",
+      "Every product is designed with data privacy at its core — PIPEDA compliant, Canadian-hosted by default, and zero data resale.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -44,7 +66,7 @@ const values = [
   {
     title: "Canadian Built",
     description:
-      "My infrastructure and data all live in Canada. I believe Canadian businesses deserve Canadian-built software.",
+      "We're built in Canada for Canadian businesses, with infrastructure favouring Canadian data residency wherever it's available.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -54,7 +76,7 @@ const values = [
   {
     title: "Ship & Iterate",
     description:
-      "I favour working software over perfect plans. Launch fast, measure what matters, and improve continuously.",
+      "We favour working software over perfect plans. Launch fast, measure what matters, and improve continuously.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -64,7 +86,7 @@ const values = [
   {
     title: "Transparency",
     description:
-      "No black boxes. I communicate openly about timelines, trade-offs, and costs — so you always know where things stand.",
+      "No black boxes. We communicate openly about timelines, trade-offs, and costs — so you always know where things stand.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -74,66 +96,88 @@ const values = [
   },
 ];
 
+const trustSignals = ["Privacy-First", "Canadian-Built", "PIPEDA Compliant"];
+
 export default function AboutPage() {
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Raj Thangarajah",
+    jobTitle: "Founder",
+    worksFor: {
+      "@type": "Organization",
+      name: "TechSynergy Corp",
+      url: "https://techsynergy.ca",
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Markham",
+      addressRegion: "ON",
+      addressCountry: "CA",
+    },
+    knowsAbout: [
+      "Software Development",
+      "Cloud Infrastructure",
+      "SaaS Products",
+      "Model Context Protocol",
+      "API Integration",
+    ],
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
+
       {/* Hero — dark navy to match site header */}
       <section className="relative bg-[#071237] py-14 sm:py-18 md:py-22 overflow-hidden">
-        {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
           style={{ backgroundImage: "url('/coding_Image_2.webp')" }}
+          aria-hidden="true"
         />
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-linear-to-br from-[#071237]/55 via-slate-900/45 to-blue-900/60" />
+        <div
+          className="absolute inset-0 bg-linear-to-br from-[#071237]/55 via-slate-900/45 to-blue-900/60"
+          aria-hidden="true"
+        />
 
-        {/* Content */}
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center z-10">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
             About TechSynergy Corp
           </h1>
           <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed drop-shadow-md">
-            Founded in 2023 by Raj, a self-taught software developer with 25+
-            years of experience — building privacy-first SaaS products for
-            Canadian businesses.
+            A Canadian software company founded in 2023 in Markham, Ontario,
+            with 25+ years of engineering experience building privacy-first
+            SaaS products.
           </p>
         </div>
       </section>
 
-      {/* Card 1 — Our Story (product screenshots, text right) */}
-      <section className="py-14 sm:py-20">
+      {/* Card 1 — Our Story (product showcase, text right) */}
+      <section className="section-glow py-14 sm:py-20 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 overflow-hidden grid grid-cols-1 lg:grid-cols-2">
-            {/* Product showcase instead of stock team photo */}
-            <div className="relative h-56 sm:h-72 lg:h-auto lg:min-h-100 bg-linear-to-br from-[#071237] to-slate-800 flex items-center justify-center p-8 sm:p-12">
+          <div className={`${glassCard} overflow-hidden grid grid-cols-1 lg:grid-cols-2`}>
+            {/* Product showcase rail — driven by canonical products-data */}
+            <div className="relative h-auto lg:min-h-[25rem] bg-linear-to-br from-[#071237] to-slate-800 flex items-center justify-center p-8 sm:p-12">
               <div className="space-y-3 w-full max-w-sm">
-                <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-3">
-                  <p className="text-xs font-medium text-indigo-400 uppercase tracking-widest mb-1">
-                    Product
-                  </p>
-                  <p className="text-base font-bold text-white mb-1">Crowvault.ai</p>
-                  <p className="text-xs text-slate-300">
-                    API-first code generation with 327 production-ready dev tools
-                  </p>
-                </div>
-                <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-3">
-                  <p className="text-xs font-medium text-rose-400 uppercase tracking-widest mb-1">
-                    Product
-                  </p>
-                  <p className="text-base font-bold text-white mb-1">Talky.ca</p>
-                  <p className="text-xs text-slate-300">
-                    Enterprise SMS &amp; SMPP reseller platform, Canadian-hosted
-                  </p>
-                </div>
-                <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-3">
-                  <p className="text-xs font-medium text-primary uppercase tracking-widest mb-1">
-                    Product
-                  </p>
-                  <p className="text-base font-bold text-white mb-1">Mobily.ca</p>
-                  <p className="text-xs text-slate-300">
-                    Canadian URL shortener with analytics &amp; QR codes
-                  </p>
-                </div>
+                {featuredProducts.map((product) => (
+                  <div
+                    key={product.slug}
+                    className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-3"
+                  >
+                    <p className="text-xs font-medium text-primary uppercase tracking-widest mb-1">
+                      Product
+                    </p>
+                    <p className="text-base font-bold text-white mb-1">
+                      {product.name}
+                    </p>
+                    <p className="text-xs text-slate-300">
+                      {product.shortDescription}
+                    </p>
+                  </div>
+                ))}
                 <p className="text-xs text-slate-500 text-center">
                   Built, hosted, and operated in Canada
                 </p>
@@ -142,35 +186,43 @@ export default function AboutPage() {
 
             <div className="p-6 sm:p-8 lg:p-10 xl:p-12 flex flex-col justify-center">
               <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-3">
-                My Story
+                Our Story
               </p>
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-5">
                 Founded in 2023. Backed by 25+ Years of Experience.
               </h2>
               <div className="space-y-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
                 <p>
-                  I&apos;m Raj, and I founded TechSynergy Corp in 2023 in
-                  Markham, Ontario. I&apos;m a self-taught software developer
-                  with over 25 years of hands-on experience building
-                  applications across the full stack.
+                  TechSynergy Corp was founded in 2023 in Markham, Ontario by{" "}
+                  <span className="font-medium text-slate-900 dark:text-white">
+                    Raj Thangarajah
+                  </span>{" "}
+                  — a self-taught software developer with over 25 years of
+                  hands-on full-stack engineering experience.
                 </p>
                 <p>
-                  The mission was clear from day one: build software that
-                  respects user privacy and serves Canadian businesses. Today, I
-                  ship my own SaaS products —{" "}
-                  <a href="https://crowvault.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-                    Crowvault.ai
-                  </a>
-                  ,{" "}
-                  <a href="https://talky.ca" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-                    Talky.ca
-                  </a>
-                  , and{" "}
-                  <a href="https://mobily.ca" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-                    Mobily.ca
-                  </a>
-                  . Every product is Canadian-hosted and PIPEDA compliant
-                  from day one.
+                  Our mission has been clear from day one: build software that
+                  respects user privacy and serves Canadian businesses. We ship
+                  our own SaaS products —{" "}
+                  {featuredProducts.map((p, idx) => (
+                    <span key={p.slug}>
+                      <a
+                        href={p.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline font-medium"
+                      >
+                        {p.name}
+                      </a>
+                      <span className="sr-only"> (opens in new tab)</span>
+                      {idx < featuredProducts.length - 2
+                        ? ", "
+                        : idx === featuredProducts.length - 2
+                        ? ", and "
+                        : ""}
+                    </span>
+                  ))}
+                  {" "}— each Canadian-hosted and PIPEDA compliant from day one.
                 </p>
               </div>
             </div>
@@ -178,52 +230,40 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Card 2 — My Approach (text left, stat right) */}
-      <section className="pb-14 sm:pb-20">
+      {/* Card 2 — Our Approach (text left, stat right) */}
+      <section className="section-glow section-glow-alt pb-14 sm:pb-20 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 overflow-hidden grid grid-cols-1 lg:grid-cols-2">
+          <div className={`${glassCard} overflow-hidden grid grid-cols-1 lg:grid-cols-2`}>
             <div className="p-6 sm:p-8 lg:p-10 xl:p-12 flex flex-col justify-center order-2 lg:order-1">
               <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-3">
-                My Approach
+                Our Approach
               </p>
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-5">
-                One Developer. Full Ownership.
+                Deep Ownership. Full Stack.
               </h2>
               <div className="space-y-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
                 <p>
-                  I believe great software comes from deep ownership — one
-                  person who knows every line of code, every deployment, and
-                  every business decision behind the product. No handoffs, no
-                  miscommunication.
+                  Great software comes from deep ownership — knowing every line
+                  of code, every deployment, and every business decision behind
+                  the product. No handoffs, no miscommunication.
                 </p>
                 <p>
-                  From SaaS product development and cloud infrastructure to API
-                  integrations and automation, I handle the full stack so
-                  you can focus on growing your business.
+                  From SaaS product development and Canadian-hosted cloud
+                  infrastructure to AI / MCP integration and mobile apps, we
+                  handle the full stack so you can focus on growing your
+                  business.
                 </p>
               </div>
               <div className="flex flex-wrap gap-x-6 gap-y-2 mt-6 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                <span className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  Self-Taught
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  Privacy-First
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  Canadian-Built
-                </span>
+                {trustSignals.map((signal) => (
+                  <span key={signal} className="flex items-center gap-1.5">
+                    <CheckIcon />
+                    {signal}
+                  </span>
+                ))}
               </div>
             </div>
-            <div className="relative h-56 sm:h-72 lg:h-auto lg:min-h-100 order-1 lg:order-2">
+            <div className="relative h-56 sm:h-72 lg:h-auto lg:min-h-[25rem] order-1 lg:order-2">
               <div className="absolute inset-0 bg-linear-to-br from-[#071237] to-slate-800 flex items-center justify-center">
                 <div className="text-center px-6">
                   <p className="text-6xl sm:text-7xl lg:text-8xl font-bold text-white mb-2">
@@ -247,22 +287,19 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-14 sm:py-20 bg-slate-50 dark:bg-slate-900/50">
+      <section className="section-glow py-14 sm:py-20 overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-14">
             <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-3">
-              My Values
+              Our Values
             </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
-              What I Stand For
+              What We Stand For
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
             {values.map((value) => (
-              <div
-                key={value.title}
-                className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8"
-              >
+              <div key={value.title} className={`${glassCard} p-6 sm:p-8`}>
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 text-primary">
                   {value.icon}
                 </div>
@@ -275,18 +312,26 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
+          <div className="flex flex-wrap justify-center gap-2 mt-8">
+            {trustSignals.map((signal) => (
+              <span key={signal} className={glassChip}>
+                {signal}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-14 sm:py-20">
+      <section className="section-glow section-glow-alt py-14 sm:py-20 overflow-hidden">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
             Want to Work Together?
           </h2>
           <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm sm:text-base">
-            Whether you need a SaaS product built, a cloud migration, or a
-            custom API — let&apos;s talk.
+            Whether you need a SaaS product built, an AI / MCP integration, or
+            a cloud migration to Canadian-resident infrastructure — let&apos;s
+            talk.
           </p>
           <Link
             href="/contact"

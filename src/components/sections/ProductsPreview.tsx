@@ -1,46 +1,8 @@
 import Link from "next/link";
+import { featuredProducts } from "@/lib/products-data";
 import { glassCard, glassCardHover } from "@/lib/ui-tokens";
 
-const products = [
-  {
-    name: "Crowvault.ai",
-    tagline: "API-First Code Generation Platform",
-    description:
-      "327 production-ready developer tools for scaffolding microservices, databases, APIs, and CI/CD pipelines. Schema-validated, deterministic output — built on MCP.",
-    href: "https://crowvault.ai",
-    color: "from-indigo-600 to-violet-500",
-  },
-  {
-    name: "Talky.ca",
-    tagline: "Enterprise SMS & SMPP Reseller Platform",
-    description:
-      "Canadian-hosted SMS gateway with SMPP support and reseller-ready APIs for transactional and marketing messages at carrier-grade reliability.",
-    href: "https://talky.ca",
-    color: "from-rose-600 to-pink-500",
-    disabled: true,
-  },
-  {
-    name: "Mobily.ca",
-    tagline: "Canadian URL Shortener & Analytics",
-    description:
-      "Custom branded short links, real-time click analytics, and QR codes — all PIPEDA compliant and hosted in Canada.",
-    href: "https://mobily.ca",
-    color: "from-blue-600 to-cyan-500",
-  },
-  {
-    name: "SeoSync.ca",
-    tagline: "AI-Powered SEO Audit Platform",
-    description:
-      "34 automated SEO checks, daily SERP tracking, and AI-generated fix suggestions — Canadian-hosted.",
-    href: "https://seosync.ca",
-    color: "from-violet-600 to-purple-500",
-    disabled: true,
-  },
-];
-
 export default function ProductsPreview() {
-  const visibleProducts = products.filter((p) => !p.disabled);
-
   return (
     <section className="section-glow section-glow-alt py-16 sm:py-24 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,13 +23,12 @@ export default function ProductsPreview() {
         </div>
 
         <div className="grid gap-5 sm:gap-6 md:grid-cols-2">
-          {visibleProducts.map((product, i) => (
+          {featuredProducts.map((product, i) => (
             <div
-              key={product.name}
+              key={product.slug}
               className={`group ${glassCard} ${glassCardHover} p-6 sm:p-8 animate-fade-in-up overflow-hidden`}
               style={{ animationDelay: `${i * 120}ms` }}
             >
-              {/* Gradient top accent — pinned to the inner card edge, not the section */}
               <div
                 className={`absolute top-0 left-6 right-6 sm:left-8 sm:right-8 h-1 rounded-b-full bg-linear-to-r ${product.color}`}
                 aria-hidden="true"
@@ -79,31 +40,33 @@ export default function ProductsPreview() {
                 {product.tagline}
               </p>
               <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
-                {product.description}
+                {product.shortDescription}
               </p>
-              <a
-                href={product.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-linear-to-r ${product.color} text-white font-semibold text-sm hover:opacity-90 transition-opacity shadow-md shadow-black/10`}
-              >
-                Visit {product.name}
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
+              {product.href && (
+                <a
+                  href={product.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-linear-to-r ${product.color} text-white font-semibold text-sm hover:opacity-90 transition-opacity shadow-md shadow-black/10`}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-                <span className="sr-only">(opens in new tab)</span>
-              </a>
+                  Visit {product.name}
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                  <span className="sr-only">(opens in new tab)</span>
+                </a>
+              )}
             </div>
           ))}
         </div>

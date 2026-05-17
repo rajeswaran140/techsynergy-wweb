@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { enabledProducts } from "@/lib/products-data";
+import { glassCard, glassCardHover } from "@/lib/ui-tokens";
 
 export const metadata: Metadata = {
   title: "Privacy-First SaaS Products | Built in Canada",
@@ -30,146 +32,9 @@ export const metadata: Metadata = {
   },
 };
 
-const products = [
-  {
-    name: "Crowvault.ai",
-    tagline: "Built for Developers Who Ship",
-    description:
-      "API-first code generation platform with 327 production-ready tools for scaffolding microservices, databases, APIs, CI/CD pipelines, and DDD patterns. Schema-validated generators produce deterministic, AI-enhanced output — same input, same result, every time.",
-    features: [
-      "327 production-ready dev tools",
-      "Microservices, DB schemas, K8s configs",
-      "OpenAPI / GraphQL / gRPC specs",
-      "CI/CD pipelines & DDD patterns",
-      "9 specialized MCP servers",
-      "REST API + optional CLI/SDKs",
-    ],
-    pricing: "Contact for access.",
-    href: "https://crowvault.ai",
-    color: "from-indigo-600 to-violet-500",
-  },
-  {
-    name: "Talky.ca",
-    tagline: "Enterprise SMS & SMPP Reseller Platform",
-    description:
-      "Canadian-hosted SMS gateway with SMPP support and reseller-ready APIs. Built for businesses and resellers delivering transactional and marketing messages at carrier-grade reliability.",
-    features: [
-      "Enterprise SMS API",
-      "SMPP gateway support",
-      "Reseller-friendly platform",
-      "Carrier-grade delivery",
-      "Canadian-hosted infrastructure",
-      "Transactional & marketing messaging",
-    ],
-    pricing: "Contact for volume pricing.",
-    href: "https://talky.ca",
-    color: "from-rose-600 to-pink-500",
-  },
-  {
-    name: "TalkyMobile.ca",
-    tagline: "Send Mobile Credit & Data In Seconds",
-    description:
-      "International mobile top-up and eSIM service delivering prepaid airtime and data bundles to 150+ countries. Instant delivery in 5-30 seconds with transparent pricing, bank-level security, and multi-provider reliability.",
-    features: [
-      "Mobile top-ups to 150+ countries",
-      "Data bundles in 80+ countries",
-      "eSIM plans & digital SIM cards",
-      "Instant 5-30 second delivery",
-      "PCI DSS compliant & SSL encrypted",
-      "99.9% uptime guarantee",
-    ],
-    pricing: "Transparent pricing. No subscriptions or hidden fees.",
-    href: "https://talkymobile.ca",
-    color: "from-orange-600 to-amber-500",
-    disabled: true,
-  },
-  {
-    name: "WebCore.ca",
-    tagline: "Launch Your WordPress Site in 6 Minutes",
-    description:
-      "Canadian managed WordPress hosting with automated setup, enterprise-grade security, and PIPEDA compliance. Built for Canadian businesses who need reliable hosting without the complexity.",
-    features: [
-      "6-minute automated site setup",
-      "Enterprise security & SSL included",
-      "Canadian data centers (PIPEDA compliant)",
-      "WooCommerce optimization",
-      "24/7 phone & email support",
-      "30-day money-back guarantee",
-    ],
-    pricing: "Plans from $9 CAD/mo. Free migration included.",
-    href: "https://webcore.ca",
-    color: "from-emerald-600 to-teal-500",
-    disabled: true,
-  },
-  {
-    name: "Mobily.ca",
-    tagline: "Shorten Links Without Compromising Privacy",
-    description:
-      "A Canadian URL shortener with custom branded links, real-time click analytics, and QR code generation. All data hosted in Canada and PIPEDA compliant from day one — no data sold to third parties.",
-    features: [
-      "Custom branded short links",
-      "Real-time click & device analytics",
-      "QR code generation",
-      "Password protection & auto-expiration",
-      "REST API for automation",
-      "PIPEDA compliant, Canadian-hosted",
-    ],
-    pricing: "Free — 50 links forever. Plans from $19 CAD/mo.",
-    href: "https://mobily.ca",
-    color: "from-blue-600 to-cyan-500",
-  },
-  {
-    name: "SeoSync.ca",
-    tagline: "AI-Powered SEO Audits, Built in Canada",
-    description:
-      "The first Canadian-built SEO audit platform. Run 34 automated checks across meta tags, content, links, and Core Web Vitals — then get AI-powered fixes you can copy-paste into your site.",
-    features: [
-      "34 automated SEO checks per audit",
-      "Daily SERP position tracking",
-      "AI-generated fix suggestions",
-      "Competitor gap analysis",
-      "Core Web Vitals monitoring",
-      "Canadian data residency",
-    ],
-    pricing: "Free — 3 audits/mo. Pro from $49 CAD/mo.",
-    href: "https://seosync.ca",
-    color: "from-violet-600 to-purple-500",
-    disabled: true,
-  },
-  {
-    name: "Crowvault.ca",
-    tagline: "Code from Anywhere",
-    description:
-      "Cloud-native IDE running a full VS Code experience securely in the browser. Open your browser, log in, and start building — no local setup, no machine to configure. Backed by integrated AI assistance and dedicated hardened infrastructure.",
-    features: [
-      "Full VS Code in the browser",
-      "Integrated AI coding assistance",
-      "TLS + SSH hardening defaults",
-      "Persistent workspaces across sessions",
-      "Browser terminal + full file system",
-      "Azure-hosted, dedicated VM",
-    ],
-    pricing: "",
-    href: "",
-    color: "from-purple-600 to-fuchsia-500",
-    comingSoon: true,
-  },
-  {
-    name: "Telexier.com",
-    tagline: "Coming Soon",
-    description:
-      "Next-generation telecom and messaging platform — details coming soon.",
-    features: [],
-    pricing: "",
-    href: "",
-    color: "from-amber-600 to-yellow-500",
-    comingSoon: true,
-  },
-];
-
 export default function ProductsPage() {
   return (
-    <section className="py-16 sm:py-24 lg:py-28">
+    <section className="section-glow py-16 sm:py-24 lg:py-28 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
@@ -190,14 +55,14 @@ export default function ProductsPage() {
 
         {/* Product cards */}
         <div className="grid gap-6 sm:gap-8 lg:grid-cols-2 xl:grid-cols-4 md:grid-cols-2">
-          {products.filter((product) => !product.disabled).map((product) => (
+          {enabledProducts.map((product) => (
             <div
-              key={product.name}
-              className="group relative rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 p-6 sm:p-8 lg:p-10 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50 transition-all duration-300"
+              key={product.slug}
+              className={`group ${glassCard} ${glassCardHover} p-6 sm:p-8 lg:p-10 overflow-hidden`}
             >
-              {/* Gradient accent bar */}
               <div
                 className={`absolute top-0 left-6 right-6 sm:left-8 sm:right-8 h-1 rounded-b-full bg-linear-to-r ${product.color}`}
+                aria-hidden="true"
               />
 
               <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-1">
@@ -211,7 +76,7 @@ export default function ProductsPage() {
               </p>
 
               {product.pricing && (
-                <p className="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-700/50 rounded-lg px-3 py-2 mb-5 sm:mb-6 inline-block">
+                <p className="text-xs font-medium text-slate-500 dark:text-slate-400 bg-white/50 dark:bg-white/[0.04] border border-white/40 dark:border-white/10 rounded-lg px-3 py-2 mb-5 sm:mb-6 inline-block">
                   {product.pricing}
                 </p>
               )}
@@ -249,7 +114,7 @@ export default function ProductsPage() {
                 >
                   Coming Soon
                 </span>
-              ) : (
+              ) : product.href ? (
                 <a
                   href={product.href}
                   target="_blank"
@@ -273,7 +138,7 @@ export default function ProductsPage() {
                   </svg>
                   <span className="sr-only">(opens in new tab)</span>
                 </a>
-              )}
+              ) : null}
             </div>
           ))}
         </div>

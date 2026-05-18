@@ -1,6 +1,5 @@
 import { blogPosts } from "@/lib/blog-data";
-
-const BASE_URL = "https://techsynergy.ca";
+import { SITE_URL as BASE_URL } from "@/lib/site";
 
 /**
  * RSS 2.0 feed for the blog. Linked from /blog metadata

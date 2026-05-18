@@ -34,6 +34,77 @@ export function getTagColor(tag: string) {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "picking-aws-compute-backend-hosting-costs",
+    title: "Picking AWS Compute: What Backend Hosting Actually Costs",
+    excerpt:
+      "EC2, Beanstalk, Fargate, Lambda — the choice is less about which is cheapest and more about which line items hide in each bill.",
+    author: "TechSynergy Team",
+    date: "May 20, 2026",
+    dateISO: "2026-05-20",
+    tags: ["Strategy", "Innovation"],
+    category: "Strategy",
+    readTime: "7 min read",
+    image: "/blog-aws-compute-costs.webp",
+    content: `Picking AWS compute for a SaaS backend feels like a maze — EC2, Elastic Beanstalk, ECS Fargate, App Runner, Lambda, Lightsail, Amplify SSR. The good news is there are really only four meaningful patterns once you ignore the marketing names. The bad news is that the cheapest choice on the surface is rarely the cheapest in practice, because one or two line items hide in the bill of each.
+
+## The Four Patterns That Actually Matter
+
+Cut through the names and AWS gives you four shapes:
+
+- **Bare server** — EC2 or Lightsail. You manage a Linux box. Cheapest sticker price, most operational work.
+- **Managed app platform** — Elastic Beanstalk or App Runner. You hand AWS your code; it provisions EC2 and a load balancer underneath. Cheapest deploy story, hidden cost in always-on infrastructure.
+- **Container orchestration** — ECS Fargate. You hand AWS a Docker image; it runs containers for you. Pay per CPU/memory-second.
+- **Serverless** — Lambda directly or via Amplify SSR. You hand AWS a function; it runs only when called. Scales to zero, pays only for actual requests.
+
+Almost every Canadian SaaS backend you will ship fits cleanly into one of these four. Pick the right shape first; pick the AWS service name second.
+
+## The ALB Is the Line Item Everyone Misses
+
+The biggest cost surprise on AWS isn't the EC2 instance — it's the Application Load Balancer that sits in front of it. An ALB bills around $16–22 CAD per month idle, before any traffic. That line item turns "bare EC2 is cheap" into "the small server is cheap, but the front door is not."
+
+Concrete idle costs for the same Node.js backend, in CAD:
+
+- **Bare EC2 t3.small (no ALB, Elastic IP)** — ~$16 / month
+- **Lightsail $10 plan** — ~$13 / month (similar specs, simpler billing)
+- **Elastic Beanstalk web tier (t3.small + ALB)** — ~$33–40 / month
+- **ECS Fargate (0.5 vCPU, 1 GB, ALB)** — ~$30–45 / month
+- **Lambda + Amplify SSR** — ~$0–10 / month at marketing-site volume
+
+The ALB shows up in three of the five rows above. If your workload doesn't actually need a load balancer (single instance, no SSL termination requirement, no path-based routing), you can save twenty dollars a month by not provisioning one.
+
+## When Each Pattern Earns Its Cost
+
+Match shape to workload:
+
+- **Bare EC2 / Lightsail** — single-instance prototypes, persistent connections, custom networking, GPU work. Cheapest when you genuinely need a server but not the surrounding plumbing.
+- **Elastic Beanstalk / App Runner** — request/response workloads where you would have built the ALB + ASG + CloudWatch + deploy automation manually. Beanstalk doesn't add cost on top of those components; it bundles them. Engineering time is the real saving, not dollars.
+- **Fargate** — containerized workloads that need to scale horizontally, multiple services in one cluster, or compliance reasons to avoid managing OS patches. Sweet spot for production SaaS that has outgrown serverless cold-start tolerance.
+- **Lambda / Amplify SSR** — request/response with bursty or low volume, scale-to-zero economics, tight integration with the rest of your AWS account. The default starting point for almost any Canadian B2B SaaS that isn't carrier-grade.
+
+## A Decision Tree That Holds Up
+
+When scoping a backend for a client, the questions in order:
+
+- **Does it need a persistent connection or run longer than 30 seconds per request?** If yes — Fargate or EC2. If no — Lambda territory.
+- **Does it have predictable, 24/7 traffic above 1 request per second average?** If yes — Fargate or EC2 will be cheaper than per-request Lambda. If no — Lambda wins on cost.
+- **Will the team manage the OS or want to avoid it entirely?** Manage it → EC2. Avoid it → Beanstalk, Fargate, or Lambda.
+- **Is this a marketing site, lightly-used SaaS, or an admin tool?** Lambda / Amplify SSR — under $10 CAD a month, no contest.
+
+The mistake we see most often in client engagements is starting on Beanstalk because it looks "easier than EC2 but more standard than Lambda" — then paying $40/month for years on a workload Lambda would have run for $3.
+
+## Canadian Residency Doesn't Change the Math, Just the Region
+
+Every option above is available in **ca-central-1** (Toronto). The pricing is roughly 5–10% higher than us-east-1 but materially identical to other Canadian regions. If your client has PIPEDA, Bill C-27, or federal-procurement residency requirements, the answer is to deploy the same shape to ca-central-1 — not to pick a different shape.
+
+The exception is Lambda cold starts in smaller regions: ca-central-1 has slightly slower cold starts than us-east-1 because of lower base traffic. Provisioned concurrency closes the gap when latency matters.
+
+## The Bottom Line
+
+The cheapest backend on AWS is the one whose pattern matches your workload. Lambda is not cheap if your workload runs hot 24/7. Bare EC2 is not cheap if you also need an ALB and ASG that Beanstalk would have given you for free. Beanstalk is not cheap if you would have shipped a Lambda anyway.
+
+Decide on the shape — bare server, managed platform, container, or serverless — before you decide on the AWS service name. The bill will be lower and the team will spend less time fighting the abstraction.`,
+  },
+  {
     slug: "nextjs-vs-nestjs-choosing-backend-stack",
     title: "Next.js or NestJS? Choosing a Backend Stack That Fits",
     excerpt:

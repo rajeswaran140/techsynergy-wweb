@@ -6,11 +6,13 @@ import type { IconType } from "react-icons";
 
 type Theme = "light" | "dark" | "system";
 
-const themeOptions: { value: Theme; icon: IconType; label: string }[] = [
-  { value: "light", icon: HiSun, label: "Light" },
-  { value: "dark", icon: HiMoon, label: "Dark" },
-  { value: "system", icon: HiDesktopComputer, label: "System" },
-];
+const cycleOrder: Theme[] = ["light", "dark", "system"];
+
+const themeMeta: Record<Theme, { icon: IconType; label: string }> = {
+  light: { icon: HiSun, label: "Light" },
+  dark: { icon: HiMoon, label: "Dark" },
+  system: { icon: HiDesktopComputer, label: "System" },
+};
 
 function applyTheme(theme: Theme) {
   const isDark =
@@ -50,32 +52,20 @@ export default function ThemeToggle({
     applyTheme(theme);
   }, [theme, mounted]);
 
+  const current = mounted ? theme : "system";
+  const { icon: Icon, label } = themeMeta[current];
+  const nextTheme = cycleOrder[(cycleOrder.indexOf(current) + 1) % cycleOrder.length];
+  const nextLabel = themeMeta[nextTheme].label;
+
   return (
-    <div
-      role="group"
-      aria-label="Theme"
-      className={`inline-flex items-center gap-0.5 rounded-lg bg-white/5 p-0.5 border border-white/10 ${className}`}
+    <button
+      type="button"
+      onClick={() => setTheme(nextTheme)}
+      aria-label={`Theme: ${label}. Switch to ${nextLabel}.`}
+      title={`Theme: ${label} (click for ${nextLabel})`}
+      className={`flex items-center justify-center w-9 h-9 rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${className}`}
     >
-      {themeOptions.map(({ value, icon: Icon, label }) => {
-        const isActive = mounted && theme === value;
-        return (
-          <button
-            key={value}
-            type="button"
-            onClick={() => setTheme(value)}
-            aria-label={`${label} theme${isActive ? " (selected)" : ""}`}
-            aria-pressed={isActive}
-            title={`${label} theme`}
-            className={`flex items-center justify-center w-7 h-7 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
-              isActive
-                ? "bg-white/15 text-white shadow-sm"
-                : "text-slate-400 hover:text-white hover:bg-white/5"
-            }`}
-          >
-            <Icon className="w-4 h-4" aria-hidden="true" />
-          </button>
-        );
-      })}
-    </div>
+      <Icon className="w-4 h-4" aria-hidden="true" />
+    </button>
   );
 }

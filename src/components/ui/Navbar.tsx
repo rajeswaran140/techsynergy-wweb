@@ -95,7 +95,7 @@ export default function Navbar() {
         }`}
       >
         <nav aria-label="Main navigation">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+        <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-14 flex justify-between items-center h-16">
           <Link
             href="/"
             aria-label="TechSynergy Home"
@@ -115,7 +115,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-3">
             <ul className="flex items-center gap-1 list-none m-0 p-0">
               {navLinks.map((link) => {
                 const isActive =
@@ -134,7 +134,7 @@ export default function Navbar() {
                     >
                       {link.label}
                       {isActive && (
-                        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-primary rounded-full" />
+                        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-primary rounded-full" />
                       )}
                     </Link>
                   </li>
@@ -142,12 +142,14 @@ export default function Navbar() {
               })}
             </ul>
 
-            <ThemeToggle className="ml-2" />
+            <span className="hidden lg:block h-5 w-px bg-white/10" aria-hidden="true" />
+
+            <ThemeToggle />
 
             {/* CTA button */}
             <Link
               href="/contact"
-              className="ml-2 px-5 py-2 rounded-md bg-primary text-white text-sm font-semibold hover:bg-blue-700 transition-colors shadow-md shadow-primary/20"
+              className="px-5 py-2 rounded-md bg-primary text-white text-sm font-semibold hover:bg-blue-700 transition-colors shadow-md shadow-primary/20"
             >
               Get a Quote
             </Link>

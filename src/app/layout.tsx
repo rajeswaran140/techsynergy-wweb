@@ -61,6 +61,11 @@ export const metadata: Metadata = {
   icons: {
     icon: "/icon.svg",
   },
+  alternates: {
+    types: {
+      "application/rss+xml": "/feed.xml",
+    },
+  },
   metadataBase: new URL(process.env.NEXTAUTH_URL || "https://techsynergy.ca"),
   verification: {
     google: "G-EYSYQF5TMF",

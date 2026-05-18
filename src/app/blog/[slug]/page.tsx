@@ -11,6 +11,8 @@ import ReadingProgress from "@/components/blog/ReadingProgress";
 import TableOfContents from "@/components/blog/TableOfContents";
 import PostIllustration from "@/components/blog/PostIllustration";
 
+const BASE_URL = "https://techsynergy.ca";
+
 export function generateStaticParams() {
   return blogPosts.map((p) => ({ slug: p.slug }));
 }
@@ -153,24 +155,47 @@ export default async function BlogPostPage({
   const related = getRelatedPosts(slug, 3);
   const headings = extractHeadings(post.content);
 
-  const jsonLd = {
+  const postUrl = `${BASE_URL}/blog/${slug}`;
+
+  const postSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
-    image: `https://techsynergy.ca${post.image}`,
+    image: `${BASE_URL}${post.image}`,
     author: { "@type": "Person", name: post.author },
     datePublished: post.dateISO,
+    mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
     publisher: {
       "@type": "Organization",
-      name: "TechSynergy",
-      url: "https://techsynergy.ca",
+      name: "TechSynergy Corp",
+      url: BASE_URL,
       logo: {
         "@type": "ImageObject",
-        url: "https://techsynergy.ca/logo-light.svg",
+        url: `${BASE_URL}/logo-light.svg`,
       },
     },
     keywords: post.tags.join(", "),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: `${BASE_URL}/blog`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: postUrl,
+      },
+    ],
   };
 
   return (
@@ -178,7 +203,11 @@ export default async function BlogPostPage({
       <ReadingProgress />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(postSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* Breadcrumb */}
@@ -187,15 +216,15 @@ export default async function BlogPostPage({
           <Link href="/blog" className="hover:text-blog-accent transition-colors">
             Blog
           </Link>
-          <span className="text-slate-900/20">/</span>
-          <span className="text-slate-900/50 truncate max-w-xs">
+          <span className="text-slate-400" aria-hidden="true">/</span>
+          <span className="text-slate-500 truncate max-w-xs">
             {post.title}
           </span>
         </nav>
       </div>
 
       {/* Hero */}
-      <header className="pb-12 sm:pb-16 border-b border-white/5">
+      <header className="pb-12 sm:pb-16 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <PostIllustration slug={post.slug} className="w-full h-auto rounded-lg mb-8 sm:mb-10" priority={true} />
 
@@ -232,7 +261,7 @@ export default async function BlogPostPage({
                   <p className="text-xs text-blog-muted">TechSynergy</p>
                 </div>
               </div>
-              <span className="text-slate-900/10">|</span>
+              <span className="text-slate-300" aria-hidden="true">|</span>
               <time
                 dateTime={post.dateISO}
                 className="text-sm text-blog-muted font-(family-name:--font-blog-mono)"
@@ -279,9 +308,9 @@ export default async function BlogPostPage({
       </section>
 
       {/* Author card */}
-      <section className="border-t border-white/5">
+      <section className="border-t border-slate-200">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
-          <div className="flex items-center gap-5 rounded-lg bg-blog-surface border border-white/5 p-6 sm:p-8">
+          <div className="flex items-center gap-5 rounded-lg bg-blog-surface border border-slate-200 p-6 sm:p-8">
             <div className="w-16 h-16 rounded-full bg-blog-accent/15 flex items-center justify-center shrink-0">
               <span className="text-2xl font-bold text-blog-accent">
                 {post.author.charAt(0)}
@@ -302,7 +331,7 @@ export default async function BlogPostPage({
 
       {/* Related Posts */}
       {related.length > 0 && (
-        <section className="border-t border-white/5 py-14 sm:py-20">
+        <section className="border-t border-slate-200 py-14 sm:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold font-(family-name:--font-display) mb-10">
               Related Posts
@@ -312,7 +341,7 @@ export default async function BlogPostPage({
                 <article key={rel.slug}>
                   <Link
                     href={`/blog/${rel.slug}`}
-                    className="group flex flex-col h-full rounded-lg bg-blog-surface border border-white/5 overflow-hidden transition-all duration-300 hover:border-blog-accent/20"
+                    className="group flex flex-col h-full rounded-lg bg-blog-surface border border-slate-200 overflow-hidden transition-all duration-300 hover:border-blog-accent/20"
                   >
                     <PostIllustration slug={rel.slug} className="w-full h-auto" />
                     <div className="flex flex-col flex-1 p-5 sm:p-6">
@@ -325,11 +354,11 @@ export default async function BlogPostPage({
                       <p className="text-sm text-blog-muted leading-relaxed flex-1 mb-4">
                         {rel.excerpt}
                       </p>
-                      <div className="flex items-center gap-2 text-xs text-blog-muted pt-3 border-t border-white/5">
-                        <span className="text-slate-900/70 font-medium">
+                      <div className="flex items-center gap-2 text-xs text-blog-muted pt-3 border-t border-slate-200">
+                        <span className="text-slate-700 font-medium">
                           {rel.author}
                         </span>
-                        <span className="text-slate-900/20">&middot;</span>
+                        <span className="text-slate-300" aria-hidden="true">&middot;</span>
                         <time dateTime={rel.dateISO}>{rel.date}</time>
                       </div>
                     </div>

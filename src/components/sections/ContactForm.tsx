@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { services as canonicalServices } from "@/lib/services-data";
+import { glassCard } from "@/lib/ui-tokens";
 
 const CONTACT_API =
   "https://d0xd30uqf9.execute-api.us-east-1.amazonaws.com/prod/contact";
@@ -140,8 +141,11 @@ export default function ContactForm({
         : "border-slate-200 dark:border-white/10 hover:border-slate-300 focus:border-primary"
     }`;
 
+  // Form card uses the shared glassCard token so it inherits the mobile
+  // blur tiering (backdrop-blur-md on phone, backdrop-blur-xl from md+) —
+  // this is the largest blur surface on the site, so tiering matters here.
   const formCard = (
-    <div className="relative rounded-2xl bg-white/70 dark:bg-white/[0.04] backdrop-blur-xl backdrop-saturate-150 border border-white/60 dark:border-white/10 shadow-[0_8px_32px_rgba(15,23,42,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] p-6 sm:p-8 lg:p-10">
+    <div className={`${glassCard} p-6 sm:p-8 lg:p-10`}>
       {/* Live region — single source for screen-reader status announcements. */}
       <div aria-live="polite" aria-atomic="true" className="sr-only">
         {status === "loading" && "Sending message..."}

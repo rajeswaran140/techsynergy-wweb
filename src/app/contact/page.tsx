@@ -12,7 +12,7 @@ const ContactForm = dynamic(
   {
     loading: () => (
       <div
-        className="animate-pulse rounded-2xl bg-white/40 dark:bg-white/[0.03] border border-white/40 dark:border-white/10 backdrop-blur-xl h-150"
+        className="animate-pulse rounded-2xl bg-white/40 dark:bg-white/[0.03] border border-white/40 dark:border-white/10 backdrop-blur-md md:backdrop-blur-xl h-96 sm:h-[34rem]"
         aria-label="Loading contact form"
       />
     ),
@@ -107,7 +107,7 @@ export default function ContactPage() {
       />
 
       {/* Hero */}
-      <section className="section-glow py-14 sm:py-18 md:py-22 overflow-hidden">
+      <section className="section-glow py-12 sm:py-24 overflow-hidden">
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center z-10">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-3">
             Contact TechSynergy
@@ -120,7 +120,7 @@ export default function ContactPage() {
       </section>
 
       {/* Form */}
-      <section className="section-glow section-glow-alt py-10 sm:py-14 lg:py-18 overflow-hidden">
+      <section className="section-glow section-glow-alt py-12 sm:py-24 overflow-hidden">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="mb-8 text-sm">
@@ -154,19 +154,27 @@ export default function ContactPage() {
                 href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
                   "Inquiry from techsynergy.ca"
                 )}`}
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 transition-colors shadow-md shadow-primary/20"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition-colors shadow-md shadow-primary/20"
+                aria-label={`Email ${CONTACT_EMAIL}`}
               >
-                <HiMail className="w-4 h-4" aria-hidden="true" />
-                Email&nbsp;
-                <span className="font-mono font-medium">{CONTACT_EMAIL}</span>
+                <HiMail className="w-4 h-4 shrink-0" aria-hidden="true" />
+                {/* Mobile: compact "Email Us" so the full address doesn't
+                    overflow the button on 320px viewports. Tablet+: show the
+                    actual address so visitors know what's about to open in
+                    their mail client. */}
+                <span className="sm:hidden">Email Us</span>
+                <span className="hidden sm:inline">
+                  Email&nbsp;
+                  <span className="font-mono font-medium">{CONTACT_EMAIL}</span>
+                </span>
               </a>
               <a
                 href={LINKEDIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#0a66c2] px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition-opacity shadow-md"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#0a66c2] px-5 py-3 text-sm font-semibold text-white hover:opacity-90 transition-opacity shadow-md"
               >
-                <FaLinkedin className="w-4 h-4" aria-hidden="true" />
+                <FaLinkedin className="w-4 h-4 shrink-0" aria-hidden="true" />
                 Message on LinkedIn
                 <span className="sr-only">(opens in new tab)</span>
               </a>

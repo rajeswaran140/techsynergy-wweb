@@ -2,8 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { HiSun, HiMoon, HiDesktopComputer } from "react-icons/hi";
+import type { IconType } from "react-icons";
 
 type Theme = "light" | "dark" | "system";
+
+const themeOptions: { value: Theme; icon: IconType; label: string }[] = [
+  { value: "light", icon: HiSun, label: "Light" },
+  { value: "dark", icon: HiMoon, label: "Dark" },
+  { value: "system", icon: HiDesktopComputer, label: "System" },
+];
 
 function applyTheme(theme: Theme) {
   const isDark =
@@ -13,7 +20,11 @@ function applyTheme(theme: Theme) {
   document.documentElement.classList.toggle("dark", isDark);
 }
 
-export default function ThemeToggle({ className = "" }: { className?: string }) {
+export default function ThemeToggle({
+  className = "",
+}: {
+  className?: string;
+}) {
   const [theme, setTheme] = useState<Theme>("system");
   const [mounted, setMounted] = useState(false);
 
@@ -39,27 +50,32 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
     applyTheme(theme);
   }, [theme, mounted]);
 
-  function cycle() {
-    setTheme((t) => (t === "light" ? "dark" : t === "dark" ? "system" : "light"));
-  }
-
-  const Icon =
-    theme === "light" ? HiSun : theme === "dark" ? HiMoon : HiDesktopComputer;
-  const next =
-    theme === "light" ? "dark" : theme === "dark" ? "system" : "light";
-  const label = mounted
-    ? `Theme: ${theme}. Switch to ${next}.`
-    : "Toggle theme";
-
   return (
-    <button
-      type="button"
-      onClick={cycle}
-      aria-label={label}
-      title={label}
-      className={`p-2 rounded-md text-slate-300 hover:text-white hover:bg-white/10 transition-colors ${className}`}
+    <div
+      role="group"
+      aria-label="Theme"
+      className={`inline-flex items-center gap-0.5 rounded-lg bg-white/5 p-0.5 border border-white/10 ${className}`}
     >
-      {mounted ? <Icon className="w-5 h-5" /> : <span className="block w-5 h-5" />}
-    </button>
+      {themeOptions.map(({ value, icon: Icon, label }) => {
+        const isActive = mounted && theme === value;
+        return (
+          <button
+            key={value}
+            type="button"
+            onClick={() => setTheme(value)}
+            aria-label={`${label} theme${isActive ? " (selected)" : ""}`}
+            aria-pressed={isActive}
+            title={`${label} theme`}
+            className={`flex items-center justify-center w-7 h-7 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+              isActive
+                ? "bg-white/15 text-white shadow-sm"
+                : "text-slate-400 hover:text-white hover:bg-white/5"
+            }`}
+          >
+            <Icon className="w-4 h-4" aria-hidden="true" />
+          </button>
+        );
+      })}
+    </div>
   );
 }

@@ -96,10 +96,17 @@ export default function Navbar() {
       >
         <nav aria-label="Main navigation">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-          <Link href="/" aria-label="TechSynergy Home" className="relative z-50">
+          <Link
+            href="/"
+            aria-label="TechSynergy Home"
+            className="relative z-50 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#071237]"
+          >
             <Image
               src="/logo-light.svg"
-              alt="TechSynergy - Canadian Software Development Company Logo"
+              // alt intentionally empty — the wrapping <a> carries the
+              // accessible name via aria-label, so a non-empty alt would
+              // double-announce the logo to screen readers.
+              alt=""
               width={180}
               height={32}
               priority
@@ -112,13 +119,14 @@ export default function Navbar() {
             <ul className="flex items-center gap-1 list-none m-0 p-0">
               {navLinks.map((link) => {
                 const isActive =
-                  pathname === link.href || pathname.startsWith(link.href + "/");
+                  pathname === link.href ||
+                  !!pathname?.startsWith(link.href + "/");
                 return (
                   <li key={link.href}>
                     <Link
                       href={link.href}
                       aria-current={isActive ? "page" : undefined}
-                      className={`relative px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                      className={`relative px-4 py-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#071237] ${
                         isActive
                           ? "text-white bg-white/10"
                           : "text-slate-300 hover:text-white hover:bg-white/5"

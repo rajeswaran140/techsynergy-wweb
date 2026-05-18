@@ -19,6 +19,11 @@ type EngagementModel = {
   icon: IconType;
 };
 
+// NOTE: All published ranges below are temporarily set at 50% of their
+// standard rates ("for now" reduction effective 2026-05-19). Restore to the
+// original ranges when the promotional period ends — original values are
+// preserved in git history at commit 9dcbed0 (the page's initial publish).
+
 const engagementModels: readonly EngagementModel[] = [
   {
     slug: "project",
@@ -26,7 +31,7 @@ const engagementModels: readonly EngagementModel[] = [
     bestFor: "Defined scope and deliverables",
     description:
       "Fixed scope, fixed price, written proposal. Best when you know what you need built — MVP, single integration, migration with a clear endpoint.",
-    range: "$5,000 – $150,000+ CAD",
+    range: "$2,500 – $75,000+ CAD",
     cadence: "Weekly demos, milestone payments",
     highlights: ["Fixed price", "Written proposal", "Milestone-based"],
     color: "from-primary to-blue-400",
@@ -38,7 +43,7 @@ const engagementModels: readonly EngagementModel[] = [
     bestFor: "Ongoing capacity and roadmap execution",
     description:
       "Monthly retainer with capped hours and flexible scope. Best for post-launch products, multi-month roadmaps, or ongoing maintenance and feature work.",
-    range: "$3,000 – $15,000 CAD / month",
+    range: "$1,500 – $7,500 CAD / month",
     cadence: "Weekly stand-ups, monthly priority reviews",
     highlights: ["Flexible scope", "Capped hours", "Long-term partnership"],
     color: "from-violet-500 to-purple-500",
@@ -50,7 +55,7 @@ const engagementModels: readonly EngagementModel[] = [
     bestFor: "Small jobs and advisory work",
     description:
       "Hourly billing, no minimum, no commitment. Best for ad-hoc work — bug fixes, code audits, architecture reviews, or short consulting engagements.",
-    range: "$150 – $250 CAD / hour",
+    range: "$75 – $125 CAD / hour",
     cadence: "As-needed, billed monthly",
     highlights: ["No minimum", "Pay as you go", "Quick turnaround"],
     color: "from-emerald-500 to-teal-500",
@@ -59,13 +64,13 @@ const engagementModels: readonly EngagementModel[] = [
 ];
 
 const budgetRanges = [
-  { service: "MVP SaaS build", range: "$30K – $80K CAD" },
-  { service: "Production-ready SaaS platform", range: "$80K – $200K+ CAD" },
-  { service: "Custom MCP server / AI integration", range: "$15K – $50K CAD" },
-  { service: "Cloud migration to ca-central-1", range: "$20K – $80K CAD" },
-  { service: "Mobile app (iOS + Android via Expo)", range: "$25K – $100K CAD" },
-  { service: "API or webhook integration", range: "$5K – $25K CAD" },
-  { service: "Maintenance retainer", range: "$1.5K – $10K CAD / month" },
+  { service: "MVP SaaS build", range: "$15K – $40K CAD" },
+  { service: "Production-ready SaaS platform", range: "$40K – $100K+ CAD" },
+  { service: "Custom MCP server / AI integration", range: "$7.5K – $25K CAD" },
+  { service: "Cloud migration to ca-central-1", range: "$10K – $40K CAD" },
+  { service: "Mobile app (iOS + Android via Expo)", range: "$12.5K – $50K CAD" },
+  { service: "API or webhook integration", range: "$2.5K – $12.5K CAD" },
+  { service: "Maintenance retainer", range: "$750 – $5K CAD / month" },
 ];
 
 const included = [

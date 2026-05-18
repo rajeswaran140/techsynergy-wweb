@@ -131,10 +131,14 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
 
-      {/* Hero — dark navy to match site header */}
-      <section className="relative bg-[#071237] py-14 sm:py-18 md:py-22 overflow-hidden">
+      {/* Hero — dark navy to match site header. Background image is hidden
+          on mobile via `hidden md:block` so the browser doesn't fetch the
+          59KB photo on phones that can't show it anyway (it gets center-
+          cropped out of view). Drop-shadows on H1 + intro are also only
+          needed when the image is visible — md:+ only. */}
+      <section className="relative bg-[#071237] py-12 sm:py-24 overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60 hidden md:block"
           style={{ backgroundImage: "url('/coding_Image_2.webp')" }}
           aria-hidden="true"
         />
@@ -144,10 +148,10 @@ export default function AboutPage() {
         />
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center z-10">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 md:drop-shadow-lg">
             About TechSynergy Corp
           </h1>
-          <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+          <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed md:drop-shadow-md">
             A Canadian software company founded in 2023 in Markham, Ontario,
             with 25+ years of engineering experience building privacy-first
             SaaS products.
@@ -156,11 +160,11 @@ export default function AboutPage() {
       </section>
 
       {/* Card 1 — Our Story (product showcase, text right) */}
-      <section className="section-glow py-14 sm:py-20 overflow-hidden">
+      <section className="section-glow py-12 sm:py-24 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`${glassCard} overflow-hidden grid grid-cols-1 lg:grid-cols-2`}>
             {/* Product showcase rail — driven by canonical products-data */}
-            <div className="relative h-auto lg:min-h-[25rem] bg-linear-to-br from-[#071237] to-slate-800 flex items-center justify-center p-8 sm:p-12">
+            <div className="relative h-auto lg:min-h-[25rem] bg-linear-to-br from-[#071237] to-slate-800 flex items-center justify-center p-6 sm:p-12">
               <div className="space-y-3 w-full max-w-sm">
                 {featuredProducts.map((product) => (
                   <div
@@ -230,11 +234,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Card 2 — Our Approach (text left, stat right) */}
-      <section className="section-glow section-glow-alt pb-14 sm:pb-20 overflow-hidden">
+      {/* Card 2 — Our Approach (text left on lg, stat right). Mobile reading
+          order is source order (text first, stat second) so the substance
+          appears before the headline number. */}
+      <section className="section-glow section-glow-alt pb-12 sm:pb-24 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`${glassCard} overflow-hidden grid grid-cols-1 lg:grid-cols-2`}>
-            <div className="p-6 sm:p-8 lg:p-10 xl:p-12 flex flex-col justify-center order-2 lg:order-1">
+            <div className="p-6 sm:p-8 lg:p-10 xl:p-12 flex flex-col justify-center">
               <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-3">
                 Our Approach
               </p>
@@ -263,7 +269,7 @@ export default function AboutPage() {
                 ))}
               </div>
             </div>
-            <div className="relative h-56 sm:h-72 lg:h-auto lg:min-h-[25rem] order-1 lg:order-2">
+            <div className="relative h-48 sm:h-72 lg:h-auto lg:min-h-[25rem]">
               <div className="absolute inset-0 bg-linear-to-br from-[#071237] to-slate-800 flex items-center justify-center">
                 <div className="text-center px-6">
                   <p className="text-6xl sm:text-7xl lg:text-8xl font-bold text-white mb-2">
@@ -287,7 +293,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="section-glow py-14 sm:py-20 overflow-hidden">
+      <section className="section-glow py-12 sm:py-24 overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-14">
             <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-3">

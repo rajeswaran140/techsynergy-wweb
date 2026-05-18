@@ -17,7 +17,7 @@ export default function PageCta({
   secondaryCta?: { label: string; href: string };
 }) {
   return (
-    <section className="section-glow section-glow-alt py-14 sm:py-20 overflow-hidden">
+    <section className="section-glow section-glow-alt py-12 sm:py-24 overflow-hidden">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
           {title}

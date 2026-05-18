@@ -34,6 +34,86 @@ export function getTagColor(tag: string) {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "nextjs-vs-nestjs-choosing-backend-stack",
+    title: "Next.js or NestJS? Choosing a Backend Stack That Fits",
+    excerpt:
+      "Both can power production SaaS in Canada. The right choice depends less on the framework and more on the shape of your workload.",
+    author: "TechSynergy Team",
+    date: "May 19, 2026",
+    dateISO: "2026-05-19",
+    tags: ["Strategy", "Innovation"],
+    category: "Strategy",
+    readTime: "8 min read",
+    image: "/blog-nextjs-vs-nestjs.webp",
+    content: `The conversation about backend frameworks tends to be polarized: "always use NestJS for serious work" or "Next.js is the only thing you need now that server actions exist." Both positions are wrong because they ignore the variable that actually matters — the shape of the workload you are building. Here is a practical framework for choosing between the two for a Canadian SaaS build in 2026.
+
+## Two Different Problem Shapes
+
+Next.js and NestJS solve different problems, even when both can technically handle the same code:
+
+- **Next.js backend** — file-system-routed handlers (\`app/api/*\`, server actions, server components) deployed as serverless functions on platforms like AWS Amplify, Vercel, or Cloud Run. Same deployment unit as the frontend. No DI, no controllers, no modules — just functions.
+- **NestJS** — a structured backend framework with controllers, services, modules, guards, interceptors, and a full dependency-injection tree. Usually runs as a persistent Node process on EC2, ECS, Fargate, or as a standalone Lambda.
+
+The first is a backend that ships with your frontend. The second is a backend that stands alone.
+
+## Where the Costs Hide
+
+Idle cost is the first surprise that shifts the decision:
+
+- **Next.js on serverless platforms** scales to zero. A marketing site with admin CRUD costs $3–10 CAD per month at moderate traffic on AWS Amplify (ca-central-1). Cold starts are 500–1500ms for the first request after idle, then sub-100ms once warm.
+- **NestJS** typically wants a persistent runtime. A minimum production setup — a t3.small EC2 + load balancer + monitoring — is $30–50 CAD per month idle, before any traffic. In return, you get sub-50ms p50 response times and the ability to run long-lived connections.
+
+For Canadian B2B SaaS, this difference matters most early. You can always migrate a $5/month Next.js backend onto NestJS at $50/month when the workload demands it. The reverse — paying $50/month for a backend that never sees the load to justify it — is the more common mistake.
+
+## What Workloads Genuinely Demand NestJS
+
+Some problems need a persistent backend:
+
+- **Long-running connections** — WebSockets, gRPC, SMPP, Server-Sent Events. Serverless functions cap out at 30 seconds; carrier-grade messaging platforms maintain socket connections that last hours.
+- **Background queue consumers** — SQS, Bull, RabbitMQ workers reading off a queue continuously. Serverless cron can poll, but a persistent worker scales further and recovers faster.
+- **Scheduled jobs with complex state** — anything that needs an in-memory cache, batch operations, or coordination across messages.
+- **Multi-tenant systems with strict latency budgets** — when sub-100ms is a hard requirement on every call, eliminate cold starts entirely.
+
+If your product is fundamentally request-and-response, you do not need any of this.
+
+## What Workloads Are Fine on Next.js
+
+A surprising amount of B2B SaaS fits the request-and-response shape:
+
+- **CRUD APIs** — admin panels, customer portals, internal tools.
+- **Form submissions and lead intake** — short-lived, low-frequency, latency-tolerant.
+- **Transactional email and document generation** — fan out to a managed service like AWS SES, return immediately.
+- **Direct integrations with Claude, OpenAI, Stripe, or third-party APIs** — your function is an orchestrator; the heavy lifting happens elsewhere.
+- **AI feature integration** — most LLM-backed workflows fit cleanly into a serverless function as long as the response budget is under 30 seconds.
+
+For a Canadian solo founder or small team shipping a focused SaaS, this list usually covers the majority of the backend work.
+
+## Team Scaling Changes the Answer
+
+Framework choice is also about who maintains the code six months from now:
+
+- **Next.js** suits 1 to 3 developers. The lack of imposed structure becomes a liability above ten developers — code organization is fully your responsibility.
+- **NestJS** earns its weight at five-plus developers. The controller / service / module pattern is opinionated, which means new developers can read any module and understand what does what within minutes. The decorators, DI, and explicit boundaries become guardrails, not friction.
+
+If you are hiring a development partner, ask which model their team works in. A NestJS shop will not be efficient on a Next.js full-stack codebase, and vice versa. Forcing the wrong tool on a capable team costs more than the framework choice itself.
+
+## Hybrid Is the Most Common Outcome
+
+Mature Canadian SaaS shops rarely run on one or the other exclusively. The usual mature shape:
+
+- **Marketing site and admin tools** on Next.js, hosted on Amplify or Vercel
+- **Core product backend** on NestJS when it needs persistent connections or a complex domain
+- **Heavy or scheduled work** as standalone Lambda plus EventBridge or Step Functions
+
+The question is not "which framework do we standardize on" but "which workload deserves which runtime." Picking deliberately — not by default — is what separates a stack that scales from one that boxes you in.
+
+## The Bottom Line
+
+Start with the workload, not the framework. If your product is request-and-response and your team is small, Next.js backend is almost certainly the right choice — and you can ship it for under $10 CAD per month on Canadian-hosted infrastructure. If you have long-lived processes, complex domains, or a team large enough to need enforced structure, NestJS earns its place.
+
+The expensive mistake is the opposite of either: choosing NestJS for a marketing site, or choosing Next.js for a carrier-grade messaging platform. Both will technically work. Neither will be the right fit, and both will cost you more than picking deliberately would have.`,
+  },
+  {
     slug: "practical-ai-integration-canadian-businesses-2026",
     title: "Practical AI Integration for Canadian Businesses",
     excerpt:

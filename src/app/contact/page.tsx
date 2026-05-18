@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { FaLinkedin } from "react-icons/fa";
-import { HiMail } from "react-icons/hi";
-import { CONTACT_EMAIL, SITE_URL } from "@/lib/site";
+import { SITE_URL } from "@/lib/site";
 import { COMPANY } from "@/lib/legal-info";
 import { glassCard } from "@/lib/ui-tokens";
 
@@ -85,12 +84,10 @@ export default function ContactPage() {
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "customer support",
-        email: CONTACT_EMAIL,
         url: `${SITE_URL}/contact`,
         areaServed: "CA",
         availableLanguage: ["English"],
       },
-      email: CONTACT_EMAIL,
       sameAs: [LINKEDIN_URL],
     },
   };
@@ -139,46 +136,27 @@ export default function ContactPage() {
 
           <ContactForm variant="standalone" />
 
-          {/* Fallback contact channels — email + LinkedIn for when the form
-              fails or the visitor prefers a different surface. */}
+          {/* Fallback contact channel — LinkedIn only. The form is the
+              primary inbound surface; LinkedIn covers visitors who prefer a
+              social channel. Email is intentionally not published. */}
           <div className={`${glassCard} mt-10 p-6 sm:p-8`}>
             <h2 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mb-2">
               Prefer a different channel?
             </h2>
             <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
-              Reach us directly by email, or connect with our founder on
+              If you&apos;d rather skip the form, connect with our founder on
               LinkedIn — we read and respond to every message.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-                  "Inquiry from techsynergy.ca"
-                )}`}
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition-colors shadow-md shadow-primary/20"
-                aria-label={`Email ${CONTACT_EMAIL}`}
-              >
-                <HiMail className="w-4 h-4 shrink-0" aria-hidden="true" />
-                {/* Mobile: compact "Email Us" so the full address doesn't
-                    overflow the button on 320px viewports. Tablet+: show the
-                    actual address so visitors know what's about to open in
-                    their mail client. */}
-                <span className="sm:hidden">Email Us</span>
-                <span className="hidden sm:inline">
-                  Email&nbsp;
-                  <span className="font-mono font-medium">{CONTACT_EMAIL}</span>
-                </span>
-              </a>
-              <a
-                href={LINKEDIN_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#0a66c2] px-5 py-3 text-sm font-semibold text-white hover:opacity-90 transition-opacity shadow-md"
-              >
-                <FaLinkedin className="w-4 h-4 shrink-0" aria-hidden="true" />
-                Message on LinkedIn
-                <span className="sr-only">(opens in new tab)</span>
-              </a>
-            </div>
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#0a66c2] px-5 py-3 text-sm font-semibold text-white hover:opacity-90 transition-opacity shadow-md"
+            >
+              <FaLinkedin className="w-4 h-4 shrink-0" aria-hidden="true" />
+              Message on LinkedIn
+              <span className="sr-only">(opens in new tab)</span>
+            </a>
           </div>
         </div>
       </section>

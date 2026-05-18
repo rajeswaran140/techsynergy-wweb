@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
-import { CONTACT_EMAIL } from "@/lib/site";
 import { COMPANY } from "@/lib/legal-info";
 import { enabledProducts } from "@/lib/products-data";
 import ArrowRightIcon from "@/components/ui/ArrowRightIcon";
@@ -94,26 +93,14 @@ export default function Footer() {
               {COMPANY.city}, {COMPANY.province}, {COMPANY.country}
             </address>
 
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="inline-flex items-center gap-1.5 text-slate-400 hover:text-white text-xs mb-6 transition-colors font-mono"
-            >
-              <svg
-                className="w-3.5 h-3.5 shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+            <p className="text-slate-500 text-xs mb-6">
+              <Link
+                href="/contact"
+                className="hover:text-white transition-colors"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-              {CONTACT_EMAIL}
-            </a>
+                Get in touch →
+              </Link>
+            </p>
 
             <div className="flex gap-3">
               {socialLinks.map((social) => (

@@ -12,12 +12,14 @@ export const SITE_URL =
   process.env.NEXTAUTH_URL ||
   "https://techsynergy.ca";
 
-/**
- * Public-facing contact email. Surfaced on /contact (visible + mailto + JSON-LD
- * contactPoint), referenced by structured data. Change here, propagates
- * everywhere.
- */
-export const CONTACT_EMAIL = "rajeswaran.t@techsynergy.ca";
+// The CONTACT_EMAIL constant was removed by user direction — the address is
+// no longer surfaced on any public page or in any JSON-LD block. The contact
+// form on /contact remains the primary inbound channel; LinkedIn is the
+// public-facing fallback.
+//
+// If a future iteration wants to expose an email again, prefer a role-based
+// alias (e.g. contact@techsynergy.ca) rather than a personal mailbox, and
+// re-introduce this constant so every consumer reads from one place.
 
 /**
  * User-agents we explicitly opt out of via robots.txt. Covers training

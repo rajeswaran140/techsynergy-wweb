@@ -3,10 +3,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { services, getServiceBySlug } from "@/lib/services-data";
 import { glassCard, glassChip, glassIconOrb } from "@/lib/ui-tokens";
+import PageCta from "@/components/ui/PageCta";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
+const BASE_URL = "https://techsynergy.ca";
 
 export async function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
@@ -31,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${service.title} | TechSynergy`,
       description: service.shortDescription,
       type: "website",
-      url: `https://techsynergy.ca/services/${slug}`,
+      url: `${BASE_URL}/services/${slug}`,
       images: [
         {
           url: "/og-default.png",
@@ -59,9 +62,61 @@ export default async function ServiceDetailPage({ params }: Props) {
   }
 
   const Icon = service.icon;
+  const serviceUrl = `${BASE_URL}/services/${slug}`;
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.description,
+    url: serviceUrl,
+    provider: {
+      "@type": "Organization",
+      name: "TechSynergy Corp",
+      url: BASE_URL,
+    },
+    areaServed: { "@type": "Country", name: "Canada" },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: `${service.title} Capabilities`,
+      itemListElement: service.features.map((feature) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: feature },
+      })),
+    },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: `${BASE_URL}/services`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: service.title,
+        item: serviceUrl,
+      },
+    ],
+  };
 
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       {/* Hero — glass over a tinted ambient gradient */}
       <section className="section-glow relative overflow-hidden py-20 sm:py-24 text-center">
         <div className="relative mx-auto max-w-4xl px-6 z-10">
@@ -79,6 +134,30 @@ export default async function ServiceDetailPage({ params }: Props) {
 
       <section className="section-glow section-glow-alt py-20 overflow-hidden">
         <div className="mx-auto max-w-4xl px-6">
+          {/* Visible breadcrumb */}
+          <nav aria-label="Breadcrumb" className="mb-8 text-sm">
+            <ol className="flex flex-wrap items-center gap-2 text-slate-500 dark:text-slate-400">
+              <li>
+                <Link href="/" className="hover:text-primary transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link
+                  href="/services"
+                  className="hover:text-primary transition-colors"
+                >
+                  Services
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li className="text-slate-700 dark:text-slate-200 font-medium">
+                {service.title}
+              </li>
+            </ol>
+          </nav>
+
           {/* Description */}
           <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
             {service.description}
@@ -120,25 +199,14 @@ export default async function ServiceDetailPage({ params }: Props) {
               ))}
             </div>
           </div>
-
-          {/* CTA */}
-          <div className={`mt-16 ${glassCard} p-10 text-center`}>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-              Ready to get started?
-            </h2>
-            <p className="mt-3 text-slate-600 dark:text-slate-300">
-              Let&apos;s discuss how our {service.title.toLowerCase()} services
-              can help your business grow.
-            </p>
-            <Link
-              href="/contact"
-              className="mt-6 inline-flex items-center rounded-full bg-primary px-8 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 shadow-lg shadow-primary/25"
-            >
-              Contact Us
-            </Link>
-          </div>
         </div>
       </section>
+
+      <PageCta
+        title="Ready to get started?"
+        body={`Let's discuss how our ${service.title.toLowerCase()} services can help your business grow.`}
+        primaryCta={{ label: "Contact Us", href: "/contact" }}
+      />
     </div>
   );
 }

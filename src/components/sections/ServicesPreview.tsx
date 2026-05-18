@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { featuredServices } from "@/lib/services-data";
 import { glassCard, glassCardHover, glassChip, glassIconOrb } from "@/lib/ui-tokens";
+import ArrowRightIcon from "@/components/ui/ArrowRightIcon";
 
 export default function ServicesPreview() {
   return (
@@ -59,20 +60,7 @@ export default function ServicesPreview() {
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white font-semibold text-sm hover:bg-primary-dark transition-colors shadow-lg shadow-primary/25"
           >
             View All Services
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
+            <ArrowRightIcon />
           </Link>
         </div>
       </div>

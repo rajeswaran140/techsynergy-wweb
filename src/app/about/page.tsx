@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { featuredProducts } from "@/lib/products-data";
 import { glassCard, glassChip } from "@/lib/ui-tokens";
+import PageCta from "@/components/ui/PageCta";
 
 export const metadata: Metadata = {
   title: "About TechSynergy | Canadian Software Development",
@@ -322,25 +322,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section-glow section-glow-alt py-14 sm:py-20 overflow-hidden">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
-            Want to Work Together?
-          </h2>
-          <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm sm:text-base">
-            Whether you need a SaaS product built, an AI / MCP integration, or
-            a cloud migration to Canadian-resident infrastructure — let&apos;s
-            talk.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-block px-8 py-3.5 rounded-lg bg-primary text-white font-semibold hover:bg-primary-dark transition-colors shadow-lg shadow-primary/25"
-          >
-            Get in Touch
-          </Link>
-        </div>
-      </section>
+      <PageCta
+        title="Want to Work Together?"
+        body="Whether you need a SaaS product built, an AI / MCP integration, or a cloud migration to Canadian-resident infrastructure — let's talk."
+        primaryCta={{ label: "Get in Touch", href: "/contact" }}
+      />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { featuredProducts } from "@/lib/products-data";
 import { glassCard, glassCardHover } from "@/lib/ui-tokens";
+import ArrowRightIcon from "@/components/ui/ArrowRightIcon";
 
 export default function ProductsPreview() {
   return (
@@ -77,20 +78,7 @@ export default function ProductsPreview() {
             className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:underline"
           >
             See all products
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
+            <ArrowRightIcon />
           </Link>
         </div>
       </div>

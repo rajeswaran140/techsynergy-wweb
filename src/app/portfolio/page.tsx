@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { enabledProducts } from "@/lib/products-data";
 import { glassCard, glassCardHover, glassChip } from "@/lib/ui-tokens";
+import PageCta from "@/components/ui/PageCta";
 
 export const metadata: Metadata = {
   title: "Our Portfolio | Products & Projects by TechSynergy",
@@ -130,24 +130,11 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section-glow section-glow-alt py-14 sm:py-20 overflow-hidden">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
-            Have a Project in Mind?
-          </h2>
-          <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm sm:text-base">
-            We&apos;d love to hear about it. Let&apos;s discuss how we can
-            bring your idea to life.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-block px-8 py-3.5 rounded-lg bg-primary text-white font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-primary/25"
-          >
-            Start a Conversation
-          </Link>
-        </div>
-      </section>
+      <PageCta
+        title="Have a Project in Mind?"
+        body="We'd love to hear about it. Let's discuss how we can bring your idea to life."
+        primaryCta={{ label: "Start a Conversation", href: "/contact" }}
+      />
     </div>
   );
 }

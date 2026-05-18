@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LegalAccordion from "@/components/ui/LegalAccordion";
+import ArrowRightIcon from "@/components/ui/ArrowRightIcon";
 import {
   COMPANY,
   LEGAL_LAST_UPDATED_DISPLAY,
@@ -357,20 +358,7 @@ export default function PrivacyPolicyPage() {
               className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
             >
               View Terms of Service
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
+              <ArrowRightIcon />
             </Link>
           </div>
         </div>

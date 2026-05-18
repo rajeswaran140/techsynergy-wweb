@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import { blogPosts, getTagColor } from "@/lib/blog-data";
+import { publishedPosts, getTagColor } from "@/lib/blog-data";
 import CategoryFilter from "@/components/blog/CategoryFilter";
 import PostIllustration from "@/components/blog/PostIllustration";
 import ArrowRightIcon from "@/components/ui/ArrowRightIcon";
@@ -46,11 +46,11 @@ export default async function BlogPage({
   searchParams: Promise<{ category?: string; tag?: string }>;
 }) {
   const { category, tag } = await searchParams;
-  const allCategories = Array.from(new Set(blogPosts.map((p) => p.category)));
-  const allTags = Array.from(new Set(blogPosts.flatMap((p) => p.tags)));
+  const allCategories = Array.from(new Set(publishedPosts.map((p) => p.category)));
+  const allTags = Array.from(new Set(publishedPosts.flatMap((p) => p.tags)));
 
   // Featured = newest by dateISO, NOT array position.
-  const sorted = [...blogPosts].sort((a, b) =>
+  const sorted = [...publishedPosts].sort((a, b) =>
     b.dateISO.localeCompare(a.dateISO)
   );
 

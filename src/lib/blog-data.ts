@@ -10,6 +10,12 @@ export interface BlogPost {
   content: string;
   category: string;
   image: string;
+  /**
+   * Defaults to true when omitted. Set to false to hide a post site-wide —
+   * removed from /blog index, /blog/[slug] (404), sitemap, RSS, and
+   * related-posts. Content stays in this file so re-enabling is one edit.
+   */
+  published?: boolean;
 }
 
 /** Tag color map — returns Tailwind classes for bg and text */
@@ -35,6 +41,7 @@ export function getTagColor(tag: string) {
 export const blogPosts: BlogPost[] = [
   {
     slug: "picking-aws-compute-backend-hosting-costs",
+    published: false,
     title: "Picking AWS Compute: What Backend Hosting Actually Costs",
     excerpt:
       "EC2, Beanstalk, Fargate, Lambda — the choice is less about which is cheapest and more about which line items hide in each bill.",
@@ -106,6 +113,7 @@ Decide on the shape — bare server, managed platform, container, or serverless 
   },
   {
     slug: "nextjs-vs-nestjs-choosing-backend-stack",
+    published: false,
     title: "Next.js or NestJS? Choosing a Backend Stack That Fits",
     excerpt:
       "Both can power production SaaS in Canada. The right choice depends less on the framework and more on the shape of your workload.",
@@ -599,18 +607,37 @@ Building a successful startup is a marathon, not a sprint. The founders who win 
   },
 ];
 
-/** Lookup a post by slug */
-export function getPostBySlug(slug: string): BlogPost | undefined {
-  return blogPosts.find((p) => p.slug === slug);
+/**
+ * Treat published as opt-out — a post that omits the field is published.
+ * Set published: false to hide a post site-wide.
+ */
+export function isPublished(post: BlogPost): boolean {
+  return post.published !== false;
 }
 
-/** Get related posts by shared tags, excluding the current slug */
+/**
+ * Use this everywhere the blog surface needs the visible-to-the-public list:
+ * /blog index, /blog/[slug] generateStaticParams, sitemap, RSS, related-posts.
+ * The raw blogPosts export remains available for internal tools (admin UI etc.)
+ * that need to see drafts too.
+ */
+export const publishedPosts: BlogPost[] = blogPosts.filter(isPublished);
+
+/** Lookup a published post by slug. Returns undefined for unpublished slugs. */
+export function getPostBySlug(slug: string): BlogPost | undefined {
+  const post = blogPosts.find((p) => p.slug === slug);
+  return post && isPublished(post) ? post : undefined;
+}
+
+/** Get related posts by shared tags, excluding the current slug + unpublished. */
 export function getRelatedPosts(slug: string, limit = 3): BlogPost[] {
   const current = getPostBySlug(slug);
-  if (!current) return blogPosts.filter((p) => p.slug !== slug).slice(0, limit);
+  if (!current) {
+    return publishedPosts.filter((p) => p.slug !== slug).slice(0, limit);
+  }
 
   const currentTags = new Set(current.tags);
-  const others = blogPosts.filter((p) => p.slug !== slug);
+  const others = publishedPosts.filter((p) => p.slug !== slug);
 
   // Score by number of shared tags
   const scored = others.map((p) => ({

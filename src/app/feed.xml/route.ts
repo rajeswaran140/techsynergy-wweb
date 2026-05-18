@@ -1,4 +1,4 @@
-import { blogPosts } from "@/lib/blog-data";
+import { publishedPosts as blogPosts } from "@/lib/blog-data";
 import { SITE_URL as BASE_URL } from "@/lib/site";
 
 /**

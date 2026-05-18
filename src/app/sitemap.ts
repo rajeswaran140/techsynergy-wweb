@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { blogPosts } from "@/lib/blog-data";
+import { publishedPosts as blogPosts } from "@/lib/blog-data";
 import { services } from "@/lib/services-data";
 import { LEGAL_LAST_UPDATED } from "@/lib/legal-info";
 import { SITE_URL } from "@/lib/site";

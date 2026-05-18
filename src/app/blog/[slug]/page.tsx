@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
-  blogPosts,
+  publishedPosts,
   getPostBySlug,
   getRelatedPosts,
   getTagColor,
@@ -14,7 +14,7 @@ import PostIllustration from "@/components/blog/PostIllustration";
 const BASE_URL = "https://techsynergy.ca";
 
 export function generateStaticParams() {
-  return blogPosts.map((p) => ({ slug: p.slug }));
+  return publishedPosts.map((p) => ({ slug: p.slug }));
 }
 
 export function generateMetadata({

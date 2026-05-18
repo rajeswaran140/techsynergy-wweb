@@ -2,18 +2,28 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { services as canonicalServices } from "@/lib/services-data";
 
-const CONTACT_API = "https://d0xd30uqf9.execute-api.us-east-1.amazonaws.com/prod/contact";
+const CONTACT_API =
+  "https://d0xd30uqf9.execute-api.us-east-1.amazonaws.com/prod/contact";
 
-const services = [
-  "Web Development",
-  "Mobile App Development",
-  "Cloud Solutions",
-  "UI/UX Design",
+/** 15s ceiling so a cold-starting Lambda doesn't leave the form spinning. */
+const REQUEST_TIMEOUT_MS = 15_000;
+
+/**
+ * Service dropdown options — sourced from the canonical catalogue so the form
+ * can never drift from the rest of the site. "Other" appended as a catch-all.
+ */
+const serviceOptions = [
+  ...canonicalServices.map((s) => s.title),
   "Other",
 ];
 
-export default function ContactForm({ variant = "landing" }: { variant?: "landing" | "standalone" }) {
+export default function ContactForm({
+  variant = "landing",
+}: {
+  variant?: "landing" | "standalone";
+}) {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -24,12 +34,14 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
     _honey: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [focused, setFocused] = useState<string | null>(null);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
+    "idle"
+  );
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   useEffect(() => {
     if (status === "success" || status === "error") {
-      const timer = setTimeout(() => setStatus("idle"), 6000);
+      const timer = setTimeout(() => setStatus("idle"), 8000);
       return () => clearTimeout(timer);
     }
   }, [status]);
@@ -46,8 +58,10 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
     if (form.company.length > 100) errs.company = "Company name is too long.";
     if (!form.service.trim()) errs.service = "Please select a service.";
     if (!form.message.trim()) errs.message = "Message is required.";
-    else if (form.message.length < 10) errs.message = "Message must be at least 10 characters.";
-    else if (form.message.length > 2000) errs.message = "Message is too long (max 2000 characters).";
+    else if (form.message.length < 10)
+      errs.message = "Message must be at least 10 characters.";
+    else if (form.message.length > 2000)
+      errs.message = "Message is too long (max 2000 characters).";
     return errs;
   };
 
@@ -60,26 +74,48 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
     if (Object.keys(errs).length > 0) return;
 
     setStatus("loading");
+    setErrorMessage("");
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { _honey, ...payload } = form;
-      void _honey;
 
       const res = await fetch(CONTACT_API, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
+        signal: controller.signal,
       });
 
+      clearTimeout(timeoutId);
+
       if (!res.ok) {
-        const responseData = await res.json();
-        console.error("Contact form submission failed:", responseData);
+        const responseData = await res.json().catch(() => ({}));
         throw new Error(responseData.error || "Failed to send message.");
       }
 
       setStatus("success");
-      setForm({ name: "", email: "", phone: "", company: "", service: "", message: "", _honey: "" });
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        service: "",
+        message: "",
+        _honey: "",
+      });
     } catch (error) {
-      console.error("Contact form error:", error);
+      clearTimeout(timeoutId);
+      const msg =
+        error instanceof DOMException && error.name === "AbortError"
+          ? "Request timed out. Please try again or reach us on LinkedIn."
+          : error instanceof Error
+          ? error.message
+          : "Something went wrong.";
+      setErrorMessage(msg);
       setStatus("error");
     }
   };
@@ -93,24 +129,34 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
     }
   };
 
+  /**
+   * Native focus:ring handles the focus state — no need for a parallel React
+   * state machine tracking what the browser already tracks.
+   */
   const inputClass = (field: string) =>
-    `w-full rounded-xl border-2 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none transition-all duration-200 ${
+    `w-full rounded-xl border-2 bg-white/70 dark:bg-white/[0.04] backdrop-blur-sm px-4 py-3.5 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/20 ${
       errors[field]
-        ? "border-red-400/60 focus:border-red-400 focus:ring-2 focus:ring-red-400/20"
-        : focused === field
-        ? "border-primary focus:ring-2 focus:ring-primary/20"
-        : "border-slate-200 hover:border-slate-300"
+        ? "border-red-400/60 focus:border-red-400 focus:ring-red-400/20"
+        : "border-slate-200 dark:border-white/10 hover:border-slate-300 focus:border-primary"
     }`;
 
   const formCard = (
-    <div className="bg-slate-100 border border-slate-300 rounded-2xl p-6 sm:p-8 lg:p-10">
+    <div className="relative rounded-2xl bg-white/70 dark:bg-white/[0.04] backdrop-blur-xl backdrop-saturate-150 border border-white/60 dark:border-white/10 shadow-[0_8px_32px_rgba(15,23,42,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] p-6 sm:p-8 lg:p-10">
+      {/* Live region — single source for screen-reader status announcements. */}
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
+        {status === "loading" && "Sending message..."}
+        {status === "success" && "Message sent successfully."}
+        {status === "error" && errorMessage}
+      </div>
+
       {status === "success" && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
+          role="status"
           className="mb-6 rounded-xl border border-green-600/30 bg-green-50 p-4 text-sm text-green-700 text-center flex items-center justify-center gap-2"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           Message sent successfully! We&apos;ll be in touch soon.
@@ -120,18 +166,28 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
+          role="alert"
           className="mb-6 rounded-xl border border-red-600/30 bg-red-50 p-4 text-sm text-red-700 text-center flex items-center justify-center gap-2"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          Something went wrong. Please try again.
+          {errorMessage || "Something went wrong. Please try again."}
         </motion.div>
       )}
 
       <form onSubmit={handleSubmit} noValidate className="space-y-5">
-        {/* Honeypot - hidden from users and bots, positioned off-screen */}
-        <div style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }} aria-hidden="true">
+        {/* Honeypot — off-screen, hidden from users and bots. */}
+        <div
+          style={{
+            position: "absolute",
+            left: "-9999px",
+            width: "1px",
+            height: "1px",
+            overflow: "hidden",
+          }}
+          aria-hidden="true"
+        >
           <label htmlFor="website_url">Website</label>
           <input
             type="text"
@@ -147,8 +203,9 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
 
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
-            <label htmlFor="cf-name" className="mb-2 block text-sm font-medium text-slate-700">
-              Name <span className="text-primary">*</span>
+            <label htmlFor="cf-name" className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">
+              Name <span className="text-primary" aria-hidden="true">*</span>
+              <span className="sr-only">(required)</span>
             </label>
             <input
               type="text"
@@ -156,23 +213,25 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
               name="name"
               value={form.name}
               onChange={handleChange}
-              onFocus={() => setFocused("name")}
-              onBlur={() => setFocused(null)}
               className={inputClass("name")}
               placeholder="Your name"
               maxLength={100}
               autoComplete="name"
+              aria-required="true"
+              aria-invalid={!!errors.name}
+              aria-describedby={errors.name ? "cf-name-error" : undefined}
             />
             {errors.name && (
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-1.5 text-xs text-red-400">
+              <p id="cf-name-error" className="mt-1.5 text-xs text-red-600">
                 {errors.name}
-              </motion.p>
+              </p>
             )}
           </div>
 
           <div>
-            <label htmlFor="cf-email" className="mb-2 block text-sm font-medium text-slate-700">
-              Email <span className="text-primary">*</span>
+            <label htmlFor="cf-email" className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">
+              Email <span className="text-primary" aria-hidden="true">*</span>
+              <span className="sr-only">(required)</span>
             </label>
             <input
               type="email"
@@ -180,22 +239,23 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
               name="email"
               value={form.email}
               onChange={handleChange}
-              onFocus={() => setFocused("email")}
-              onBlur={() => setFocused(null)}
               className={inputClass("email")}
               placeholder="you@company.com"
               maxLength={254}
               autoComplete="email"
+              aria-required="true"
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "cf-email-error" : undefined}
             />
             {errors.email && (
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-1.5 text-xs text-red-400">
+              <p id="cf-email-error" className="mt-1.5 text-xs text-red-600">
                 {errors.email}
-              </motion.p>
+              </p>
             )}
           </div>
 
           <div>
-            <label htmlFor="cf-phone" className="mb-2 block text-sm font-medium text-slate-700">
+            <label htmlFor="cf-phone" className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">
               Phone
             </label>
             <input
@@ -204,22 +264,22 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
               name="phone"
               value={form.phone}
               onChange={handleChange}
-              onFocus={() => setFocused("phone")}
-              onBlur={() => setFocused(null)}
               className={inputClass("phone")}
               placeholder="+1 (555) 000-0000"
               maxLength={30}
               autoComplete="tel"
+              aria-invalid={!!errors.phone}
+              aria-describedby={errors.phone ? "cf-phone-error" : undefined}
             />
             {errors.phone && (
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-1.5 text-xs text-red-400">
+              <p id="cf-phone-error" className="mt-1.5 text-xs text-red-600">
                 {errors.phone}
-              </motion.p>
+              </p>
             )}
           </div>
 
           <div>
-            <label htmlFor="cf-company" className="mb-2 block text-sm font-medium text-slate-700">
+            <label htmlFor="cf-company" className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">
               Company
             </label>
             <input
@@ -228,49 +288,54 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
               name="company"
               value={form.company}
               onChange={handleChange}
-              onFocus={() => setFocused("company")}
-              onBlur={() => setFocused(null)}
               className={inputClass("company")}
               placeholder="Your company"
               maxLength={100}
               autoComplete="organization"
+              aria-invalid={!!errors.company}
+              aria-describedby={errors.company ? "cf-company-error" : undefined}
             />
             {errors.company && (
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-1.5 text-xs text-red-400">
+              <p id="cf-company-error" className="mt-1.5 text-xs text-red-600">
                 {errors.company}
-              </motion.p>
+              </p>
             )}
           </div>
         </div>
 
         <div>
-          <label htmlFor="cf-service" className="mb-2 block text-sm font-medium text-slate-700">
-            Service Interested In <span className="text-primary">*</span>
+          <label htmlFor="cf-service" className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">
+            Service Interested In <span className="text-primary" aria-hidden="true">*</span>
+            <span className="sr-only">(required)</span>
           </label>
           <select
             id="cf-service"
             name="service"
             value={form.service}
             onChange={handleChange}
-            onFocus={() => setFocused("service")}
-            onBlur={() => setFocused(null)}
-            className={`${inputClass("service")} ${!form.service ? "text-slate-400" : "text-slate-900"}`}
+            className={`${inputClass("service")} ${!form.service ? "text-slate-400" : "text-slate-900 dark:text-slate-100"}`}
+            aria-required="true"
+            aria-invalid={!!errors.service}
+            aria-describedby={errors.service ? "cf-service-error" : undefined}
           >
             <option value="">Select a service</option>
-            {services.map((s) => (
-              <option key={s} value={s}>{s}</option>
+            {serviceOptions.map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
             ))}
           </select>
           {errors.service && (
-            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-1.5 text-xs text-red-400">
+            <p id="cf-service-error" className="mt-1.5 text-xs text-red-600">
               {errors.service}
-            </motion.p>
+            </p>
           )}
         </div>
 
         <div>
-          <label htmlFor="cf-message" className="mb-2 block text-sm font-medium text-slate-700">
-            Message <span className="text-primary">*</span>
+          <label htmlFor="cf-message" className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-200">
+            Message <span className="text-primary" aria-hidden="true">*</span>
+            <span className="sr-only">(required)</span>
           </label>
           <textarea
             id="cf-message"
@@ -278,21 +343,27 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
             rows={5}
             value={form.message}
             onChange={handleChange}
-            onFocus={() => setFocused("message")}
-            onBlur={() => setFocused(null)}
             className={`${inputClass("message")} resize-none`}
             placeholder="Tell us about your project..."
             maxLength={2000}
+            aria-required="true"
+            aria-invalid={!!errors.message}
+            aria-describedby={`cf-message-counter${errors.message ? " cf-message-error" : ""}`}
           />
           <div className="flex justify-between mt-1.5">
             {errors.message ? (
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs text-red-400">
+              <p id="cf-message-error" className="text-xs text-red-600">
                 {errors.message}
-              </motion.p>
+              </p>
             ) : (
               <span />
             )}
-            <p className={`text-xs transition-colors ${form.message.length > 1800 ? "text-amber-500" : "text-slate-400"}`}>
+            <p
+              id="cf-message-counter"
+              className={`text-xs transition-colors ${
+                form.message.length > 1800 ? "text-amber-600" : "text-slate-400"
+              }`}
+            >
               {form.message.length}/2000
             </p>
           </div>
@@ -306,14 +377,14 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
           >
             {status === "loading" ? (
               <span className="flex items-center justify-center gap-2">
-                <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                 </svg>
                 Sending...
               </span>
             ) : (
-              "Send Message"
+              "Get a Free Quote"
             )}
           </button>
         </div>
@@ -322,7 +393,20 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
   );
 
   if (variant === "standalone") {
-    return formCard;
+    return (
+      <div>
+        <div className="text-center mb-8 sm:mb-10">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-3">
+            Tell Us About Your Project
+          </h2>
+          <p className="text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl mx-auto">
+            Have a project in mind? We&apos;d love to hear from you. Send us a
+            message and we&apos;ll respond within one business day.
+          </p>
+        </div>
+        {formCard}
+      </div>
+    );
   }
 
   return (
@@ -333,8 +417,8 @@ export default function ContactForm({ variant = "landing" }: { variant?: "landin
             Get in Touch
           </h2>
           <p className="text-slate-400 leading-relaxed max-w-xl mx-auto">
-            Have a project in mind? We&apos;d love to hear from you. Send us
-            a message and we&apos;ll get back to you within 24 hours.
+            Have a project in mind? We&apos;d love to hear from you. Send us a
+            message and we&apos;ll get back to you within 24 hours.
           </p>
         </div>
 

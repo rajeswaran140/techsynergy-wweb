@@ -5,7 +5,7 @@ import ArrowRightIcon from "@/components/ui/ArrowRightIcon";
 
 export default function ServicesPreview() {
   return (
-    <section className="section-glow py-16 sm:py-24 overflow-hidden">
+    <section className="section-glow py-12 sm:py-24 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-14">
           <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-3">
@@ -29,7 +29,7 @@ export default function ServicesPreview() {
               key={service.slug}
               href={`/services/${service.slug}`}
               className={`group ${glassCard} ${glassCardHover} p-6 sm:p-7 animate-fade-in-up flex flex-col`}
-              style={{ animationDelay: `${i * 80}ms` }}
+              style={{ animationDelay: `${i * 50}ms` }}
             >
               <div className={glassIconOrb(service.color) + " mb-5"}>
                 <service.icon className="w-6 h-6 text-white" aria-hidden="true" />

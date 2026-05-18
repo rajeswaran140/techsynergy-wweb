@@ -6,17 +6,24 @@
  * with one-off classes at the call site.
  */
 
-/** Frosted card. Pair with a non-flat section background or the blur has nothing to act on. */
+/**
+ * Frosted card. Pair with a non-flat section background or the blur has
+ * nothing to act on. Mobile uses backdrop-blur-md to save GPU on low-end
+ * Android; desktop steps up to backdrop-blur-xl.
+ */
 export const glassCard =
-  "relative rounded-2xl bg-white/70 dark:bg-white/[0.04] backdrop-blur-xl backdrop-saturate-150 " +
+  "relative rounded-2xl bg-white/70 dark:bg-white/[0.04] backdrop-blur-md md:backdrop-blur-xl backdrop-saturate-150 " +
   "border border-white/60 dark:border-white/10 " +
   "shadow-[0_8px_32px_rgba(15,23,42,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] " +
   "transition-[transform,box-shadow,border-color] duration-300";
 
-/** Hover lift + glow. Apply alongside `glassCard` when the card is interactive. */
-export const glassCardHover =
-  "hover:-translate-y-0.5 hover:border-primary/40 dark:hover:border-primary/40 " +
-  "hover:shadow-[0_16px_48px_rgba(17,96,247,0.18)]";
+/**
+ * Hover lift + glow. The lift triggers on tap on touch devices (the browser
+ * applies :hover briefly before navigation), causing a flicker. We gate the
+ * lift to actual pointer devices via the .glass-card-hover CSS class
+ * defined in globals.css, which is wrapped in @media (hover: hover).
+ */
+export const glassCardHover = "glass-card-hover";
 
 /** Pill chip used for highlights / capability tags inside glass cards. */
 export const glassChip =

@@ -46,9 +46,12 @@ export default function Footer() {
   return (
     <footer className="bg-[#071237] text-slate-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+        {/* Stacked on phone; full 5-col layout from md+ where there's room for
+            brand (col-span-2) + Services + Products + Company without leaving
+            an orphan column. */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Brand */}
-          <div className="sm:col-span-2">
+          <div className="md:col-span-2">
             <Link
               href="/"
               className="inline-block mb-4 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#071237]"

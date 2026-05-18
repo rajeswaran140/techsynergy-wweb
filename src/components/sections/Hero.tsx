@@ -38,13 +38,23 @@ export default function Hero() {
           aria-hidden="true"
         />
 
-        <div className="relative z-10 px-6 sm:px-12 lg:px-16 xl:px-20 py-16 sm:py-20 lg:py-28 w-full">
+        <div className="relative z-10 px-5 sm:px-12 lg:px-16 xl:px-20 py-14 sm:py-20 lg:py-28 w-full">
           <div className="max-w-xl space-y-5 sm:space-y-6">
+            {/*
+              Eyebrow: full string on sm+ where horizontal room is plentiful;
+              shorter form on the smallest viewports (≤640px) so it stays on
+              one line at 320px wide.
+            */}
             <p
-              className="text-primary font-semibold tracking-widest uppercase text-xs animate-fade-in-up"
+              className="text-primary font-semibold tracking-widest uppercase text-[11px] sm:text-xs animate-fade-in-up"
               style={{ animationDelay: "0ms" }}
             >
-              Markham, Ontario &bull; Founded 2023 &bull; 25+ Years Experience
+              <span className="sm:hidden">
+                Markham, Ontario &bull; 25+ Years
+              </span>
+              <span className="hidden sm:inline">
+                Markham, Ontario &bull; Founded 2023 &bull; 25+ Years Experience
+              </span>
             </p>
 
             <h1
@@ -91,13 +101,13 @@ export default function Hero() {
             >
               <Link
                 href="/services"
-                className="px-7 py-3.5 rounded-lg bg-primary text-white font-semibold hover:bg-blue-700 transition-colors text-base text-center shadow-lg shadow-primary/25"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-lg bg-primary text-white font-semibold hover:bg-blue-700 transition-colors text-base text-center shadow-lg shadow-primary/25"
               >
                 See Our Services
               </Link>
               <Link
                 href="/portfolio"
-                className="px-7 py-3.5 rounded-lg border-2 border-slate-300 dark:border-slate-500 text-slate-700 dark:text-slate-200 font-semibold hover:border-primary hover:text-primary transition-colors text-base text-center"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-lg border-2 border-slate-300 dark:border-slate-500 text-slate-700 dark:text-slate-200 font-semibold hover:border-primary hover:text-primary transition-colors text-base text-center"
               >
                 View Our Work
               </Link>
@@ -107,7 +117,7 @@ export default function Hero() {
       </div>
 
       {/* Right — Hero image */}
-      <div className="relative h-80 sm:h-96 lg:h-auto lg:min-h-[100dvh]">
+      <div className="relative h-64 sm:h-80 md:h-96 lg:h-auto lg:min-h-[100dvh]">
         <Image
           src="/coding_Image_2.webp"
           alt="TechSynergy software development workspace with code on screen"

@@ -16,7 +16,8 @@ const poppins = Poppins({
 export const viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 5,
+  // maximumScale intentionally omitted so vision-impaired users can zoom
+  // beyond 5× — WCAG 1.4.4 (Resize text).
 };
 
 export const metadata: Metadata = {

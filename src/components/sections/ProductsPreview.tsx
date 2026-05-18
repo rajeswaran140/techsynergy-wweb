@@ -5,7 +5,7 @@ import ArrowRightIcon from "@/components/ui/ArrowRightIcon";
 
 export default function ProductsPreview() {
   return (
-    <section className="section-glow section-glow-alt py-16 sm:py-24 overflow-hidden">
+    <section className="section-glow section-glow-alt py-12 sm:py-24 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-14">
           <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-3">

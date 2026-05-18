@@ -78,6 +78,19 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/*
+ * Hover lift for glass cards — only on devices that actually hover. Tapping
+ * a card on a phone otherwise briefly fires :hover and you see a flicker
+ * before navigation.
+ */
+@media (hover: hover) and (pointer: fine) {
+  .glass-card-hover:hover {
+    transform: translateY(-2px);
+    border-color: rgb(17 96 247 / 0.4);
+    box-shadow: 0 16px 48px rgb(17 96 247 / 0.18);
+  }
+}
+
 .animate-fade-in-up {
   animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }

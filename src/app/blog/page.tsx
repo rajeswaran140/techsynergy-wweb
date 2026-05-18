@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { publishedPosts, getTagColor } from "@/lib/blog-data";
+import { SITE_URL } from "@/lib/site";
 import CategoryFilter from "@/components/blog/CategoryFilter";
 import PostIllustration from "@/components/blog/PostIllustration";
 import ArrowRightIcon from "@/components/ui/ArrowRightIcon";
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     title: "Tech Blog | Software Development Insights | TechSynergy",
     description:
       "Business insights from TechSynergy — strategy, growth, and digital transformation.",
-    url: "https://techsynergy.ca/blog",
+    url: `${SITE_URL}/blog`,
     images: [
       {
         url: "/og-default.png",
@@ -37,8 +38,6 @@ export const metadata: Metadata = {
     images: ["/og-default.png"],
   },
 };
-
-const BASE_URL = "https://techsynergy.ca";
 
 export default async function BlogPage({
   searchParams,
@@ -69,23 +68,28 @@ export default async function BlogPage({
     name: "TechSynergy Tech Blog",
     description:
       "Insights and thought leadership from TechSynergy on digital transformation, business strategy, and growth for Canadian businesses.",
-    url: `${BASE_URL}/blog`,
+    url: `${SITE_URL}/blog`,
     publisher: {
       "@type": "Organization",
       name: "TechSynergy Corp",
-      url: BASE_URL,
+      url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: `${BASE_URL}/logo-light.svg`,
+        url: `${SITE_URL}/logo-light.svg`,
       },
     },
     blogPost: sorted.map((post) => ({
       "@type": "BlogPosting",
       headline: post.title,
       description: post.excerpt,
-      url: `${BASE_URL}/blog/${post.slug}`,
+      url: `${SITE_URL}/blog/${post.slug}`,
       datePublished: post.dateISO,
       author: { "@type": "Person", name: post.author },
+      image: `${SITE_URL}${post.image}`,
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": `${SITE_URL}/blog/${post.slug}`,
+      },
       keywords: post.tags.join(", "),
     })),
   };
@@ -94,12 +98,12 @@ export default async function BlogPage({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
       {
         "@type": "ListItem",
         position: 2,
         name: "Blog",
-        item: `${BASE_URL}/blog`,
+        item: `${SITE_URL}/blog`,
       },
     ],
   };
@@ -130,16 +134,44 @@ export default async function BlogPage({
                   ? `Expert insights on ${category.toLowerCase()} for Canadian businesses.`
                   : "Insights on strategy, growth, and digital transformation for Canadian businesses."}
               </p>
-              {activeFilter && (
-                <Link
-                  href="/blog"
-                  className="inline-flex items-center gap-1.5 mt-4 text-sm font-semibold text-blog-accent hover:underline"
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-4 text-sm">
+                {activeFilter && (
+                  <Link
+                    href="/blog"
+                    className="inline-flex items-center gap-1.5 font-semibold text-blog-accent hover:underline"
+                  >
+                    Clear filter
+                    <ArrowRightIcon />
+                  </Link>
+                )}
+                <a
+                  href="/feed.xml"
+                  className="inline-flex items-center gap-1.5 font-medium text-blog-muted hover:text-blog-accent transition-colors"
                 >
-                  Clear filter
-                  <ArrowRightIcon />
-                </Link>
-              )}
+                  <svg
+                    className="w-3.5 h-3.5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18v.41a.41.41 0 0 1-.41.41H6.18A2.18 2.18 0 0 1 4 16.46v-.41a.41.41 0 0 1 .41-.41Zm-1.78-4.31a9.34 9.34 0 0 1 9.34 9.34v.41a.41.41 0 0 1-.41.41h-2.18a.41.41 0 0 1-.41-.41 6.34 6.34 0 0 0-6.34-6.34h-.41a.41.41 0 0 1-.41-.41V11.74a.41.41 0 0 1 .41-.41Zm0-4.81A14.16 14.16 0 0 1 18.56 20.69v.41a.41.41 0 0 1-.41.41h-2.18a.41.41 0 0 1-.41-.41A11.16 11.16 0 0 0 4.4 9.94a.41.41 0 0 1-.41-.41V6.93a.41.41 0 0 1 .41-.41Z" />
+                  </svg>
+                  Subscribe via RSS
+                </a>
+              </div>
             </div>
+
+            <p
+              role="status"
+              aria-live="polite"
+              className="sr-only"
+            >
+              {filtered.length === 0
+                ? activeFilter
+                  ? `No posts found for ${activeFilter}.`
+                  : "No posts found."
+                : `Showing ${filtered.length} ${filtered.length === 1 ? "post" : "posts"}${activeFilter ? ` for ${activeFilter}` : ""}.`}
+            </p>
 
             <Link
               href={`/blog/${featured.slug}`}

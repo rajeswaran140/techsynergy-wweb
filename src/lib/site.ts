@@ -13,6 +13,13 @@ export const SITE_URL =
   "https://techsynergy.ca";
 
 /**
+ * Public-facing contact email. Surfaced on /contact (visible + mailto + JSON-LD
+ * contactPoint), referenced by structured data. Change here, propagates
+ * everywhere.
+ */
+export const CONTACT_EMAIL = "rajeswaran.t@techsynergy.ca";
+
+/**
  * User-agents we explicitly opt out of via robots.txt. Covers training
  * crawlers, live-retrieval bots used by AI products, and the major archives
  * (Common Crawl) that feed downstream model trainers.

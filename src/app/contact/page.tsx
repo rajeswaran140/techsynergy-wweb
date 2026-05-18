@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { FaLinkedin } from "react-icons/fa";
-import { SITE_URL } from "@/lib/site";
+import { HiMail } from "react-icons/hi";
+import { CONTACT_EMAIL, SITE_URL } from "@/lib/site";
 import { COMPANY } from "@/lib/legal-info";
 import { glassCard } from "@/lib/ui-tokens";
 
@@ -84,10 +85,12 @@ export default function ContactPage() {
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "customer support",
+        email: CONTACT_EMAIL,
         url: `${SITE_URL}/contact`,
         areaServed: "CA",
         availableLanguage: ["English"],
       },
+      email: CONTACT_EMAIL,
       sameAs: [LINKEDIN_URL],
     },
   };
@@ -136,28 +139,38 @@ export default function ContactPage() {
 
           <ContactForm variant="standalone" />
 
-          {/* Fallback contact channel — for when the form fails or visitor
-              prefers a different surface. LinkedIn only for now; email is
-              intentionally omitted until a public mailbox (e.g.
-              contact@techsynergy.ca) is wired up. */}
+          {/* Fallback contact channels — email + LinkedIn for when the form
+              fails or the visitor prefers a different surface. */}
           <div className={`${glassCard} mt-10 p-6 sm:p-8`}>
             <h2 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mb-2">
               Prefer a different channel?
             </h2>
-            <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-              If you&apos;d rather reach out on social, connect with our
-              founder on LinkedIn — we read and respond to every message.
+            <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+              Reach us directly by email, or connect with our founder on
+              LinkedIn — we read and respond to every message.
             </p>
-            <a
-              href={LINKEDIN_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-[#0a66c2] px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition-opacity shadow-md"
-            >
-              <FaLinkedin className="w-4 h-4" aria-hidden="true" />
-              Message on LinkedIn
-              <span className="sr-only">(opens in new tab)</span>
-            </a>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+                  "Inquiry from techsynergy.ca"
+                )}`}
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 transition-colors shadow-md shadow-primary/20"
+              >
+                <HiMail className="w-4 h-4" aria-hidden="true" />
+                Email&nbsp;
+                <span className="font-mono font-medium">{CONTACT_EMAIL}</span>
+              </a>
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#0a66c2] px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition-opacity shadow-md"
+              >
+                <FaLinkedin className="w-4 h-4" aria-hidden="true" />
+                Message on LinkedIn
+                <span className="sr-only">(opens in new tab)</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>

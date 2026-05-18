@@ -4,12 +4,8 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { services as canonicalServices } from "@/lib/services-data";
 
-/**
- * Posts to the in-tree /api/contact Next.js route (which deploys with the
- * site on Amplify in ca-central-1). Same-origin, so no CSP allow-list entry
- * needed, and submissions stay in the same region as the rest of the site.
- */
-const CONTACT_API = "/api/contact";
+const CONTACT_API =
+  "https://d0xd30uqf9.execute-api.us-east-1.amazonaws.com/prod/contact";
 
 /** 15s ceiling so a cold-starting Lambda doesn't leave the form spinning. */
 const REQUEST_TIMEOUT_MS = 15_000;

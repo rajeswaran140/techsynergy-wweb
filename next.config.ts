@@ -55,9 +55,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https:",
               "font-src 'self' data:",
-              // /api/contact is now in-tree (same-origin), so the legacy
-              // us-east-1 API Gateway URL is no longer needed here.
-              "connect-src 'self' https://www.google-analytics.com",
+              "connect-src 'self' https://www.google-analytics.com https://d0xd30uqf9.execute-api.us-east-1.amazonaws.com",
               "frame-ancestors 'none'",
             ].join('; '),
           },

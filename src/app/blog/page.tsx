@@ -153,6 +153,11 @@ export default async function BlogPage({
 
               <div className="p-6 sm:p-8 lg:p-10">
                 <div className="flex items-center gap-3 mb-4">
+                  {!activeFilter && (
+                    <span className="rounded-full bg-blog-accent px-3 py-1 text-xs font-bold uppercase tracking-wider text-blog-base">
+                      Latest
+                    </span>
+                  )}
                   <span className="rounded-full bg-blog-accent/15 px-3 py-1 text-xs font-semibold text-blog-accent">
                     {featured.category}
                   </span>

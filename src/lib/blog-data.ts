@@ -44,7 +44,7 @@ export const blogPosts: BlogPost[] = [
     tags: ["Innovation", "Strategy", "Canadian Business"],
     category: "Strategy",
     readTime: "7 min read",
-    image: "/coding_Image_2.webp",
+    image: "/blog-ai-integration.webp",
     content: `The conversation about AI has shifted from "should we?" to "how do we?" — and that shift has caught many Canadian businesses unprepared. The flood of vendor pitches, conference keynotes, and breathless press coverage makes it hard to separate genuine opportunity from expensive distraction. Here is a practical framework for thinking about AI in your business, grounded in what actually works in 2026.
 
 ## Start with the Problem, Not the Tool
